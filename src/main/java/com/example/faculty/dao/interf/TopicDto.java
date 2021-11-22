@@ -1,6 +1,17 @@
 package com.example.faculty.dao.interf;
 
-import com.example.faculty.model.entities.Topic;
+import com.example.faculty.model.entity.TopicEntity;
 
-public interface TopicDto extends CrudDao<Topic, Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface TopicDto extends CrudDao<TopicEntity, Long> {
+
+    Optional<TopicEntity> findTopicById(Long topicId);
+
+    Boolean existsTopicByName(String topicName);
+
+    List<TopicEntity> findByOrderByCreatedDate();
+
+//    Page<Topic> findAllByOrderByCreatedDateDesc(Pageable pageable);
 }
