@@ -1,4 +1,4 @@
-package com.example.faculty.model.entities;
+package com.example.faculty.model.domain;
 
 import java.util.Objects;
 
@@ -7,6 +7,8 @@ public class Topic {
     public Long topicId;
 
     private String topicName;
+
+
 
     public Long getTopicId() {
         return topicId;
@@ -34,15 +36,27 @@ public class Topic {
     }
 
 
-    public class Builder {
 
-        public Topic.Builder setTopicName(String topicName) {
-            Topic.this.topicName = topicName;
+    public static class Builder {
+
+        private Topic newTopic;
+
+        public Builder() {
+            newTopic = new Topic();
+        }
+
+        public Builder setTopicId(Long topicId) {
+            newTopic.topicId = topicId;
+            return this;
+        }
+
+        public Builder setTopicName(String topicName) {
+            newTopic.topicName = topicName;
             return this;
         }
 
         public Topic build() {
-            return Topic.this;
+            return newTopic;
         }
 
     }

@@ -8,7 +8,7 @@ public class DBHelper {
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
 
     //    private final String URL = "jdbc:mysql://localhost:3306/db_supermarket?autoReconnect=true&useSSL=false";
-    private final String URL = "jdbc:mysql://localhost:3306/faculty";
+    private final String URL = "jdbc:mysql://localhost:3306/facultyservlet";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
 

@@ -1,4 +1,4 @@
-package com.example.faculty.model.entities;
+package com.example.faculty.model.domain;
 
 import com.example.faculty.model.enums.CourseStatus;
 
@@ -11,9 +11,9 @@ public class Course {
 
     public long created = new Date().getTime();
 
-    public Long idTopic;
+    public Topic topic;
 
-    public Long idTeacher;
+    public User teacher;
 
     public String courseName;
 
@@ -21,7 +21,11 @@ public class Course {
 
     public int studentsAmount;
 
+    public int enrollStudents;
+
     public CourseStatus status;
+
+
 
     public Long getCourseId() {
         return courseId;
@@ -31,12 +35,16 @@ public class Course {
         return created;
     }
 
-    public Long getIdTopic() {
-        return idTopic;
+    public Topic getTopic() {
+        return topic;
     }
 
-    public Long getIdTeacher() {
-        return idTeacher;
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public int getEnrollStudents() {
+        return enrollStudents;
     }
 
     public String getCourseName() {
@@ -73,41 +81,59 @@ public class Course {
     }
 
 
-    public class Builder {
 
-        public Course.Builder setIdTopic(Long idTopic) {
-            Course.this.idTopic = idTopic;
+    public static class Builder {
+
+        private Course newCourse;
+
+        public Builder() {
+            newCourse = new Course();
+        }
+
+        public Builder setCourseId(Long courseId) {
+            newCourse.courseId = courseId;
             return this;
         }
 
-        public Course.Builder setIdTeacher(Long idTeacher) {
-            Course.this.idTeacher = idTeacher;
+        public Builder setTopic(Topic topic) {
+            newCourse.topic = topic;
             return this;
         }
 
-        public Course.Builder setCourseName(String courseName) {
-            Course.this.courseName = courseName;
+        public Builder setTeacher(User teacher) {
+            newCourse.teacher = teacher;
             return this;
         }
 
-        public Course.Builder setDuration(int duration) {
-            Course.this.duration = duration;
+        public Builder setCourseName(String courseName) {
+            newCourse.courseName = courseName;
+            return this;
+        }
+
+        public Builder setDuration(int duration) {
+            newCourse.duration = duration;
             return this;
         }
 
 
-        public Course.Builder setStudentsAmount(int studentsAmount) {
-            Course.this.studentsAmount = studentsAmount;
+        public Builder setStudentsAmount(int studentsAmount) {
+            newCourse.studentsAmount = studentsAmount;
             return this;
         }
 
-        public Course.Builder setCourseStatus(CourseStatus status) {
-            Course.this.status = status;
+        public Builder setEnrollStudents(int enrollStudents) {
+            newCourse.enrollStudents = enrollStudents;
+            return this;
+        }
+
+        public Builder setCourseStatus(CourseStatus status) {
+            newCourse.status = status;
             return this;
         }
 
         public Course build() {
-            return Course.this;
+
+            return newCourse;
         }
 
     }

@@ -1,10 +1,10 @@
-package com.example.faculty.model.entities;
+package com.example.faculty.model.entity;
 
 import com.example.faculty.model.enums.UserRole;
 
 import java.util.Objects;
 
-public class User {
+public class UserEntity {
 
     public Long userId;
 
@@ -19,6 +19,7 @@ public class User {
     public String password;
 
     public UserRole role;
+
 
 
     public Long getUserId() {
@@ -57,8 +58,8 @@ public class User {
             return false;
         if (getClass() != o.getClass())
             return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(role, user.role);
+        UserEntity userEntity = (UserEntity) o;
+        return Objects.equals(email, userEntity.email) && Objects.equals(role, userEntity.role);
     }
 
     @Override
@@ -67,43 +68,54 @@ public class User {
     }
 
 
-    public class Builder {
 
-        public User.Builder setFirstName(String firstName) {
-            User.this.firstName = firstName;
+    public static class Builder {
+
+        private UserEntity newUserEntity;
+
+        public Builder() {
+            newUserEntity = new UserEntity();
+        }
+
+        public Builder setUserId(Long userId) {
+            newUserEntity.userId = userId;
             return this;
         }
 
-        public User.Builder setSecondName(String secondName) {
-            User.this.secondName = secondName;
+        public Builder setFirstName(String firstName) {
+            newUserEntity.firstName = firstName;
             return this;
         }
 
-        public User.Builder setLastName(String lastName) {
-            User.this.lastName = lastName;
+        public Builder setSecondName(String secondName) {
+            newUserEntity.secondName = secondName;
             return this;
         }
 
-        public User.Builder setEmail(String email) {
-            User.this.email = email;
+        public Builder setLastName(String lastName) {
+            newUserEntity.lastName = lastName;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            newUserEntity.email = email;
             return this;
         }
 
 
-        public User.Builder setPassword(String password) {
-            User.this.password = password;
+        public Builder setPassword(String password) {
+            newUserEntity.password = password;
             return this;
         }
 
-        public User.Builder setRole(UserRole role) {
-            User.this.role = role;
+        public Builder setRole(UserRole role) {
+            newUserEntity.role = role;
             return this;
         }
 
-        public User build() {
-            return User.this;
+        public UserEntity build() {
+            return newUserEntity;
         }
-
     }
 
 }
