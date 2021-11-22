@@ -1,6 +1,6 @@
 package com.example.faculty.service.impl;
 
-import com.example.faculty.model.entities.Topic;
+import com.example.faculty.model.domain.Topic;
 import com.example.faculty.service.interf.TopicService;
 
 import java.util.List;

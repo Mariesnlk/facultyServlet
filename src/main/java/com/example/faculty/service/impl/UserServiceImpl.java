@@ -1,6 +1,6 @@
 package com.example.faculty.service.impl;
 
-import com.example.faculty.model.entities.User;
+import com.example.faculty.model.domain.User;
 import com.example.faculty.service.interf.UserService;
 
 import java.util.List;
@@ -32,6 +32,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(User entity) {
         return false;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public void updatePassword(User user, String newPassword) {
+
+    }
+
+    @Override
+    public List<User> allTeachers() {
+        return null;
     }
 
 
