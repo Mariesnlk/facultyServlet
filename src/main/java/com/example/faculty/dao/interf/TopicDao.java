@@ -5,7 +5,7 @@ import com.example.faculty.model.entity.TopicEntity;
 import java.util.List;
 import java.util.Optional;
 
-public interface TopicDto extends CrudDao<TopicEntity, Long> {
+public interface TopicDao extends CrudDao<TopicEntity, Long> {
 
     Optional<TopicEntity> findTopicById(Long topicId);
 

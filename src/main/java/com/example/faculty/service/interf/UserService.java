@@ -16,6 +16,14 @@ public interface UserService extends CrudService<User, Long> {
 
     List<User> allTeachers();
 
+    User getUserByEmailAndPassword(String email, String hashPassword);
+
+    boolean isAdminExists(String email, String password);
+
+    boolean isStudentExists(String email, String password);
+
+    boolean isTeacherExists(String email, String password);
+
 //    Paged findAllStudentsByIdCourse(Long courseId, int pageNumber, int size);
 
 

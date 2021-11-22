@@ -10,6 +10,11 @@ import java.util.Base64;
 
 public class AES {
 
+    public AES() {
+    }
+
+    public static final String KEY = "fi!fifi!fififi!!";
+
     private static SecretKeySpec secretKey;
     private static byte[] key;
 

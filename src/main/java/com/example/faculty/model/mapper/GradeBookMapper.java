@@ -1,8 +1,6 @@
 package com.example.faculty.model.mapper;
 
-import com.example.faculty.model.domain.Enroll;
 import com.example.faculty.model.domain.GradeBook;
-import com.example.faculty.model.entity.EnrollEntity;
 import com.example.faculty.model.entity.GradeBookEntity;
 
 public class GradeBookMapper {
