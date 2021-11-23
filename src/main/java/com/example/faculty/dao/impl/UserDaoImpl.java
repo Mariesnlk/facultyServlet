@@ -3,7 +3,6 @@ package com.example.faculty.dao.impl;
 import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.database.DBHelper;
 import com.example.faculty.database.Queries;
-import com.example.faculty.model.domain.User;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
 
@@ -32,7 +31,7 @@ public class UserDaoImpl implements UserDao {
             String password = user.getPassword();
             UserRole role = user.getRole();
 
-            String query = Queries.CREATE_STUDENT;
+            String query = Queries.CREATE_USER;
 
             ps = connection.prepareStatement(query);
 

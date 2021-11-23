@@ -30,7 +30,6 @@ public class SecurityConfig {
         mapConfig.put(UserRole.TEACHER, urlPatterns2);
 
         List<String> urlPatterns3 = new ArrayList<>();
-        urlPatterns3.add(REGISTER_TEACHER);
         urlPatterns3.add(ADMIN_ACCOUNT);
         urlPatterns3.add(ADD_TOPIC);
         urlPatterns3.add(UPDATE_TOPIC);

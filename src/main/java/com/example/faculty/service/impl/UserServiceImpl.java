@@ -49,6 +49,26 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public User getUserByEmailAndPassword(String email, String hashPassword) {
+        return null;
+    }
+
+    @Override
+    public boolean isAdminExists(String email, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean isStudentExists(String email, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean isTeacherExists(String email, String password) {
+        return false;
+    }
+
 
 //    @Override
 //    public User getRegisteredUser(String login, String password) {

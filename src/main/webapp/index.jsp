@@ -1,20 +1,48 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Марія
+  Date: 23.11.2021
+  Time: 15:14
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="static com.example.faculty.controller.command.PathCommand.REGISTER_USER" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${sessionScope.lang}"/>
-<fmt:setBundle basename="messages"/>
 
-<!DOCTYPE html>
-<html lang="${param.lang}">
+<html>
 <head>
-    <title><fmt:message key="navbar.navbarHeader"/></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%-- localization   <fmt:message key="navbar.navbarHeader"/>--%>
+    <title>Main page</title>
+
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"--%>
+<%--          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--%>
 </head>
 <body>
-<%@ include file="fragments/navbar.jsp" %>
 
-<h1 class="centered" style="text-align:center; margin-top: 10%">
-    <fmt:message key="welcome.welcomeMessage"/>
-</h1>
+<% String context = request.getContextPath(); %>
+
+<%--<%@ include file="fragments/navbar-all.jsp" %>--%>
+
+<jsp:include page="fragments/navbar-all.jsp"></jsp:include>
+
+<!-- Hero Section Begin -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Faculty Site - the best matches for your education</h1>
+                    <p>Find all information about courses and teacher, enroll for courses and
+                        review your grades.</p>
+                    <span>New user?</span> <span><a href="<%=context%><%=REGISTER_USER%>">Register here</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
 </body>
 </html>

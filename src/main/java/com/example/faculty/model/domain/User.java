@@ -2,11 +2,15 @@ package com.example.faculty.model.domain;
 
 import com.example.faculty.model.enums.UserRole;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class User {
 
     public Long userId;
+
+    // TODO: 22.11.2021 add date 
+    private Date date;
 
     public String firstName;
 
