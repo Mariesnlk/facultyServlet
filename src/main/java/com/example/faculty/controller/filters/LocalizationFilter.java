@@ -23,7 +23,7 @@ public class LocalizationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String localeParameter = request.getParameter("locale");
-        LOGGER.info("set locale Filter" + localeParameter);
+        LOGGER.info("set locale Filter " + localeParameter);
         locale = localeParameter != null
                 ? localeParameter
                 : httpRequest.getSession().getAttribute("locale") != null

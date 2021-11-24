@@ -2,14 +2,10 @@ package com.example.faculty.controller.context;
 
 import com.example.faculty.cipher.AES;
 import com.example.faculty.controller.command.Command;
-import com.example.faculty.controller.command.account.EnterLoginCommand;
-import com.example.faculty.controller.command.account.student.RegisterStudentCommand;
-import com.example.faculty.controller.command.account.student.RegistrationCommand;
-import com.example.faculty.controller.command.account.student.StudentAccountCommand;
-import com.example.faculty.controller.command.account.teacher.TeacherAccountCommand;
-import com.example.faculty.controller.command.common.ErrorForbiddenCommand;
-import com.example.faculty.controller.command.common.LogOutCommand;
-import com.example.faculty.controller.command.common.LoginCommand;
+import com.example.faculty.controller.command.account.admin.*;
+import com.example.faculty.controller.command.account.student.*;
+import com.example.faculty.controller.command.account.teacher.*;
+import com.example.faculty.controller.command.common.*;
 import com.example.faculty.dao.impl.*;
 import com.example.faculty.dao.interf.*;
 import com.example.faculty.database.DBHelper;
@@ -54,14 +50,29 @@ public class ApplicationContextInjector {
 
     private static Map<String, Command> initCommand() {
         Map<String, Command> commands = new HashMap<>();
-        commands.put(REGISTER_STUDENT, new RegisterStudentCommand());
-        commands.put(REGISTER_PAGE, new RegistrationCommand(USER_SERVICE));
-        commands.put(ENTER_LOGIN, new EnterLoginCommand(USER_SERVICE));
-        commands.put(LOGIN_PAGE, new LoginCommand());
-        commands.put(LOGOUT, new LogOutCommand());
+        commands.put(LOGIN, new LoginCommand());
+        commands.put(LOGOUT, new LogoutCommand());
         commands.put(STUDENT_ACCOUNT, new StudentAccountCommand());
         commands.put(TEACHER_ACCOUNT, new TeacherAccountCommand());
+        commands.put(ADMIN_ACCOUNT, new AdminAccountCommand());
         commands.put(FORBIDDEN, new ErrorForbiddenCommand());
+        commands.put(REGISTER_USER, new RegisterStudentCommand());
+        commands.put(ABOUT, new AboutCommand());
+        commands.put(CONTACTS, new ContactsCommand());
+        commands.put(BLOCK_STUDENT, new BlockStudentCommand());
+        commands.put(ADD_TOPIC, new AddTopicCommand());
+        commands.put(UPDATE_TOPIC, new UpdateTopicCommand());
+        commands.put(ALL_TOPICS, new AllTopicsCommand());
+        commands.put(ALL_COURSES, new AllCoursesCommand());
+        commands.put(ADD_COURSES, new AddCouCoursesCommand());
+        commands.put(UPDATE_COURSES, new UpdateCoursesCommand());
+        commands.put(ALL_STUDENTS, new AllStudentsCommand());
+        commands.put(UPDATE_STUDENT, new UpdateStudentCommand());
+        commands.put(STUDENT_COURSES, new StudentCoursesCommand());
+        commands.put(ALL_TEACHERS, new AllTeachersCommand());
+        commands.put(ADD_TEACHER, new AddTeacherCommand());
+        commands.put(UPDATE_TEACHER, new UpdateTeacherCommand());
+        commands.put(TEACHER_COURSES, new TeacherCoursesCommand());
         return commands;
     }
 

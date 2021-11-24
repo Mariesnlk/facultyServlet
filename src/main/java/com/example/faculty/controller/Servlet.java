@@ -6,6 +6,7 @@ import com.example.faculty.controller.context.ApplicationContextInjector;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +43,10 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String commandKey = getRequestPath(request);
+
         LOGGER.info("get command");
+        LOGGER.info(commands);
+        LOGGER.info(commandKey);
         Command command = commands.get(commandKey);
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
         if (command == null) {

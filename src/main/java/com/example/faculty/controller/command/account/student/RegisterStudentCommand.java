@@ -11,6 +11,6 @@ public class RegisterStudentCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        return RoutesJSP.REGISTER_STUDENT;
+        return RoutesJSP.REGISTER;
     }
 }

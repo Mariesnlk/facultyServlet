@@ -36,7 +36,7 @@
                     <h1>Faculty Site - the best matches for your education</h1>
                     <p>Find all information about courses and teacher, enroll for courses and
                         review your grades.</p>
-                    <span>New user?</span> <span><a href="<%=context%><%=REGISTER_USER%>">Register here</a></span>
+                    <span>New user?</span> <span><a href="<%=context%>/faculty<%=REGISTER_USER%>">Register here</a></span>
                 </div>
             </div>
         </div>

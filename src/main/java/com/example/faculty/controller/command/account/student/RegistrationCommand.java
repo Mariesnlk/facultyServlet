@@ -12,16 +12,16 @@ import com.example.faculty.utils.InputDataRegistrationUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.example.faculty.controller.command.PathCommand.LOGIN_PAGE;
+import static com.example.faculty.controller.command.PathCommand.LOGIN;
 import static com.example.faculty.controller.command.PathCommand.REDIRECT;
 
 
 public class RegistrationCommand implements Command {
 
-    private UserService clientService;
+    private UserService userService;
 
-    public RegistrationCommand(UserService clientService) {
-        this.clientService = clientService;
+    public RegistrationCommand(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class RegistrationCommand implements Command {
         final String confirmPassword = request.getParameter("confirmPassword");
 
         if (firstName == null || secondName == null || lastName == null) {
-            return RoutesJSP.REGISTER_STUDENT;
+            return RoutesJSP.REGISTER;
         }
         if (InputDataRegistrationUtils.isNotCorrectData(firstName, secondName, lastName,
                 email, password, confirmPassword)) {
-            return RoutesJSP.REGISTER_STUDENT + "?badInput=true";
+            return RoutesJSP.REGISTER + "?badInput=true";
         }
 
         User user = new User.Builder()
@@ -56,10 +56,10 @@ public class RegistrationCommand implements Command {
 //            clientService.createClientInDatabase(client);
         } catch (EmailIsAlreadyTaken emailIsAlreadyTaken) {
             emailIsAlreadyTaken.printStackTrace();
-            return RoutesJSP.REGISTER_STUDENT + "?badEmail=true";
+            return RoutesJSP.REGISTER + "?badEmail=true";
         }
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
 
-        return REDIRECT + contextAndServletPath + LOGIN_PAGE;
+        return REDIRECT + contextAndServletPath + LOGIN;
     }
 }
