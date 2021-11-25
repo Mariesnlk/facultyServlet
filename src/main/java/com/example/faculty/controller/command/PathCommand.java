@@ -2,10 +2,12 @@ package com.example.faculty.controller.command;
 
 public interface PathCommand {
 
+    String REGISTER_PAGE = "/register_form";
     String REGISTER_USER = "/register";
 
     String HOME_PAGE = "/home";
-    String LOGIN = "/faculty/login";
+    String LOGIN = "/login";
+    String LOGIN_PAGE = "/login_form";
     String LOGOUT = "/logout";
     String ABOUT = "/about";
     String CONTACTS = "/contacts";

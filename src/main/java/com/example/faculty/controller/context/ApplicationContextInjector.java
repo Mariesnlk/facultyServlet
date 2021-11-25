@@ -2,6 +2,7 @@ package com.example.faculty.controller.context;
 
 import com.example.faculty.cipher.AES;
 import com.example.faculty.controller.command.Command;
+import com.example.faculty.controller.command.common.EnterLoginCommand;
 import com.example.faculty.controller.command.account.admin.*;
 import com.example.faculty.controller.command.account.student.*;
 import com.example.faculty.controller.command.account.teacher.*;
@@ -23,7 +24,7 @@ public class ApplicationContextInjector {
     private static final DBHelper CONNECTOR = new DBHelper();
     private static final AES ENCODER_PASSWORD = new AES();
 
-    private static final UserDao USER_DAO = new UserDaoImpl();
+    private static final UserDao USER_DAO = new UserDaoImpl(CONNECTOR);
     private static final TopicDao TOPIC_DAO = new TopicDaoImpl();
     private static final CourseDao COURSE_DAO = new CourseDaoImpl();
     private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl();
@@ -35,7 +36,7 @@ public class ApplicationContextInjector {
     private static final EnrollMapper ENROLL_MAPPER = new EnrollMapper(COURSE_MAPPER, USER_MAPPER);
     private static final GradeBookMapper GRADE_BOOK_MAPPER = new GradeBookMapper(COURSE_MAPPER, USER_MAPPER);
 
-    private static final UserService USER_SERVICE = new UserServiceImpl();
+    private static final UserService USER_SERVICE = new UserServiceImpl(USER_DAO, USER_MAPPER);
     private static final TopicService TOPIC_SERVICE = new TopicServiceImpl();
     private static final CourseService COURSE_SERVICE = new CourseServiceImpl();
     private static final EnrollService ENROLL_SERVICE = new EnrollServiceImpl();
@@ -50,13 +51,16 @@ public class ApplicationContextInjector {
 
     private static Map<String, Command> initCommand() {
         Map<String, Command> commands = new HashMap<>();
-        commands.put(LOGIN, new LoginCommand());
+        commands.put(HOME_PAGE, new HomeCommand());
+        commands.put(REGISTER_PAGE, new RegisterStudentCommand());
+        commands.put(REGISTER_USER, new RegistrationCommand(USER_SERVICE));
+        commands.put(LOGIN_PAGE, new LoginCommand());
+        commands.put(LOGIN, new EnterLoginCommand(USER_SERVICE));
         commands.put(LOGOUT, new LogoutCommand());
         commands.put(STUDENT_ACCOUNT, new StudentAccountCommand());
         commands.put(TEACHER_ACCOUNT, new TeacherAccountCommand());
         commands.put(ADMIN_ACCOUNT, new AdminAccountCommand());
         commands.put(FORBIDDEN, new ErrorForbiddenCommand());
-        commands.put(REGISTER_USER, new RegisterStudentCommand());
         commands.put(ABOUT, new AboutCommand());
         commands.put(CONTACTS, new ContactsCommand());
         commands.put(BLOCK_STUDENT, new BlockStudentCommand());

@@ -1,14 +1,16 @@
 package com.example.faculty.database;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBHelper {
 
-    private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
+    private static final Logger logger = Logger.getLogger(DBHelper.class);
 
-    //    private final String URL = "jdbc:mysql://localhost:3306/db_supermarket?autoReconnect=true&useSSL=false";
-    private final String URL = "jdbc:mysql://localhost:3306/facultyservlet";
+    private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
+    private final String URL = "jdbc:mysql://localhost:3306/facultyservlet?autoReconnect=true&useSSL=false";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
 
@@ -18,7 +20,7 @@ public class DBHelper {
             Class.forName(DRIVER_NAME);//for MySQL database
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (Exception e) {
-            System.out.println(e);
+            logger.warn("getConnection error", e);
         }
         return connection;
     }

@@ -2,11 +2,14 @@ package com.example.faculty.model.entity;
 
 import com.example.faculty.model.enums.UserRole;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class UserEntity {
 
     public Long userId;
+
+    public Date date;
 
     public String firstName;
 
@@ -50,6 +53,10 @@ public class UserEntity {
         return role;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -79,6 +86,11 @@ public class UserEntity {
 
         public Builder setUserId(Long userId) {
             newUserEntity.userId = userId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newUserEntity.date = date;
             return this;
         }
 

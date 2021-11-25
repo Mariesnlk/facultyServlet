@@ -4,22 +4,21 @@ import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao extends CrudDao<UserEntity, Long> {
+
+    boolean isEmailExists(String email);
 
     UserEntity getUserByEmail(String email);
 
     List<UserEntity> findAllByUserRoleNameOrderByCreatedDate(UserRole userRoleName);
 
-//    Page<User> getAllByUserRoleNameOrderByCreatedDate(String userRoleName, Pageable pageable);
-//
-//    @Query("select u.firstName, u.secondName, u.lastName, g.mark " +
-//            "from User u " +
-//            "left join Enroll e " +
-//            "on u.id = e.idUser " +
-//            "left join GradeBook g " +
-//            "on g.idStudent = e.idUser " +
-//            "where e.idCourse=:courseId")
-//    Page<User> findAllStudentsByIdCourse(@Param("courseId") Long courseId, Pageable pageable);
+    boolean isStudentExists(String email, String password);
 
+    boolean isTeacherExists(String email, String password);
+
+    boolean isAdminExists(String email, String password);
+
+    Optional<UserEntity> findUserByEmailAndPass(String email, String password);
 }

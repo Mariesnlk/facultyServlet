@@ -54,6 +54,10 @@ public class User {
         return role;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -83,6 +87,11 @@ public class User {
 
         public Builder setUserId(Long userId) {
             newUser.userId = userId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newUser.date = date;
             return this;
         }
 

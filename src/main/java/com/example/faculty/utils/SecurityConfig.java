@@ -19,10 +19,6 @@ public class SecurityConfig {
         List<String> urlPatterns1 = new ArrayList<>();
 
         urlPatterns1.add(STUDENT_ACCOUNT);
-        urlPatterns1.add(REGISTER_USER);
-        urlPatterns1.add(LOGIN);
-        urlPatterns1.add(ABOUT);
-        urlPatterns1.add(CONTACTS);
         urlPatterns1.add(ALL_COURSES);
         urlPatterns1.add(STUDENT_COURSES);
         urlPatterns1.add(UPDATE_STUDENT);
@@ -33,9 +29,6 @@ public class SecurityConfig {
 
         List<String> urlPatterns2 = new ArrayList<>();
         urlPatterns2.add(TEACHER_ACCOUNT);
-        urlPatterns2.add(LOGOUT);
-        urlPatterns2.add(LOGIN);
-        urlPatterns2.add(ABOUT);
         urlPatterns2.add(CONTACTS);
         urlPatterns2.add(UPDATE_TEACHER);
         urlPatterns2.add(TEACHER_COURSES);
@@ -45,10 +38,6 @@ public class SecurityConfig {
         List<String> urlPatterns3 = new ArrayList<>();
         urlPatterns3.add(ADMIN_ACCOUNT);
         urlPatterns3.add(BLOCK_STUDENT);
-        urlPatterns3.add(LOGOUT);
-        urlPatterns3.add(LOGIN);
-        urlPatterns3.add(ABOUT);
-        urlPatterns3.add(CONTACTS);
         urlPatterns3.add(ADD_TOPIC);
         urlPatterns3.add(UPDATE_TOPIC);
         urlPatterns3.add(ALL_TOPICS);

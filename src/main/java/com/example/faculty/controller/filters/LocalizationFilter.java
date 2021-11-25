@@ -1,9 +1,13 @@
 package com.example.faculty.controller.filters;
 
+import com.example.faculty.utils.CookiesUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 
 
@@ -22,16 +26,19 @@ public class LocalizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         String localeParameter = request.getParameter("locale");
         LOGGER.info("set locale Filter " + localeParameter);
+
         locale = localeParameter != null
                 ? localeParameter
-                : httpRequest.getSession().getAttribute("locale") != null
-                ? (String) httpRequest.getSession().getAttribute("locale")
+                : CookiesUtils.readCookie(httpRequest, "locale") != null
+                ? (String) CookiesUtils.readCookie(httpRequest, "locale")
                 : this.locale;
+        Config.set(httpRequest.getSession(), Config.FMT_LOCALE, locale);
 
-        httpRequest.getSession().setAttribute("locale", locale);
-        httpRequest.getSession().setAttribute("bundle", defaultBundle);
+        httpResponse.addCookie(new Cookie(CookiesUtils.LOCALE, locale));
+
         filterChain.doFilter(request, response);
     }
 

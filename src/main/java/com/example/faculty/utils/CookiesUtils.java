@@ -10,11 +10,9 @@ import java.net.URLDecoder;
 
 public class CookiesUtils {
 
-    public static final String DRIVER_NAME = "driverName";
-    public static final String DRIVER_PHONE = "phoneNumber";
-    public static final String PRICE_VOYAGE = "priceVoyage";
-    public static final String TIME_WAIT = "timeWait";
     public static final String ENCODING = "UTF-8";
+    public static final String LOCALE = "locale";
+    public static final String BUNDLE = "bundle";
 
     private CookiesUtils() {
     }
@@ -32,32 +30,4 @@ public class CookiesUtils {
         }
         return null;
     }
-
-//    public static void addCookies(HttpServletResponse response,
-//                                  Driver driver, int price, int timeWait) {
-//        String safeName = null;
-//        try {
-//            safeName = URLEncoder.encode(driver.getName(), ENCODING);
-//        } catch (UnsupportedEncodingException e) {
-//            throw new InvalidDataRuntimeException();
-//        }
-//        String phoneDriver = driver.getPhoneNumber();
-//        String priceStr = price + "";
-//        String timeWaitStr = timeWait + "";
-//
-//        Cookie driverNameCookie = new Cookie(CookiesUtils.DRIVER_NAME, safeName);
-//        Cookie phoneNumberCookie = new Cookie(CookiesUtils.DRIVER_PHONE, phoneDriver);
-//        Cookie priceCookie = new Cookie(CookiesUtils.PRICE_VOYAGE, priceStr);
-//        Cookie timeWaitCookie = new Cookie(CookiesUtils.TIME_WAIT, timeWaitStr);
-//
-//        driverNameCookie.setMaxAge(-1);
-//        phoneNumberCookie.setMaxAge(-1);
-//        priceCookie.setMaxAge(-1);
-//        timeWaitCookie.setMaxAge(-1);
-//
-//        response.addCookie(driverNameCookie);
-//        response.addCookie(phoneNumberCookie);
-//        response.addCookie(priceCookie);
-//        response.addCookie(timeWaitCookie);
-//    }
 }

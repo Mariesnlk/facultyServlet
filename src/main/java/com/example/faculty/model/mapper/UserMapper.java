@@ -43,6 +43,7 @@ public class UserMapper {
         }
 
         return new UserEntity.Builder()
+                .setDate(user.getDate())
                 .setFirstName(user.getFirstName())
                 .setSecondName(user.getSecondName())
                 .setLastName(user.getLastName())

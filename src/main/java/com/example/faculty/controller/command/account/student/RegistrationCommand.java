@@ -9,14 +9,19 @@ import com.example.faculty.model.domain.User;
 import com.example.faculty.model.enums.UserRole;
 import com.example.faculty.service.interf.UserService;
 import com.example.faculty.utils.InputDataRegistrationUtils;
+import org.apache.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 import static com.example.faculty.controller.command.PathCommand.LOGIN;
 import static com.example.faculty.controller.command.PathCommand.REDIRECT;
 
 
 public class RegistrationCommand implements Command {
+
+    private final Logger LOGGER = Logger.getLogger(RegistrationCommand.class);
 
     private UserService userService;
 
@@ -26,7 +31,7 @@ public class RegistrationCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+        LOGGER.info("start post ");
         final String firstName = request.getParameter("firstName");
         final String secondName = request.getParameter("secondName");
         final String lastName = request.getParameter("lastName");
@@ -35,14 +40,15 @@ public class RegistrationCommand implements Command {
         final String confirmPassword = request.getParameter("confirmPassword");
 
         if (firstName == null || secondName == null || lastName == null) {
-            return RoutesJSP.REGISTER;
+            return RoutesJSP.REGISTER_PAGE;
         }
         if (InputDataRegistrationUtils.isNotCorrectData(firstName, secondName, lastName,
                 email, password, confirmPassword)) {
-            return RoutesJSP.REGISTER + "?badInput=true";
+            return RoutesJSP.REGISTER_PAGE + "?badInput=true";
         }
 
         User user = new User.Builder()
+                .setDate(new Date())
                 .setFirstName(firstName)
                 .setSecondName(secondName)
                 .setLastName(lastName)
@@ -53,10 +59,10 @@ public class RegistrationCommand implements Command {
 
 
         try {
-//            clientService.createClientInDatabase(client);
+            userService.create(user);
         } catch (EmailIsAlreadyTaken emailIsAlreadyTaken) {
             emailIsAlreadyTaken.printStackTrace();
-            return RoutesJSP.REGISTER + "?badEmail=true";
+            return RoutesJSP.REGISTER_PAGE + "?badEmail=true";
         }
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
 

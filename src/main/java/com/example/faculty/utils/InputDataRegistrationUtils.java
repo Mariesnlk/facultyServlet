@@ -1,22 +1,26 @@
 package com.example.faculty.utils;
 
+import org.apache.log4j.Logger;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class InputDataRegistrationUtils {
 
-    private static final String EMAIL_PATTERN = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-    private static final String CORRECT_PASSWORD = "[a-zA-Z0-9]{5,20}";
-    private static final String CORRECT_NAME = "[a-zA-Z\\p{IsCyrillic}]{3,20}";
+    private static final String EMAIL_PATTERN = "^(.+)@(.+)$";
+    private static final String CORRECT_PASSWORD = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+    private static final String CORRECT_NAME = "[A-Za-zА-Яа-яєі]*";
+
+    private static final Logger LOGGER = Logger.getLogger(InputDataRegistrationUtils.class);
 
     private InputDataRegistrationUtils() {
     }
 
     private static boolean isCorrectEmail(String email) {
-        Pattern VALID_EMAIL_ADDRESS_REGEX =
-                Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        LOGGER.info(matcher.matches());
         return matcher.matches();
     }
 
