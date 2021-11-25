@@ -9,7 +9,7 @@ public class Course {
 
     public Long courseId;
 
-    public long created = new Date().getTime();
+    private Date date;
 
     public Topic topic;
 
@@ -26,13 +26,12 @@ public class Course {
     public CourseStatus status;
 
 
-
     public Long getCourseId() {
         return courseId;
     }
 
-    public long getCreated() {
-        return created;
+    public Date getDate() {
+        return date;
     }
 
     public Topic getTopic() {
@@ -81,7 +80,6 @@ public class Course {
     }
 
 
-
     public static class Builder {
 
         private Course newCourse;
@@ -92,6 +90,11 @@ public class Course {
 
         public Builder setCourseId(Long courseId) {
             newCourse.courseId = courseId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newCourse.date = date;
             return this;
         }
 

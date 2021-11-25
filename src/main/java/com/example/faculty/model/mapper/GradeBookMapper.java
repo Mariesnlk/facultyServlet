@@ -20,6 +20,7 @@ public class GradeBookMapper {
 
         return new GradeBook.Builder()
                 .setGradeBookId(gradeBookEntity.getGradeBookId())
+                .setDate(gradeBookEntity.getDate())
                 .setCourse(courseMapper.courseEntityToCourse(gradeBookEntity.getCourseEntity()))
                 .setStudent(studentMapper.userEntityToUser(gradeBookEntity.getStudentEntity()))
                 .setMark(gradeBookEntity.getMark())
@@ -34,6 +35,7 @@ public class GradeBookMapper {
 
         return new GradeBookEntity.Builder()
                 .setGradeBookId(gradeBook.getGradeBookId())
+                .setDate(gradeBook.getDate())
                 .setCourseEntity(courseMapper.courseToCourseEntity(gradeBook.getCourse()))
                 .setStudentEntity(studentMapper.userToUserEntity(gradeBook.getStudent()))
                 .setMark(gradeBook.getMark())

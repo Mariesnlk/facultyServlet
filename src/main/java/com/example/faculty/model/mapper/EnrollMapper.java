@@ -20,6 +20,7 @@ public class EnrollMapper {
 
         return new Enroll.Builder()
                 .setEnrollId(enrollEntity.getEnrollId())
+                .setDate(enrollEntity.getDate())
                 .setCourse(courseMapper.courseEntityToCourse(enrollEntity.getCourseEntity()))
                 .setUser(studentMapper.userEntityToUser(enrollEntity.getStudentEntity()))
                 .build();
@@ -33,6 +34,7 @@ public class EnrollMapper {
 
         return new EnrollEntity.Builder()
                 .setEnrollId(enroll.getEnrollId())
+                .setDate(enroll.getDate())
                 .setCourse(courseMapper.courseToCourseEntity(enroll.getCourse()))
                 .setUser(studentMapper.userToUserEntity(enroll.getStudent()))
                 .build();

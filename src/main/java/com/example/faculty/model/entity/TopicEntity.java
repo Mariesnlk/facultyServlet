@@ -1,14 +1,20 @@
 package com.example.faculty.model.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class TopicEntity {
+
+    private Date date;
 
     public Long topicId;
 
     private String topicName;
 
 
+    public Date getDate() {
+        return date;
+    }
 
     public Long getTopicId() {
         return topicId;
@@ -36,13 +42,17 @@ public class TopicEntity {
     }
 
 
-
     public static class Builder {
 
         private TopicEntity newTopicEntity;
 
         public Builder() {
             newTopicEntity = new TopicEntity();
+        }
+
+        public Builder setDate(Date date) {
+            newTopicEntity.date = date;
+            return this;
         }
 
         public Builder setTopicId(Long topicId) {

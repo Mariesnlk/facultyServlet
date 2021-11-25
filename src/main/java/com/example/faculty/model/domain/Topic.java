@@ -1,5 +1,6 @@
 package com.example.faculty.model.domain;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Topic {
@@ -7,6 +8,8 @@ public class Topic {
     public Long topicId;
 
     private String topicName;
+
+    private Date date;
 
 
 
@@ -16,6 +19,10 @@ public class Topic {
 
     public String getTopicName() {
         return topicName;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     @Override
@@ -47,6 +54,11 @@ public class Topic {
 
         public Builder setTopicId(Long topicId) {
             newTopic.topicId = topicId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newTopic.date = date;
             return this;
         }
 

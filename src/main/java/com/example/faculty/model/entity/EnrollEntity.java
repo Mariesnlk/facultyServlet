@@ -6,20 +6,19 @@ public class EnrollEntity {
 
     public Long enrollId;
 
-    public long created = new Date().getTime();
+    private Date date;
 
     public UserEntity student;
 
     public CourseEntity courseEntity;
 
 
-
     public Long getEnrollId() {
         return enrollId;
     }
 
-    public long getCreated() {
-        return created;
+    public Date getDate() {
+        return date;
     }
 
     public UserEntity getStudentEntity() {
@@ -29,7 +28,6 @@ public class EnrollEntity {
     public CourseEntity getCourseEntity() {
         return courseEntity;
     }
-
 
 
     public static class Builder {
@@ -42,6 +40,11 @@ public class EnrollEntity {
 
         public Builder setEnrollId(Long enrollId) {
             newEnrollEntity.enrollId = enrollId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newEnrollEntity.date = date;
             return this;
         }
 

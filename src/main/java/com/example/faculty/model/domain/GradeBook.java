@@ -6,7 +6,7 @@ public class GradeBook {
 
     public Long gradeBookId;
 
-    public long created = new Date().getTime();
+    private Date date;
 
     public Course course;
 
@@ -15,13 +15,12 @@ public class GradeBook {
     public int mark;
 
 
-
     public Long getGradeBookId() {
         return gradeBookId;
     }
 
-    public long getCreated() {
-        return created;
+    public Date getDate() {
+        return date;
     }
 
     public Course getCourse() {
@@ -37,7 +36,6 @@ public class GradeBook {
     }
 
 
-
     public static class Builder {
 
         private GradeBook newGradeBook;
@@ -48,6 +46,11 @@ public class GradeBook {
 
         public Builder setGradeBookId(Long gradeBookId) {
             newGradeBook.gradeBookId = gradeBookId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            newGradeBook.date = date;
             return this;
         }
 

@@ -12,6 +12,7 @@ public class UserMapper {
 
         return new User.Builder()
                 .setUserId(userEntity.getUserId())
+                .setDate(userEntity.getDate())
                 .setFirstName(userEntity.getFirstName())
                 .setSecondName(userEntity.getSecondName())
                 .setLastName(userEntity.getLastName())
@@ -28,6 +29,7 @@ public class UserMapper {
 
         return new UserEntity.Builder()
                 .setUserId(user.getUserId())
+                .setDate(user.getDate())
                 .setFirstName(user.getFirstName())
                 .setSecondName(user.getSecondName())
                 .setLastName(user.getLastName())

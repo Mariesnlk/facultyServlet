@@ -20,6 +20,7 @@ public class CourseMapper {
 
         return new Course.Builder()
                 .setCourseId(courseEntity.getCourseId())
+                .setDate(courseEntity.getDate())
                 .setCourseName(courseEntity.getCourseName())
                 .setTopic(topicMapper.topicEntityToTopic(courseEntity.getTopicEntity()))
                 .setDuration(courseEntity.getDuration())
@@ -38,6 +39,7 @@ public class CourseMapper {
 
         return new CourseEntity.Builder()
                 .setCourseId(course.getCourseId())
+                .setDate(course.getDate())
                 .setCourseName(course.getCourseName())
                 .setTopic(topicMapper.topicToTopicEntity(course.getTopic()))
                 .setTeacher(teacherMapper.userToUserEntity(course.getTeacher()))

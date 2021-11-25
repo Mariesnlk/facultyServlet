@@ -9,7 +9,6 @@ public class User {
 
     public Long userId;
 
-    // TODO: 22.11.2021 add date 
     private Date date;
 
     public String firstName;

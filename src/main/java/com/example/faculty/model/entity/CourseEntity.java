@@ -1,8 +1,5 @@
 package com.example.faculty.model.entity;
 
-import com.example.faculty.model.domain.Course;
-import com.example.faculty.model.domain.Topic;
-import com.example.faculty.model.domain.User;
 import com.example.faculty.model.enums.CourseStatus;
 
 import java.util.Date;
@@ -12,7 +9,7 @@ public class CourseEntity {
 
     public Long courseId;
 
-    public long created = new Date().getTime();
+    private Date date;
 
     public TopicEntity topicEntity;
 
@@ -29,13 +26,12 @@ public class CourseEntity {
     public CourseStatus status;
 
 
-
     public Long getCourseId() {
         return courseId;
     }
 
-    public long getCreated() {
-        return created;
+    public Date getDate() {
+        return date;
     }
 
     public TopicEntity getTopicEntity() {
@@ -84,7 +80,6 @@ public class CourseEntity {
     }
 
 
-
     public static class Builder {
 
         private CourseEntity courseEntity;
@@ -95,6 +90,11 @@ public class CourseEntity {
 
         public Builder setCourseId(Long courseId) {
             courseEntity.courseId = courseId;
+            return this;
+        }
+
+        public Builder setDate(Date date) {
+            courseEntity.date = date;
             return this;
         }
 
