@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<jsp:include page="../fragments/navbar-all.jsp"></jsp:include>
+<jsp:include page="../../fragments/navbar-all.jsp"></jsp:include>
 
 <!-- Contact Section Begin -->
 <section class="contact-section spad contact-info" style="margin-top: 2%;">

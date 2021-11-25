@@ -9,7 +9,8 @@
 <head><title></title></head>
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">--%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <fmt:setBundle basename="${cookie.bundle.value}"/>
 <!-- Header Section Begin -->
 <header class="header-section">
@@ -19,10 +20,10 @@
                 <div class="col-lg-6">
                     <ul class="tn-left">
                         <li>
-                            <img src="${pageContext.request.contextPath}/img/icons/tel.svg" alt="tel"> (12) 345 67890
+                            <img src="${pageContext.request.contextPath}/img/icons/tel.png" alt="tel" style="width: 30px;"> (12) 345 67890
                         </li>
                         <li>
-                            <img src="${pageContext.request.contextPath}/img/icons/email.svg" alt="email">
+                            <img src="${pageContext.request.contextPath}/img/icons/email.png" alt="email" style="width: 50px;">
                             test.email.mariia@gmail.com
                         </li>
                     </ul>
@@ -55,20 +56,25 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_COURSES%>"><fmt:message key="navbar.courses"/></a></li>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=ABOUT%>"><fmt:message key="navbar.about"/></a></li>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=CONTACTS%>"><fmt:message key="navbar.contacts"/></a></li>
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_COURSES%>"><fmt:message
+                                        key="navbar.courses"/></a></li>
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=ABOUT%>"><fmt:message
+                                        key="navbar.about"/></a></li>
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=CONTACTS%>"><fmt:message
+                                        key="navbar.contacts"/></a></li>
                                 <%--                                <c:if test="${sessionScope.userEmail == null}">--%>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/faculty<%=LOGIN_PAGE%>">
-                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;<fmt:message key="sign_in"/>
+                                        <span class="glyphicon glyphicon-log-in"
+                                              aria-hidden="true"></span>&nbsp;<fmt:message key="sign_in"/>
                                     </a>
                                 </li>
                                 <%--                                </c:if>--%>
                                 <%--                                <c:if test="${sessionScope.userEmail != null}">--%>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/faculty<%=LOGOUT%>">
-                                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;<fmt:message key="logout"/>
+                                        <span class="glyphicon glyphicon-log-out"
+                                              aria-hidden="true"></span>&nbsp;<fmt:message key="logout"/>
                                     </a>
                                 </li>
                                 <%--                                </c:if>--%>

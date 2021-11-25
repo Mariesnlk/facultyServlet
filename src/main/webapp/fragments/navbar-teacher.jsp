@@ -18,13 +18,15 @@
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="tn-left">
-                        <li>
-                            <img src="../img/icons/tel.svg" alt="tel"> (12) 345 67890
-                        </li>
-                        <li>
-                            <img src="../img/icons/email.svg" alt="email">
-                            test.email.mariia@gmail.com
-                        </li>
+                        <ul class="tn-left">
+                            <li>
+                                <img src="${pageContext.request.contextPath}/img/icons/tel.png" alt="tel" style="width: 30px;"> (12) 345 67890
+                            </li>
+                            <li>
+                                <img src="${pageContext.request.contextPath}/img/icons/email.png" alt="email" style="width: 50px;">
+                                test.email.mariia@gmail.com
+                            </li>
+                        </ul>
                     </ul>
                 </div>
                 <div class="col-lg-6">

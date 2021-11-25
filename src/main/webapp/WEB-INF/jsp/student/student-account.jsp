@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img alt="user" src="${pageContext.request.contextPath}/img/icons/author.svg"/>
+                    <img alt="user" src="${pageContext.request.contextPath}/img/icons/author.png" style="height: 300px;"/>
                 </div>
             </div>
 
