@@ -33,12 +33,14 @@ public abstract class AbstractGenericDao<E> {
     }
 
     protected E getElementByIntegerParam(Long id, String query) {
+        ResultSet rs = null;
         try (Connection connection = connector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return parseToOneElement(resultSet);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                LOGGER.info("rs - " + rs);
+                return parseToOneElement(rs);
             }
         } catch (SQLException e) {
             LOGGER.warn("getElementByIntegerParam error", e);
@@ -48,16 +50,16 @@ public abstract class AbstractGenericDao<E> {
     }
 
 
-    protected boolean update(E entity, String query) {
+    protected void update(E entity, String query) {
         try (Connection connection = connector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             setUpdateElementProperties(preparedStatement, entity);
             preparedStatement.executeUpdate();
+            LOGGER.info("AbstractGenericDao - update");
         } catch (SQLException e) {
             LOGGER.warn("Can not update element", e);
             throw new DataBaseRuntimeException("Can not update element", e);
         }
-        return true;
     }
 
 

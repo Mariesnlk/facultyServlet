@@ -8,7 +8,7 @@ import com.example.faculty.exception.EmailIsAlreadyTaken;
 import com.example.faculty.model.domain.User;
 import com.example.faculty.model.enums.UserRole;
 import com.example.faculty.service.interf.UserService;
-import com.example.faculty.utils.InputDataRegistrationUtils;
+import com.example.faculty.utils.InputDataValidationUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class RegistrationCommand implements Command {
         if (firstName == null || secondName == null || lastName == null) {
             return RoutesJSP.REGISTER_PAGE;
         }
-        if (InputDataRegistrationUtils.isNotCorrectData(firstName, secondName, lastName,
+        if (InputDataValidationUtils.isNotCorrectData(firstName, secondName, lastName,
                 email, password, confirmPassword)) {
             return RoutesJSP.REGISTER_PAGE + "?badInput=true";
         }

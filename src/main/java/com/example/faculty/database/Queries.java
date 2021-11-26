@@ -7,7 +7,7 @@ public class Queries {
             "email, password, role) VALUES(?,?,?,?,?,?,?)";
     public static final String GET_BY_ID_USER = "SELECT * FROM facultyservlet.user WHERE id=?";
     public static final String GET_ALL_USERS = "SELECT * FROM facultyservlet.user";
-    public static final String UPDATE_USER = "UPDATE facultyservlet.user SET " +
+    public static final String UPDATE_USER_BY_ID = "UPDATE facultyservlet.user SET " +
             "created_date=?, " +
             "first_name=?, " +
             "second_name=?, " +
@@ -24,17 +24,17 @@ public class Queries {
             "WHERE email=? AND password=? AND role='TEACHER'";
     public static final String IS_EXISTS_ADMIN_BY_EMAIL_AND_PASSWORD = "SELECT * FROM facultyservlet.user " +
             "WHERE email=? AND password=? AND role='ADMINISTRATOR'";
-    // TODO: 22.11.2021 without ordering
-    public static final String GET_ALL_BY_USER_ROLE_NAME = "SELECT * FROM facultyservlet.user WHERE role=?";
+    public static final String GET_ALL_BY_USER_ROLE_NAME = "SELECT * FROM facultyservlet.user WHERE role=? ORDER BY created_date DESC";
 
     //Topic
-    public static final String CREATE_TOPIC = "INSERT INTO topic(name) VALUES(?)";
+    public static final String CREATE_TOPIC = "INSERT INTO topic(created_date, name) VALUES(?,?)";
     public static final String GET_BY_ID_TOPIC = "SELECT * FROM topic WHERE id = ?";
     public static final String GET_ALL_TOPICS = "SELECT * FROM topic";
     public static final String UPDATE_TOPIC = "UPDATE topic SET " +
-            "name  =  ? " +
-            "WHERE id = ?";
-    public static final String DELETE_TOPIC = "DELETE FROM topic WHERE id = ?";
+            "created_date=? " +
+            "name=? " +
+            "WHERE id=?";
+    public static final String DELETE_TOPIC = "DELETE FROM topic WHERE id=?";
     public static final String COUNT_TOPICS = "SELECT count(*) FROM  facultyservlet.topic";
     public static final String READ_TOPICS_WITH_LIMIT = "SELECT * FROM  facultyservlet.topic ORDER BY  id  DESC limit ?, ?";
 

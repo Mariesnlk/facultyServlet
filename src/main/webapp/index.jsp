@@ -23,6 +23,12 @@
 
 <jsp:include page="fragments/navbar-all.jsp"></jsp:include>
 
+<div>
+    <c:if test="${param.logout == true}">
+        <div class="alert alert-info">You have been logged out.</div>
+    </c:if>
+</div>
+
 <!-- Hero Section Begin -->
 <section class="hero-section">
     <div class="container">
@@ -31,7 +37,9 @@
                 <div class="hero-text">
                     <h1><fmt:message key="main.info.h1"/></h1>
                     <p><fmt:message key="main.info.p"/></p>
-                    <span><fmt:message key="new_user"/></span> <span><a href="${pageContext.request.contextPath}/faculty<%=REGISTER_PAGE%>"><fmt:message key="register_here"/></a></span>
+                    <span><fmt:message key="new_user"/></span> <span><a
+                        href="${pageContext.request.contextPath}/faculty<%=REGISTER_PAGE%>"><fmt:message
+                        key="register_here"/></a></span>
                 </div>
             </div>
         </div>

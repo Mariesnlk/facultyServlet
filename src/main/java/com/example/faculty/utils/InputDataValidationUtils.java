@@ -2,19 +2,20 @@ package com.example.faculty.utils;
 
 import org.apache.log4j.Logger;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class InputDataRegistrationUtils {
+public class InputDataValidationUtils {
 
     private static final String EMAIL_PATTERN = "^(.+)@(.+)$";
     private static final String CORRECT_PASSWORD = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     private static final String CORRECT_NAME = "[A-Za-zА-Яа-яєі]*";
 
-    private static final Logger LOGGER = Logger.getLogger(InputDataRegistrationUtils.class);
+    private static final Logger LOGGER = Logger.getLogger(InputDataValidationUtils.class);
 
-    private InputDataRegistrationUtils() {
+    private InputDataValidationUtils() {
     }
 
     private static boolean isCorrectEmail(String email) {
@@ -34,7 +35,7 @@ public class InputDataRegistrationUtils {
         return password1.equals(password2);
     }
 
-    private static boolean isCorrectName(String name) {
+    public static boolean isCorrectName(String name) {
         Pattern VALID_EMAIL_ADDRESS_REGEX =
                 Pattern.compile(CORRECT_NAME);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(name);
@@ -57,4 +58,9 @@ public class InputDataRegistrationUtils {
         return !(isCorrectPIB(firstName, secondName, lastName)
                 && isCorrectEmail(email));
     }
+
+    public static boolean isNullOrEmpty(String input){
+        return (Objects.isNull(input) && input.isEmpty());
+    }
+
 }

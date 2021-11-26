@@ -1,4 +1,4 @@
-package com.example.faculty.controller.command.account.admin;
+package com.example.faculty.controller.command.account.admin.topic;
 
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;

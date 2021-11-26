@@ -3,8 +3,6 @@ package com.example.faculty.dao.impl;
 import com.example.faculty.dao.interf.TopicDao;
 import com.example.faculty.database.DBHelper;
 import com.example.faculty.model.entity.TopicEntity;
-import com.example.faculty.model.entity.UserEntity;
-import com.example.faculty.model.enums.UserRole;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -14,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.faculty.database.Queries.COUNT_TOPICS;
-import static com.example.faculty.database.Queries.READ_TOPICS_WITH_LIMIT;
+import static com.example.faculty.database.Queries.*;
 
 public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements TopicDao {
 
@@ -28,12 +25,16 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
 
     @Override
     protected void setInsertElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
-
+        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
+        statement.setDate(1, printDate);
+        statement.setString(2, element.getTopicName());
     }
 
     @Override
     protected void setUpdateElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
-
+        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
+        statement.setDate(1, printDate);
+        statement.setString(2, element.getTopicName());
     }
 
     @Override
@@ -46,28 +47,30 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
     }
 
     @Override
-    public void create(TopicEntity entity) {
-
+    public void create(TopicEntity topicEntity) {
+        insert(topicEntity, CREATE_TOPIC);
     }
 
     @Override
     public TopicEntity findById(Long id) {
-        return null;
+        return getElementByIntegerParam(id, GET_BY_ID_TOPIC);
     }
 
     @Override
     public List<TopicEntity> findAll() {
-        return null;
+
+        return getList(GET_ALL_TOPICS);
     }
 
     @Override
     public void update(TopicEntity entity) {
-
+        update(entity, UPDATE_TOPIC);
+        LOGGER.info("finish update topic");
     }
 
     @Override
     public boolean delete(TopicEntity entity) {
-        return false;
+        return delete(entity.getTopicId(), DELETE_TOPIC);
     }
 
     @Override

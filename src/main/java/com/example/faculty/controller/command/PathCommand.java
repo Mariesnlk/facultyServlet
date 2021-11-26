@@ -5,8 +5,8 @@ public interface PathCommand {
     String REGISTER_PAGE = "/register_form";
     String REGISTER_USER = "/register";
 
-    String UPDATE = "/update";
-    String UPDATE_STUDENT_FORM = "/update_form";
+    String UPDATE_USER = "/update";
+    String UPDATE_STUDENT_FORM = "/student/update_form";
     String UPDATE_ADMIN_FORM = "/admin/update_form";
 
     String HOME_PAGE = "/home";
@@ -25,8 +25,10 @@ public interface PathCommand {
     String ADD_TOPIC = "/add_topic";
     String ADD_TOPIC_FORM = "/add_topic_form";
     String UPDATE_TOPIC = "/update_topic";
+    String UPDATE_TOPIC_FORM = "/update_topic_form";
     String ALL_TOPICS = "/topics";
     String ALL_TOPICS_PAG = "/all_topics";
+    String DELETE_TOPIC_PATH = "/delete_topic";
 
     String ALL_COURSES = "/courses";
     String ADD_COURSES = "/add_course";

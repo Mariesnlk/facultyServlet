@@ -70,14 +70,6 @@
                                     </a>
                                 </li>
                                 <%--                                </c:if>--%>
-                                <%--                                <c:if test="${sessionScope.userEmail != null}">--%>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/faculty<%=LOGOUT%>">
-                                        <span class="glyphicon glyphicon-log-out"
-                                              aria-hidden="true"></span>&nbsp;<fmt:message key="logout"/>
-                                    </a>
-                                </li>
-                                <%--                                </c:if>--%>
                             </ul>
                         </nav>
                     </div>

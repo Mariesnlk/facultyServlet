@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TopicServiceImpl implements TopicService {
@@ -24,28 +25,46 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public void create(Topic entity) {
-
+    public void create(Topic topic) {
+        topicDao.create(topicMapper.topicToTopicEntity(topic));
     }
 
     @Override
     public Topic findById(Long id) {
-        return null;
+        if (Objects.isNull(id)) {
+            LOGGER.warn("find topic by id");
+            throw new InputDataInCorrectRuntimeException("Topic must be not null");
+        }
+        TopicEntity topicEntity = topicDao.findById(id);
+        return topicMapper.topicEntityToTopic(topicEntity);
     }
 
     @Override
     public List<Topic> findAll() {
-        return null;
+        List<TopicEntity> topicEntities = topicDao.findAll();
+        return topicEntities.isEmpty() ?
+                Collections.emptyList() : topicEntities.stream()
+                .map(topicMapper::topicEntityToTopic)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void update(Topic entity) {
-
+    public void update(Topic topic) {
+        if (Objects.isNull(topic)) {
+            LOGGER.warn("creating TopicServiceImpl updateTopic");
+            throw new InputDataInCorrectRuntimeException("Topic must be not null");
+        }
+        LOGGER.info("before update topic in TopicServiceImpl");
+        topicDao.update(topicMapper.topicToTopicEntity(topic));
     }
 
     @Override
-    public boolean delete(Topic entity) {
-        return false;
+    public boolean delete(Topic topic) {
+        if (Objects.isNull(topic)) {
+            LOGGER.warn("creating TopicServiceImpl deleteTopic");
+            throw new InputDataInCorrectRuntimeException("Topic must be not null");
+        }
+        return topicDao.delete(topicMapper.topicToTopicEntity(topic));
     }
 
     @Override

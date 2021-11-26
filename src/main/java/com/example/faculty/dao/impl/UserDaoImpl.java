@@ -2,7 +2,6 @@ package com.example.faculty.dao.impl;
 
 import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.database.DBHelper;
-import com.example.faculty.model.domain.User;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
 import org.apache.log4j.Logger;
@@ -41,7 +40,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public void update(UserEntity userEntity) {
-        try (PreparedStatement ps = connector.getConnection().prepareStatement(UPDATE_USER)) {
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(UPDATE_USER_BY_ID)) {
             java.sql.Date printDate = new java.sql.Date(userEntity.getDate().getTime());
             ps.setDate(1, printDate);
             ps.setString(2, userEntity.getFirstName());
@@ -50,7 +49,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
             ps.setString(5, userEntity.getEmail());
             ps.setString(6, userEntity.getRole().name());
             ps.execute();
-            LOGGER.info("Executed query" + UPDATE_USER);
+            LOGGER.info("Executed query" + UPDATE_USER_BY_ID);
         } catch (SQLException e) {
             LOGGER.error("SQLException occurred in OrderDaoImpl", e);
         }
@@ -68,7 +67,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public UserEntity getUserByEmail(String email) {
-        return null;
+        return getElementByStringParam(email, GET_USER_BY_EMAIL);
     }
 
     @Override
@@ -111,7 +110,14 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     protected void setUpdateElementProperties(PreparedStatement statement, UserEntity element) throws SQLException {
-        throw new UnsupportedOperationException();
+        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
+        statement.setDate(1, printDate);
+        statement.setString(2, element.getFirstName());
+        statement.setString(3, element.getSecondName());
+        statement.setString(4, element.getLastName());
+        statement.setString(5, element.getEmail());
+        statement.setString(6, element.getPassword());
+        statement.setString(7, element.getRole().name());
     }
 
     @Override

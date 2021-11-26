@@ -1,6 +1,7 @@
 package com.example.faculty.controller.command.common;
 
 import com.example.faculty.controller.command.Command;
+import com.example.faculty.controller.command.RoutesJSP;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,6 @@ import java.io.IOException;
 public class ContactsCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        return null;
+        return RoutesJSP.CONTACTS;
     }
 }

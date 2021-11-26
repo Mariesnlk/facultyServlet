@@ -30,7 +30,12 @@
                     <input class="form-control" type="text" name="name" id="name" placeholder="Enter topic name">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
-                            <p class="errorsM">Incorrect name</p>
+                            <p class="errorsM">Name is null or empty</p>
+                        </div>
+                    </c:if>
+                    <c:if test="${param.notValid == true}">
+                        <div class="alert alert-warning">
+                            <p class="errorsM">Invalid name</p>
                         </div>
                     </c:if>
                 </div>

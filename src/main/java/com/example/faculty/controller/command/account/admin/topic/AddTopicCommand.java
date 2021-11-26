@@ -1,4 +1,4 @@
-package com.example.faculty.controller.command.account.admin;
+package com.example.faculty.controller.command.account.admin.topic;
 
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AddTopicCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         return RoutesJSP.ADD_TOPIC;

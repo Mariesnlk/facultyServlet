@@ -2,7 +2,6 @@ package com.example.faculty.controller.filters;
 
 import com.example.faculty.model.domain.User;
 import com.example.faculty.model.enums.UserRole;
-import com.example.faculty.utils.InputDataRegistrationUtils;
 import com.example.faculty.utils.LoginUserUtils;
 import com.example.faculty.utils.SecurityUtils;
 import org.apache.log4j.Logger;

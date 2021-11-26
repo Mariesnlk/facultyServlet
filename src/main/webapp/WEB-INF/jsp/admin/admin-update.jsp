@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Марія
-  Date: 24.11.2021
-  Time: 0:33
+  Date: 26.11.2021
+  Time: 0:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Edit student page</title>
+    <title>Edit admin page</title>
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/userPage.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<%@ include file="/fragments/navbar-student.jsp" %>
+<%@ include file="/fragments/navbar-admin.jsp" %>
 
 <div class="container emp-profile">
 
@@ -51,8 +51,8 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" id="firstName" value="<c:out value="${sessionScope.loginPerson.firstName}"/>"
                                        placeholder="First name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"--%>
-<%--                                     th:errors="*{firstName}"></div>--%>
+                                <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"--%>
+                                <%--                                     th:errors="*{firstName}"></div>--%>
 
                             </div>
                         </div>
@@ -63,8 +63,8 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.secondName}"/>" id="secondName"
                                        placeholder="Second name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('secondName')}"--%>
-<%--                                     th:errors="*{secondName}"></div>--%>
+                                <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('secondName')}"--%>
+                                <%--                                     th:errors="*{secondName}"></div>--%>
                             </div>
                         </div>
                         <div class="row">
@@ -74,8 +74,8 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.lastName}"/>" id="lastName"
                                        placeholder="Last name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"--%>
-<%--                                     th:errors="*{lastName}"></div>--%>
+                                <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"--%>
+                                <%--                                     th:errors="*{lastName}"></div>--%>
                             </div>
                         </div>
                         <div class="row">
@@ -85,8 +85,8 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.email}"/>" id="email"
                                        placeholder="Email">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"--%>
-<%--                                     th:errors="*{email}"></div>--%>
+                                <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"--%>
+                                <%--                                     th:errors="*{email}"></div>--%>
                             </div>
                         </div>
                         <div class="col-md-6"></div>
@@ -101,3 +101,4 @@
 </div>
 </body>
 </html>
+
