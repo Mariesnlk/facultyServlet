@@ -45,6 +45,8 @@ public interface PathCommand {
     String ADD_TEACHER_FORM = "/teacher_form";
     String TEACHER_COURSES = "/teacher/my_courses";
     String UPDATE_TEACHER_FORM = "/teacher/update_form";
+    String IS_TEACHER = "/is_teacher";
+    String TEACHER_REGISTRATION_COMPLETE = "/teacher/registration";
 
     String FORBIDDEN = "/forbidden";
     String REDIRECT = "redirect#";

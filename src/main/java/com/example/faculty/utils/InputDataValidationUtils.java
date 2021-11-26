@@ -31,7 +31,7 @@ public class InputDataValidationUtils {
         return isSamePassword(password1, password2) && matcher.matches();
     }
 
-    private static boolean isSamePassword(String password1, String password2) {
+    public static boolean isSamePassword(String password1, String password2) {
         return password1.equals(password2);
     }
 

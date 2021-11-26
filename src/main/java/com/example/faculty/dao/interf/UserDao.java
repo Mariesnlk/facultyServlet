@@ -22,6 +22,8 @@ public interface UserDao extends CrudDao<UserEntity, Long> {
 
     Optional<UserEntity> findUserByEmailAndPass(String email, String password);
 
+    Optional<UserEntity> findTeacherByEmail(String email);
+
     long findCountStudents();
 
     List<UserEntity> findAllStudents(int row, int limit);
@@ -33,4 +35,6 @@ public interface UserDao extends CrudDao<UserEntity, Long> {
     List<UserEntity> findAllTeachers();
 
     boolean isTeacherWithEmailExists(String email);
+
+    void updatePassword(UserEntity userEntity);
 }

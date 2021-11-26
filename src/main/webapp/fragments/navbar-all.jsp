@@ -56,6 +56,8 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=IS_TEACHER%>"><fmt:message
+                                        key="navbar.teachers"/></a></li>
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_COURSES%>"><fmt:message
                                         key="navbar.courses"/></a></li>
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=ABOUT%>"><fmt:message

@@ -33,6 +33,7 @@ public interface RoutesJSP {
     String ADD_TEACHER = "/WEB-INF/jsp/teacher/add-teacher.jsp";
     String UPDATE_TEACHER_FORM = "/WEB-INF/jsp/teacher/update-teacher.jsp";
     String TEACHER_COURSES = "/WEB-INF/jsp/course/teacher-courses.jsp";
+    String IS_TEACHER = "/WEB-INF/jsp/teacher/is-teacher.jsp";
 
     String REDIRECT = "redirect#";
     String EMPTY_STR = "";

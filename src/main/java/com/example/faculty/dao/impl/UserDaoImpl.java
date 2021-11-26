@@ -2,10 +2,12 @@ package com.example.faculty.dao.impl;
 
 import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.database.DBHelper;
+import com.example.faculty.exception.DataBaseRuntimeException;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,6 +100,11 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
     }
 
     @Override
+    public Optional<UserEntity> findTeacherByEmail(String email) {
+        return Optional.ofNullable(getElementByStringParam(email, GET_TEACHER_BY_EMAIL));
+    }
+
+    @Override
     public long findCountStudents() {
         long countStudents = 0;
         ResultSet rs = null;
@@ -181,6 +188,20 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
     @Override
     public boolean isTeacherWithEmailExists(String email) {
         return isExistWithOneStringParameter(email, IS_EXISTS_TEACHER_WITH_EMAIL);
+    }
+
+    @Override
+    public void updatePassword(UserEntity userEntity) {
+        try (Connection connection = connector.getConnection();
+             PreparedStatement ps = connection.prepareStatement(UPDATE_PASSWORD_BY_USER_ID)) {
+            ps.setString(1, userEntity.getPassword());
+            ps.setLong(2, userEntity.getUserId());
+            ps.executeUpdate();
+            LOGGER.info("AbstractGenericDao - update");
+        } catch (SQLException e) {
+            LOGGER.warn("Can not update element", e);
+            throw new DataBaseRuntimeException("Can not update element", e);
+        }
     }
 
     @Override

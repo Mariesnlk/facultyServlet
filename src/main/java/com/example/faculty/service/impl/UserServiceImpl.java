@@ -5,7 +5,6 @@ import com.example.faculty.exception.EmailIsAlreadyTaken;
 import com.example.faculty.exception.InputDataInCorrectRuntimeException;
 import com.example.faculty.exception.InvalidDataRuntimeException;
 import com.example.faculty.model.domain.User;
-import com.example.faculty.model.entity.TopicEntity;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.mapper.UserMapper;
 import com.example.faculty.service.interf.UserService;
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
             LOGGER.warn("update User");
             throw new InputDataInCorrectRuntimeException("User must be not null");
         }
-        userDao.update(userMapper.userToUserEntity(user));
+        userDao.updatePassword(userMapper.userToUserEntity(user));
     }
 
     @Override
@@ -74,7 +73,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return null;
+        if (Objects.isNull(email) || email.isEmpty()) {
+            LOGGER.warn("findByEmail");
+            throw new InputDataInCorrectRuntimeException("User email must be not null");
+        }
+        UserEntity userEntity = userDao.getUserByEmail(email);
+        return userMapper.userEntityToUser(userEntity);
+    }
+
+    @Override
+    public User findTeacherByEmail(String email) {
+        if (Objects.isNull(email) || email.isEmpty()) {
+            LOGGER.warn("findByEmail");
+            throw new InputDataInCorrectRuntimeException("Teacher email must be not null");
+        }
+        Optional<UserEntity> teacher = userDao.findTeacherByEmail(email);
+        return teacher.map(userMapper::userEntityToUser)
+                .orElseThrow(() -> new InvalidDataRuntimeException("Teacher email is not registered"));
     }
 
     @Override

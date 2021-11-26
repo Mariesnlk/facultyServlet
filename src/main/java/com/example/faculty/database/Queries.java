@@ -17,6 +17,7 @@ public class Queries {
             "WHERE id=?";
     public static final String DELETE_USER = "DELETE FROM facultyservlet.user WHERE id=?";
     public static final String GET_USER_BY_EMAIL = "SELECT * FROM facultyservlet.user WHERE email=?";
+    public static final String GET_TEACHER_BY_EMAIL = "SELECT * FROM facultyservlet.user WHERE email=? AND role='TEACHER'";
     public static final String GET_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM facultyservlet.user WHERE email=? AND password=?";
     public static final String IS_EXISTS_STUDENT_BY_EMAIL_AND_PASSWORD = "SELECT * FROM facultyservlet.user " +
             "WHERE email=? AND password=? AND role='STUDENT'";
@@ -31,7 +32,9 @@ public class Queries {
     public static final String READ_TEACHERS_WITH_LIMIT = "SELECT * FROM  facultyservlet.user WHERE role='TEACHER' ORDER BY  id  DESC limit ?, ?";
     public static final String FIND_ALL_TEACHERS = "SELECT * FROM  facultyservlet.user WHERE role='TEACHER'";
     public static final String IS_EXISTS_TEACHER_WITH_EMAIL = "SELECT * FROM  facultyservlet.user WHERE email=? AND role='TEACHER'";
-
+    public static final String UPDATE_PASSWORD_BY_USER_ID = "UPDATE facultyservlet.user SET " +
+            "password=? " +
+            "WHERE id=?";
 
     //Topic
     public static final String CREATE_TOPIC = "INSERT INTO topic(created_date, name) VALUES(?,?)";

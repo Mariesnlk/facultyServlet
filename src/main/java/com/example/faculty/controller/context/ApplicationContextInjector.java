@@ -89,6 +89,8 @@ public class ApplicationContextInjector {
         commands.put(ADD_TEACHER, new AddTeacher(USER_SERVICE));
         commands.put(ADD_TEACHER_FORM, new AddTeacherCommand());
         commands.put(TEACHER_COURSES, new TeacherCoursesCommand());
+        commands.put(IS_TEACHER, new IsTeacherCommand());
+        commands.put(TEACHER_REGISTRATION_COMPLETE, new TeacherRegistrationCompleteCommand(USER_SERVICE));
         return commands;
     }
 

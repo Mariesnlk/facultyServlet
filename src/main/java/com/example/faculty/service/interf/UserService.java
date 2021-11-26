@@ -8,6 +8,8 @@ public interface UserService extends CrudService<User, Long> {
 
     User findByEmail(String email);
 
+    User findTeacherByEmail(String email);
+
     void updatePassword(User user, String newPassword);
 
     List<User> getAllTeachers(int row, int limit);

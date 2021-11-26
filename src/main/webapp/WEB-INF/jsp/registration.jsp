@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password"><fmt:message key="user_password"/></label>
-                    <input class="form-control" name="password" type="password" id="password" name="password"
+                    <input class="form-control" type="password" id="password" name="password"
                            placeholder="Enter password">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
