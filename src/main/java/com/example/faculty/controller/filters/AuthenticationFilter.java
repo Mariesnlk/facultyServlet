@@ -38,7 +38,6 @@ public class AuthenticationFilter implements Filter {
         if ((LOGIN_PAGE.equals(pathInfo) || REGISTER_USER.equals(pathInfo)) && loginUser != null) {
             LOGGER.info(loginUser.getRole());
 
-
             if (loginUser.getRole().equals(UserRole.STUDENT)) {
                 response.sendRedirect(contextAndServletPath + STUDENT_ACCOUNT);
             } else  if (loginUser.getRole().equals(UserRole.TEACHER)){

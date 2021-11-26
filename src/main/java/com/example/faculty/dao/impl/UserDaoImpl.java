@@ -2,21 +2,22 @@ package com.example.faculty.dao.impl;
 
 import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.database.DBHelper;
+import com.example.faculty.model.domain.User;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import static com.example.faculty.database.Queries.*;
 
 public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserDao {
 
-    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
     public UserDaoImpl(DBHelper connection) {
         super(connection);
@@ -30,22 +31,34 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public UserEntity findById(Long id) {
-        return null;
+        return getElementByIntegerParam(id, GET_BY_ID_USER);
     }
 
     @Override
     public List<UserEntity> findAll() {
-        return null;
+        return getList(GET_ALL_USERS);
     }
 
     @Override
-    public void update(UserEntity entity) {
-
+    public void update(UserEntity userEntity) {
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(UPDATE_USER)) {
+            java.sql.Date printDate = new java.sql.Date(userEntity.getDate().getTime());
+            ps.setDate(1, printDate);
+            ps.setString(2, userEntity.getFirstName());
+            ps.setString(3, userEntity.getSecondName());
+            ps.setString(4, userEntity.getLastName());
+            ps.setString(5, userEntity.getEmail());
+            ps.setString(6, userEntity.getRole().name());
+            ps.execute();
+            LOGGER.info("Executed query" + UPDATE_USER);
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in OrderDaoImpl", e);
+        }
     }
 
     @Override
-    public boolean delete(UserEntity entity) {
-        return false;
+    public boolean delete(UserEntity userEntity) {
+        return delete(userEntity.getUserId(), DELETE_USER);
     }
 
     @Override

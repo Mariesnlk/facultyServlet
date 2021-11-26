@@ -8,11 +8,11 @@ public class Queries {
     public static final String GET_BY_ID_USER = "SELECT * FROM facultyservlet.user WHERE id=?";
     public static final String GET_ALL_USERS = "SELECT * FROM facultyservlet.user";
     public static final String UPDATE_USER = "UPDATE facultyservlet.user SET " +
+            "created_date=?, " +
             "first_name=?, " +
             "second_name=?, " +
             "last_name=?, " +
             "email=?, " +
-            "password=?, " +
             "role=?, " +
             "WHERE id=?";
     public static final String DELETE_USER = "DELETE FROM facultyservlet.user WHERE id=?";
@@ -35,6 +35,8 @@ public class Queries {
             "name  =  ? " +
             "WHERE id = ?";
     public static final String DELETE_TOPIC = "DELETE FROM topic WHERE id = ?";
+    public static final String COUNT_TOPICS = "SELECT count(*) FROM  facultyservlet.topic";
+    public static final String READ_TOPICS_WITH_LIMIT = "SELECT * FROM  facultyservlet.topic ORDER BY  id  DESC limit ?, ?";
 
     //Course
     public static final String CREATE_COURSE = "INSERT INTO facultyservlet.coures(created_date, name, status, students_amount, " +

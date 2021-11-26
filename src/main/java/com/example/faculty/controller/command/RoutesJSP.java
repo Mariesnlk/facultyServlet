@@ -4,6 +4,8 @@ public interface RoutesJSP {
     String STUDENT_ACCOUNT = "/WEB-INF/jsp/student/student-account.jsp";
     String TEACHER_ACCOUNT = "/WEB-INF/jsp/teacher/teacher-account.jsp";
     String ADMIN_ACCOUNT = "/WEB-INF/jsp/admin/admin-account.jsp";
+
+    String UPDATE_ADMIN_FORM = "/WEB-INF/jsp/student/admin-update.jsp";
     
     String HOME = "/index.jsp";
     
@@ -24,7 +26,7 @@ public interface RoutesJSP {
     String UPDATE_COURSES = "/WEB-INF/jsp/course/update-course.jsp";
 
     String ALL_STUDENTS = "/WEB-INF/jsp/student/all-students.jsp";
-    String UPDATE_STUDENT = "/WEB-INF/jsp/student/update-student.jsp";
+    String UPDATE_STUDENT_FORM = "/WEB-INF/jsp/student/update-student.jsp";
     String STUDENT_COURSES = "/WEB-INF/jsp/course/student-courses.jsp";
 
     String ALL_TEACHERS = "/WEB-INF/jsp/teacher/all-teachers.jsp";

@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddTopicCommand implements Command {
+public class UpdateAdminCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        return RoutesJSP.ADD_TOPIC;
+        return RoutesJSP.UPDATE_ADMIN_FORM;
     }
 }

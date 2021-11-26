@@ -32,10 +32,10 @@ public abstract class AbstractGenericDao<E> {
         }
     }
 
-    protected E getElementByIntegerParam(Integer id, String query) {
+    protected E getElementByIntegerParam(Long id, String query) {
         try (Connection connection = connector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return parseToOneElement(resultSet);
@@ -141,11 +141,11 @@ public abstract class AbstractGenericDao<E> {
     }
 
     protected boolean isExistWithOneStringParameter(String data, String query) {
-
+        ResultSet rs = null;
         try (Connection connection = connector.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, data);
-            final ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next()) {
                 return true;
             }
@@ -153,6 +153,26 @@ public abstract class AbstractGenericDao<E> {
             LOGGER.warn("SQLException isExist", e);
         }
         return false;
+    }
+
+    protected boolean delete(Long id, String query) {
+        boolean result = false;
+        int changedRowsNumber = 0;
+
+        try (Connection connection = connector.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setLong(1, id);
+            changedRowsNumber = ps.executeUpdate();
+            System.out.println("changedRowsNumber=" + changedRowsNumber);
+            if (changedRowsNumber > 0) {
+                result = true;
+            } else result = false;
+        } catch (SQLException e) {
+            result = false;
+            LOGGER.warn("getElementByIntegerParam error", e);
+            throw new DataBaseRuntimeException("getElementByIntegerParam error", e);
+        }
+        return result;
     }
 
 

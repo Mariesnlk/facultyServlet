@@ -13,5 +13,8 @@ public interface TopicDao extends CrudDao<TopicEntity, Long> {
 
     List<TopicEntity> findByOrderByCreatedDate();
 
-//    Page<Topic> findAllByOrderByCreatedDateDesc(Pageable pageable);
+    long findCountTopics();
+
+    List<TopicEntity> findAllTopics(int row, int limit);
+
 }

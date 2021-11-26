@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-2">
                 <button id="updateUser" type="button" class="profile-edit-btn btnSaveUser"
-                        name="btnAddMore"><a th:href="@{/student/update}">Edit</a>
+                        name="btnAddMore"><a href="${pageContext.request.contextPath}/faculty<%=UPDATE_STUDENT_FORM%>">Edit</a>
                 </button>
             </div>
         </div>

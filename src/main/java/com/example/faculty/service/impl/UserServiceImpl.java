@@ -42,7 +42,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return null;
+        if (Objects.isNull(id)) {
+            LOGGER.warn("find user by id");
+            throw new InputDataInCorrectRuntimeException("User must be not null");
+        }
+        UserEntity userEntity = userDao.findById(id);
+        return userMapper.userEntityToUser(userEntity);
     }
 
     @Override
@@ -51,8 +56,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User entity) {
-
+    public void update(User user) {
+        if (Objects.isNull(user)) {
+            LOGGER.warn("update User");
+            throw new InputDataInCorrectRuntimeException("User must be not null");
+        }
+        userDao.update(userMapper.userToUserEntity(user));
     }
 
     @Override
@@ -78,8 +87,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmailAndPassword(String email, String hashPassword) {
         if (email.isEmpty() || hashPassword.isEmpty()) {
-            LOGGER.warn("creating DriverServiceImpl getDriverByPasswordAndPhone");
-            throw new InputDataInCorrectRuntimeException("Driver phoneNumber and password must be not null");
+            LOGGER.warn("get user getUserByEmailAndPassword");
+            throw new InputDataInCorrectRuntimeException("User email and password must be not null");
         }
         Optional<UserEntity> userEntity = userDao.findUserByEmailAndPass(email, hashPassword);
 

@@ -51,4 +51,10 @@ public class InputDataRegistrationUtils {
                 && isCorrectEmail(email)
                 && isValidPassword(password, confirmPassword));
     }
+
+    public static boolean isNotCorrectData(String firstName, String secondName, String lastName,
+                                           String email) {
+        return !(isCorrectPIB(firstName, secondName, lastName)
+                && isCorrectEmail(email));
+    }
 }
