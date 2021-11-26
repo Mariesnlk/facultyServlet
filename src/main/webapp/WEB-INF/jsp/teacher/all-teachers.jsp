@@ -20,7 +20,12 @@
 </head>
 <body>
 
-<%@ include file="/fragments/navbar-admin.jsp" %>
+<c:if test="${sessionScope.loginPerson.role == 'ADMINISTRATOR'}">
+    <%@ include file="/fragments/navbar-admin.jsp" %>
+</c:if>
+<c:if test="${sessionScope.loginPerson.role == 'STUDENT'}">
+    <%@ include file="/fragments/navbar-student.jsp" %>
+</c:if>
 
 <div class="container">
     <div class="row">

@@ -30,6 +30,7 @@ public class Queries {
     public static final String COUNT_TEACHERS = "SELECT count(*) FROM  facultyservlet.user WHERE role='TEACHER'";
     public static final String READ_TEACHERS_WITH_LIMIT = "SELECT * FROM  facultyservlet.user WHERE role='TEACHER' ORDER BY  id  DESC limit ?, ?";
     public static final String FIND_ALL_TEACHERS = "SELECT * FROM  facultyservlet.user WHERE role='TEACHER'";
+    public static final String IS_EXISTS_TEACHER_WITH_EMAIL = "SELECT * FROM  facultyservlet.user WHERE email=? AND role='TEACHER'";
 
 
     //Topic

@@ -168,4 +168,13 @@ public class UserServiceImpl implements UserService {
         return userDao.isTeacherExists(email, password);
     }
 
+    @Override
+    public boolean isTeacherWithEmailExists(String email) {
+        if (email.isEmpty()) {
+            LOGGER.info("Email is empty");
+            throw new InvalidDataRuntimeException("Email is empty");
+        }
+        return userDao.isTeacherWithEmailExists(email);
+    }
+
 }

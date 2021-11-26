@@ -15,6 +15,6 @@ public class LogoutCommand implements Command {
         HttpSession session = request.getSession();
         session.invalidate();
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
-        return PathCommand.REDIRECT + contextAndServletPath + PathCommand.LOGIN + "?logout=true";
+        return PathCommand.REDIRECT + contextAndServletPath + PathCommand.HOME_PAGE + "?logout=true";
     }
 }

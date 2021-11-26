@@ -31,4 +31,6 @@ public interface UserDao extends CrudDao<UserEntity, Long> {
     List<UserEntity> findAllTeachers(int row, int limit);
 
     List<UserEntity> findAllTeachers();
+
+    boolean isTeacherWithEmailExists(String email);
 }

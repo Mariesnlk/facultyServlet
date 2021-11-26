@@ -18,7 +18,7 @@ public class InputDataValidationUtils {
     private InputDataValidationUtils() {
     }
 
-    private static boolean isCorrectEmail(String email) {
+    public static boolean isCorrectEmail(String email) {
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         LOGGER.info(matcher.matches());

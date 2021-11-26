@@ -28,6 +28,8 @@ public interface UserService extends CrudService<User, Long> {
 
     boolean isTeacherExists(String email, String password);
 
+    boolean isTeacherWithEmailExists(String email);
+
 //    Paged findAllStudentsByIdCourse(Long courseId, int pageNumber, int size);
 
 }

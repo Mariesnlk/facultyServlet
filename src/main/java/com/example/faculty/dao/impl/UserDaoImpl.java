@@ -179,6 +179,11 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
     }
 
     @Override
+    public boolean isTeacherWithEmailExists(String email) {
+        return isExistWithOneStringParameter(email, IS_EXISTS_TEACHER_WITH_EMAIL);
+    }
+
+    @Override
     protected void setInsertElementProperties(PreparedStatement statement, UserEntity element) throws SQLException {
         java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
 

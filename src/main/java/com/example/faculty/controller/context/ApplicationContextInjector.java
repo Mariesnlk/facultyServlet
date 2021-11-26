@@ -3,6 +3,7 @@ package com.example.faculty.controller.context;
 import com.example.faculty.cipher.AES;
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.account.admin.topic.*;
+import com.example.faculty.controller.command.account.admin.user.AddTeacher;
 import com.example.faculty.controller.command.account.admin.user.ShowAllStudentsCommand;
 import com.example.faculty.controller.command.account.admin.user.ShowAllTeachersCommand;
 import com.example.faculty.controller.command.common.EnterLoginCommand;
@@ -85,7 +86,7 @@ public class ApplicationContextInjector {
         commands.put(STUDENT_COURSES, new StudentCoursesCommand());
         commands.put(ALL_TEACHERS, new AllTeachersCommand());
         commands.put(ALL_TEACHERS_PAG, new ShowAllTeachersCommand(USER_SERVICE));
-//        commands.put(ADD_TEACHER, new AddTeacherCommand());
+        commands.put(ADD_TEACHER, new AddTeacher(USER_SERVICE));
         commands.put(ADD_TEACHER_FORM, new AddTeacherCommand());
         commands.put(TEACHER_COURSES, new TeacherCoursesCommand());
         return commands;
