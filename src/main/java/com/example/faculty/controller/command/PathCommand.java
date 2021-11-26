@@ -31,14 +31,18 @@ public interface PathCommand {
     String DELETE_TOPIC_PATH = "/delete_topic";
 
     String ALL_COURSES = "/courses";
+    String ALL_COURSES_PAG = "/all_courses";
     String ADD_COURSES = "/add_course";
     String UPDATE_COURSES = "/update_course";
 
     String ALL_STUDENTS = "/students";
+    String ALL_STUDENTS_PAG = "/all_students";
     String STUDENT_COURSES = "/my_courses";
 
     String ALL_TEACHERS = "/teachers";
+    String ALL_TEACHERS_PAG = "/all_teachers";
     String ADD_TEACHER = "/add_teacher";
+    String ADD_TEACHER_FORM = "/teacher_form";
     String TEACHER_COURSES = "/teacher/my_courses";
     String UPDATE_TEACHER_FORM = "/teacher/update_form";
 

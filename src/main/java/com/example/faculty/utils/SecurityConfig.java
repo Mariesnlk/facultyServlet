@@ -23,6 +23,7 @@ public class SecurityConfig {
         urlPatterns1.add(STUDENT_COURSES);
         urlPatterns1.add(UPDATE_USER);
         urlPatterns1.add(ALL_TEACHERS);
+        urlPatterns1.add(ALL_TEACHERS_PAG);
         urlPatterns1.add(LOGOUT);
 
         mapConfig.put(UserRole.STUDENT, urlPatterns1);
@@ -47,7 +48,10 @@ public class SecurityConfig {
         urlPatterns3.add(ALL_STUDENTS);
         urlPatterns3.add(ALL_TEACHERS);
         urlPatterns3.add(ADD_TEACHER);
+        urlPatterns3.add(ADD_TEACHER_FORM);
         urlPatterns3.add(ALL_TOPICS_PAG);
+        urlPatterns3.add(ALL_TEACHERS_PAG);
+        urlPatterns3.add(ALL_STUDENTS_PAG);
         urlPatterns3.add(UPDATE_USER);
         urlPatterns3.add(LOGOUT);
 

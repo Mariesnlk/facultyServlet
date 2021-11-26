@@ -58,14 +58,13 @@
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_COURSES%>">
                                     <fmt:message key="navbar.courses"/>
                                 </a></li>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_TEACHERS%>">
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_TEACHERS_PAG%>?pagination=1">
                                     <fmt:message key="navbar.teachers"/>
                                 </a></li>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_STUDENTS%>">
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_STUDENTS_PAG%>?pagination=1">
                                     <fmt:message key="navbar.students"/>
                                 </a></li>
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_TOPICS_PAG%>?pagination=1">
-<%--                                <li><a href="${pageContext.request.contextPath}/faculty<%=ALL_TOPICS%>">--%>
                                     <fmt:message key="navbar.topics"/>
                                 </a></li>
                                 <%--                                <c:if test="${sessionScope.userEmail == null}">--%>

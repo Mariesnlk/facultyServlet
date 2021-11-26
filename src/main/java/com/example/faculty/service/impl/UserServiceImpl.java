@@ -5,14 +5,17 @@ import com.example.faculty.exception.EmailIsAlreadyTaken;
 import com.example.faculty.exception.InputDataInCorrectRuntimeException;
 import com.example.faculty.exception.InvalidDataRuntimeException;
 import com.example.faculty.model.domain.User;
+import com.example.faculty.model.entity.TopicEntity;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.mapper.UserMapper;
 import com.example.faculty.service.interf.UserService;
 import org.apache.log4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
 
@@ -80,8 +83,50 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllTeachers(int row, int limit) {
+        if (row < 0 || limit < 0) {
+            LOGGER.warn("UserServiceImpl getAllTeachers");
+            throw new InputDataInCorrectRuntimeException("row,limit must be positive");
+        }
+        List<UserEntity> teachersEntities = userDao.findAllTeachers(row, limit);
+
+        return teachersEntities.isEmpty() ?
+                Collections.emptyList() : teachersEntities.stream()
+                .map(userMapper::userEntityToUser)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public long getAllTeachersCount() {
+        return userDao.findCountTeachers();
+    }
+
+    @Override
+    public List<User> getAllStudents(int row, int limit) {
+        if (row < 0 || limit < 0) {
+            LOGGER.warn("UserServiceImpl getAllStudents");
+            throw new InputDataInCorrectRuntimeException("row,limit must be positive");
+        }
+        List<UserEntity> teachersEntities = userDao.findAllStudents(row, limit);
+
+        return teachersEntities.isEmpty() ?
+                Collections.emptyList() : teachersEntities.stream()
+                .map(userMapper::userEntityToUser)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public long getAllStudentsCount() {
+        return userDao.findCountStudents();
+    }
+
+    @Override
     public List<User> allTeachers() {
-        return null;
+        List<UserEntity> allTeachers = userDao.findAllTeachers();
+        return allTeachers.isEmpty() ?
+                Collections.emptyList() : allTeachers.stream()
+                .map(userMapper::userEntityToUser)
+                .collect(Collectors.toList());
     }
 
     @Override

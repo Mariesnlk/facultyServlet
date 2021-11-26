@@ -21,4 +21,14 @@ public interface UserDao extends CrudDao<UserEntity, Long> {
     boolean isAdminExists(String email, String password);
 
     Optional<UserEntity> findUserByEmailAndPass(String email, String password);
+
+    long findCountStudents();
+
+    List<UserEntity> findAllStudents(int row, int limit);
+
+    long findCountTeachers();
+
+    List<UserEntity> findAllTeachers(int row, int limit);
+
+    List<UserEntity> findAllTeachers();
 }

@@ -10,9 +10,13 @@ public interface UserService extends CrudService<User, Long> {
 
     void updatePassword(User user, String newPassword);
 
-//    Paged getStudentsPage(int pageNumber, int size);
-//
-//    Paged getTeachersPage(int pageNumber, int size);
+    List<User> getAllTeachers(int row, int limit);
+
+    long getAllTeachersCount();
+
+    List<User> getAllStudents(int row, int limit);
+
+    long getAllStudentsCount();
 
     List<User> allTeachers();
 
@@ -25,7 +29,6 @@ public interface UserService extends CrudService<User, Long> {
     boolean isTeacherExists(String email, String password);
 
 //    Paged findAllStudentsByIdCourse(Long courseId, int pageNumber, int size);
-
 
 }
 

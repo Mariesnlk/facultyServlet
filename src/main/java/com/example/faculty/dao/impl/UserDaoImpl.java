@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,10 +49,11 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
             ps.setString(4, userEntity.getLastName());
             ps.setString(5, userEntity.getEmail());
             ps.setString(6, userEntity.getRole().name());
+            ps.setLong(7, userEntity.getUserId());
             ps.execute();
             LOGGER.info("Executed query" + UPDATE_USER_BY_ID);
         } catch (SQLException e) {
-            LOGGER.error("SQLException occurred in OrderDaoImpl", e);
+            LOGGER.error("SQLException occurred in UserDaoImpl", e);
         }
     }
 
@@ -93,6 +95,87 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
     @Override
     public Optional<UserEntity> findUserByEmailAndPass(String email, String password) {
         return Optional.ofNullable(getElementByTwoStringParam(email, password, GET_USER_BY_EMAIL_AND_PASSWORD));
+    }
+
+    @Override
+    public long findCountStudents() {
+        long countStudents = 0;
+        ResultSet rs = null;
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_STUDENTS)) {
+
+            rs = ps.executeQuery();
+
+            LOGGER.debug("Executed query" + COUNT_STUDENTS);
+            if (rs.next()) {
+                LOGGER.debug("check is rs has next");
+                countStudents = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in UserDaoImpl ", e);
+        }
+        return countStudents;
+    }
+
+    @Override
+    public List<UserEntity> findAllStudents(int row, int limit) {
+        ResultSet rs = null;
+        List<UserEntity> topics = new ArrayList<>();
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(READ_STUDENTS_WITH_LIMIT)) {
+            ps.setInt(1, row);
+            ps.setInt(2, limit);
+            rs = ps.executeQuery();
+            return getUsers(topics, rs);
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in TopicDaoImpl ", e);
+            return null;
+        }
+    }
+
+    @Override
+    public long findCountTeachers() {
+        long countTeachers = 0;
+        ResultSet rs = null;
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_TEACHERS)) {
+
+            rs = ps.executeQuery();
+
+            LOGGER.debug("Executed query" + COUNT_TEACHERS);
+            if (rs.next()) {
+                LOGGER.debug("check is rs has next");
+                countTeachers = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in UserDaoImpl ", e);
+        }
+        return countTeachers;
+    }
+
+    private List<UserEntity> getUsers(List<UserEntity> users, ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            UserEntity user = parseToOneElement(rs);
+            users.add(user);
+        }
+        return users;
+    }
+
+    @Override
+    public List<UserEntity> findAllTeachers(int row, int limit) {
+        ResultSet rs = null;
+        List<UserEntity> topics = new ArrayList<>();
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(READ_TEACHERS_WITH_LIMIT)) {
+            ps.setInt(1, row);
+            ps.setInt(2, limit);
+            rs = ps.executeQuery();
+            return getUsers(topics, rs);
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in TopicDaoImpl ", e);
+            return null;
+        }
+    }
+
+    @Override
+    public List<UserEntity> findAllTeachers() {
+        return getList(FIND_ALL_TEACHERS);
     }
 
     @Override
