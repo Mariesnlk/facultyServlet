@@ -5,7 +5,7 @@ public interface RoutesJSP {
     String TEACHER_ACCOUNT = "/WEB-INF/jsp/teacher/teacher-account.jsp";
     String ADMIN_ACCOUNT = "/WEB-INF/jsp/admin/admin-account.jsp";
 
-    String UPDATE_ADMIN_FORM = "/WEB-INF/jsp/student/admin-update.jsp";
+    String UPDATE_ADMIN_FORM = "/WEB-INF/jsp/admin/admin-update.jsp";
     
     String HOME = "/index.jsp";
     
@@ -31,7 +31,7 @@ public interface RoutesJSP {
 
     String ALL_TEACHERS = "/WEB-INF/jsp/teacher/all-teachers.jsp";
     String ADD_TEACHER = "/WEB-INF/jsp/teacher/add-teacher.jsp";
-    String UPDATE_TEACHER = "/WEB-INF/jsp/teacher/update-teacher.jsp";
+    String UPDATE_TEACHER_FORM = "/WEB-INF/jsp/teacher/update-teacher.jsp";
     String TEACHER_COURSES = "/WEB-INF/jsp/course/teacher-courses.jsp";
 
     String REDIRECT = "redirect#";

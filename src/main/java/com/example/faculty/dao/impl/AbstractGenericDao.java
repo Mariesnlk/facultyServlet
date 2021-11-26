@@ -39,7 +39,6 @@ public abstract class AbstractGenericDao<E> {
             statement.setLong(1, id);
             rs = statement.executeQuery();
             if (rs.next()) {
-                LOGGER.info("rs - " + rs);
                 return parseToOneElement(rs);
             }
         } catch (SQLException e) {

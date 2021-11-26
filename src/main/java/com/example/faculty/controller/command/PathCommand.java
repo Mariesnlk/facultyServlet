@@ -40,6 +40,7 @@ public interface PathCommand {
     String ALL_TEACHERS = "/teachers";
     String ADD_TEACHER = "/add_teacher";
     String TEACHER_COURSES = "/teacher/my_courses";
+    String UPDATE_TEACHER_FORM = "/teacher/update_form";
 
     String FORBIDDEN = "/forbidden";
     String REDIRECT = "redirect#";

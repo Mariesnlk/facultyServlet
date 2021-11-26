@@ -13,7 +13,7 @@ public class Queries {
             "second_name=?, " +
             "last_name=?, " +
             "email=?, " +
-            "role=?, " +
+            "role=? " +
             "WHERE id=?";
     public static final String DELETE_USER = "DELETE FROM facultyservlet.user WHERE id=?";
     public static final String GET_USER_BY_EMAIL = "SELECT * FROM facultyservlet.user WHERE email=?";
@@ -25,13 +25,18 @@ public class Queries {
     public static final String IS_EXISTS_ADMIN_BY_EMAIL_AND_PASSWORD = "SELECT * FROM facultyservlet.user " +
             "WHERE email=? AND password=? AND role='ADMINISTRATOR'";
     public static final String GET_ALL_BY_USER_ROLE_NAME = "SELECT * FROM facultyservlet.user WHERE role=? ORDER BY created_date DESC";
+    public static final String COUNT_STUDENTS = "SELECT count(*) FROM  facultyservlet.user WHERE role='STUDENT'";
+    public static final String READ_STUDENTS_WITH_LIMIT = "SELECT * FROM  facultyservlet.user WHERE role='STUDENT' ORDER BY  id  DESC limit ?, ?";
+    public static final String COUNT_TEACHERS = "SELECT count(*) FROM  facultyservlet.user WHERE role='TEACHER'";
+    public static final String READ_TEACHERS_WITH_LIMIT = "SELECT * FROM  facultyservlet.user WHERE role='TEACHER' ORDER BY  id  DESC limit ?, ?";
+
 
     //Topic
     public static final String CREATE_TOPIC = "INSERT INTO topic(created_date, name) VALUES(?,?)";
     public static final String GET_BY_ID_TOPIC = "SELECT * FROM topic WHERE id = ?";
     public static final String GET_ALL_TOPICS = "SELECT * FROM topic";
     public static final String UPDATE_TOPIC = "UPDATE topic SET " +
-            "created_date=? " +
+            "created_date=?, " +
             "name=? " +
             "WHERE id=?";
     public static final String DELETE_TOPIC = "DELETE FROM topic WHERE id=?";

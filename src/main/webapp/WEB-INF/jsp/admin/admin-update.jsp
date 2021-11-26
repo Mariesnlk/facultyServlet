@@ -20,10 +20,7 @@
 <body>
 
 <%@ include file="/fragments/navbar-admin.jsp" %>
-
 <div class="container emp-profile">
-
-    <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -49,7 +46,7 @@
                                 <label class="text-3">First name:</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" id="firstName" value="<c:out value="${sessionScope.loginPerson.firstName}"/>"
+                                <input class="form-control" type="text" id="firstName" name="firstName" value="<c:out value="${sessionScope.loginPerson.firstName}"/>"
                                        placeholder="First name">
                                 <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"--%>
                                 <%--                                     th:errors="*{firstName}"></div>--%>
@@ -61,7 +58,7 @@
                                 <label class="text-3">Second name:</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.secondName}"/>" id="secondName"
+                                <input class="form-control" type="text" name="secondName" value="<c:out value="${sessionScope.loginPerson.secondName}"/>" id="secondName"
                                        placeholder="Second name">
                                 <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('secondName')}"--%>
                                 <%--                                     th:errors="*{secondName}"></div>--%>
@@ -72,7 +69,7 @@
                                 <label class="text-3">Last name:</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.lastName}"/>" id="lastName"
+                                <input class="form-control" type="text" name="lastName" value="<c:out value="${sessionScope.loginPerson.lastName}"/>" id="lastName"
                                        placeholder="Last name">
                                 <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"--%>
                                 <%--                                     th:errors="*{lastName}"></div>--%>
@@ -83,7 +80,7 @@
                                 <label class="text-3">Email:</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.email}"/>" id="email"
+                                <input class="form-control" type="text" name="email" value="<c:out value="${sessionScope.loginPerson.email}"/>" id="email"
                                        placeholder="Email">
                                 <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"--%>
                                 <%--                                     th:errors="*{email}"></div>--%>
@@ -97,7 +94,6 @@
                 </div>
             </div>
         </div>
-    </form>
 </div>
 </body>
 </html>

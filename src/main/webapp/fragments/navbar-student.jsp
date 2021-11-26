@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="#"><h2>Faculty site</h2></a>
+                        <a href="${pageContext.request.contextPath}/faculty<%=STUDENT_ACCOUNT%>"><h2>Faculty site</h2></a>
                     </div>
                 </div>
                 <div class="col-lg-10">

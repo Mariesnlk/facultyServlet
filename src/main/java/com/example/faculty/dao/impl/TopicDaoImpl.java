@@ -35,6 +35,7 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
         java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
         statement.setDate(1, printDate);
         statement.setString(2, element.getTopicName());
+        statement.setLong(3, element.getTopicId());
     }
 
     @Override
@@ -65,7 +66,6 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
     @Override
     public void update(TopicEntity entity) {
         update(entity, UPDATE_TOPIC);
-        LOGGER.info("finish update topic");
     }
 
     @Override
@@ -90,7 +90,7 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
 
     @Override
     public long findCountTopics() {
-        long countOrders = 0;
+        long countTopics = 0;
         ResultSet rs = null;
         try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_TOPICS)) {
 
@@ -99,12 +99,12 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
             LOGGER.debug("Executed query" + COUNT_TOPICS);
             if (rs.next()) {
                 LOGGER.debug("check is rs has next");
-                countOrders = rs.getLong(1);
+                countTopics = rs.getLong(1);
             }
         } catch (SQLException e) {
             LOGGER.error("SQLException occurred in TopicDaoImpl ", e);
         }
-        return countOrders;
+        return countTopics;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
             ps.setInt(1, row);
             ps.setInt(2, limit);
             rs = ps.executeQuery();
-            return getOrders(topics, rs);
+            return getTopics(topics, rs);
         } catch (SQLException e) {
             LOGGER.error("SQLException occurred in TopicDaoImpl ", e);
             return null;
@@ -123,9 +123,8 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
     }
 
 
-    private List<TopicEntity> getOrders(List<TopicEntity> topics, ResultSet rs) throws SQLException {
+    private List<TopicEntity> getTopics(List<TopicEntity> topics, ResultSet rs) throws SQLException {
         while (rs.next()) {
-            LOGGER.debug("check is rs has next");
             TopicEntity topic = parseToOneElement(rs);
             topics.add(topic);
         }

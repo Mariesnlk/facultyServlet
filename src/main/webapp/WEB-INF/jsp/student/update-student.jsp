@@ -22,82 +22,83 @@
 <%@ include file="/fragments/navbar-student.jsp" %>
 
 <div class="container emp-profile">
-
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img alt="user" src="${pageContext.request.contextPath}/img/icons/author.png" style="height: 300px;"/>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h3 id="user-name"></h3>
-
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
-                               aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                    </ul>
-
-                    <form method="POST" action="${pageContext.request.contextPath}/faculty<%=UPDATE_USER%>" class="form">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="text-3">First name:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" id="firstName" value="<c:out value="${sessionScope.loginPerson.firstName}"/>"
-                                       placeholder="First name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"--%>
-<%--                                     th:errors="*{firstName}"></div>--%>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="text-3">Second name:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.secondName}"/>" id="secondName"
-                                       placeholder="Second name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('secondName')}"--%>
-<%--                                     th:errors="*{secondName}"></div>--%>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="text-3">Last name:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.lastName}"/>" id="lastName"
-                                       placeholder="Last name">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"--%>
-<%--                                     th:errors="*{lastName}"></div>--%>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="text-3">Email:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" value="<c:out value="${sessionScope.loginPerson.email}"/>" id="email"
-                                       placeholder="Email">
-<%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"--%>
-<%--                                     th:errors="*{email}"></div>--%>
-                            </div>
-                        </div>
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-success profile-edit-btn btnSaveUser">Update</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img alt="user" src="${pageContext.request.contextPath}/img/icons/author.png" style="height: 300px;"/>
             </div>
         </div>
-    </form>
+
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h3 id="user-name"></h3>
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
+                           aria-controls="home" aria-selected="true">About</a>
+                    </li>
+                </ul>
+
+                <form method="POST" action="${pageContext.request.contextPath}/faculty<%=UPDATE_USER%>" class="form">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="text-3">First name:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" id="firstName" name="firstName"
+                                   value="<c:out value="${sessionScope.loginPerson.firstName}"/>"
+                                   placeholder="First name">
+                            <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"--%>
+                            <%--                                     th:errors="*{firstName}"></div>--%>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="text-3">Second name:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="secondName"
+                                   value="<c:out value="${sessionScope.loginPerson.secondName}"/>" id="secondName"
+                                   placeholder="Second name">
+                            <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('secondName')}"--%>
+                            <%--                                     th:errors="*{secondName}"></div>--%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="text-3">Last name:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="lastName"
+                                   value="<c:out value="${sessionScope.loginPerson.lastName}"/>" id="lastName"
+                                   placeholder="Last name">
+                            <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"--%>
+                            <%--                                     th:errors="*{lastName}"></div>--%>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="text-3">Email:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="email"
+                                   value="<c:out value="${sessionScope.loginPerson.email}"/>" id="email"
+                                   placeholder="Email">
+                            <%--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"--%>
+                            <%--                                     th:errors="*{email}"></div>--%>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success profile-edit-btn btnSaveUser">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

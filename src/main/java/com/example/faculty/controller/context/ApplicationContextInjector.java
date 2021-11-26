@@ -76,7 +76,8 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_COURSES, new UpdateCoursesCommand());
         commands.put(ALL_STUDENTS, new AllStudentsCommand());
         commands.put(UPDATE_STUDENT_FORM, new UpdateStudentCommand());
-        commands.put(UPDATE_ADMIN_FORM, new UpdateStudentCommand());
+        commands.put(UPDATE_ADMIN_FORM, new UpdateAdminCommand());
+        commands.put(UPDATE_TEACHER_FORM, new UpdateTeacherCommand());
         commands.put(UPDATE_USER, new UpdateCommand(USER_SERVICE));
         commands.put(STUDENT_COURSES, new StudentCoursesCommand());
         commands.put(ALL_TEACHERS, new AllTeachersCommand());

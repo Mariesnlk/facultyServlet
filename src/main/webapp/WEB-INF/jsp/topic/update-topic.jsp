@@ -26,8 +26,8 @@
             <h1>Add a new topic</h1>
             <form method="POST" action="${pageContext.request.contextPath}/faculty<%=UPDATE_TOPIC%>?topic=${requestScope.topic.topicId}" class="form">
                 <div class="form-group">
-                    <label for="name">Topic name *</label>
-                    <input class="form-control" type="text" id="name" placeholder="Enter topic name" value="<c:out value="${requestScope.topic.topicName}"/>">
+                    <label for="name" >Topic name *</label>
+                    <input class="form-control" type="text" id="name" placeholder="Enter topic name" name="topicName" value="${requestScope.topic.topicName}">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
                             <p class="errorsM">Name is null or empty</p>

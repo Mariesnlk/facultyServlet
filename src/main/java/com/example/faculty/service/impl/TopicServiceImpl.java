@@ -54,7 +54,6 @@ public class TopicServiceImpl implements TopicService {
             LOGGER.warn("creating TopicServiceImpl updateTopic");
             throw new InputDataInCorrectRuntimeException("Topic must be not null");
         }
-        LOGGER.info("before update topic in TopicServiceImpl");
         topicDao.update(topicMapper.topicToTopicEntity(topic));
     }
 

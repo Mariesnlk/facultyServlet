@@ -12,6 +12,13 @@ public class Topic {
     private Date date;
 
 
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Long getTopicId() {
         return topicId;
