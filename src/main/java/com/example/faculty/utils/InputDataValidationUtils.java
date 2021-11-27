@@ -25,7 +25,7 @@ public class InputDataValidationUtils {
         return matcher.matches();
     }
 
-    private static boolean isValidPassword(String password1, String password2) {
+    public static boolean isValidPassword(String password1, String password2) {
         Pattern validPassword = Pattern.compile(CORRECT_PASSWORD);
         Matcher matcher = validPassword.matcher(password1);
         return isSamePassword(password1, password2) && matcher.matches();
@@ -42,7 +42,7 @@ public class InputDataValidationUtils {
         return matcher.matches();
     }
 
-    private static boolean isCorrectPIB(String firstName, String secondName, String lastName) {
+    public static boolean isCorrectPIB(String firstName, String secondName, String lastName) {
         return isCorrectName(firstName) && isCorrectName(secondName) && isCorrectName(lastName);
     }
 

@@ -57,6 +57,39 @@ public class UserEntity {
         return date;
     }
 
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

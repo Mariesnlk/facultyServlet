@@ -1,5 +1,7 @@
 package com.example.faculty.cipher;
 
+import static sun.nio.cs.Surrogate.is;
+
 public class MainCipher {
 
     // a123 f123
@@ -36,5 +38,10 @@ public class MainCipher {
     public static void main(String[] args) {
         encryptMessage();
         decryptMessage();
+
+        System.out.println(AES.encrypt("admin", AES.KEY));
+        System.out.println(AES.encrypt("teacher", AES.KEY));
+        System.out.println(AES.encrypt("Testing123!", AES.KEY));
+        System.out.println(AES.encrypt("password123!", AES.KEY));
     }
 }

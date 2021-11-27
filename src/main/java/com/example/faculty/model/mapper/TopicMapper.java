@@ -12,6 +12,7 @@ public class TopicMapper {
 
         return new Topic.Builder()
                 .setTopicId(topicEntity.getTopicId())
+                .setDate(topicEntity.getDate())
                 .setTopicName(topicEntity.getTopicName())
                 .build();
     }
