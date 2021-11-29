@@ -32,8 +32,11 @@ public interface PathCommand {
 
     String ALL_COURSES = "/courses";
     String ALL_COURSES_PAG = "/all_courses";
-    String ADD_COURSES = "/add_course";
+    String ADD_COURSE = "/add_course";
+    String ADD_COURSE_FORM = "/add_course_form";
     String UPDATE_COURSES = "/update_course";
+    String UPDATE_COURSE_FORM = "/update_course_form";
+    String DELETE_COURSE_PATH = "/delete_course";
 
     String ALL_STUDENTS = "/students";
     String ALL_STUDENTS_PAG = "/all_students";

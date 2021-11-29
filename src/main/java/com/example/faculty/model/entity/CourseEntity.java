@@ -11,9 +11,13 @@ public class CourseEntity {
 
     private Date date;
 
-    public TopicEntity topicEntity;
+//    public TopicEntity topic;
+//
+//    public UserEntity teacher;
 
-    public UserEntity teacher;
+    public Long topic;
+
+    public Long teacher;
 
     public String courseName;
 
@@ -34,11 +38,20 @@ public class CourseEntity {
         return date;
     }
 
-    public TopicEntity getTopicEntity() {
-        return topicEntity;
+//    public TopicEntity getTopicEntity() {
+//        return topic;
+//    }
+//
+//    public UserEntity getTeacherEntity() {
+//        return teacher;
+//    }
+
+
+    public Long getTopic() {
+        return topic;
     }
 
-    public UserEntity getTeacherEntity() {
+    public Long getTeacher() {
         return teacher;
     }
 
@@ -98,12 +111,12 @@ public class CourseEntity {
             return this;
         }
 
-        public Builder setTopic(TopicEntity topicEntity) {
-            courseEntity.topicEntity = topicEntity;
+        public Builder setTopic(Long topic) {
+            courseEntity.topic = topic;
             return this;
         }
 
-        public Builder setTeacher(UserEntity teacher) {
+        public Builder setTeacher(Long teacher) {
             courseEntity.teacher = teacher;
             return this;
         }

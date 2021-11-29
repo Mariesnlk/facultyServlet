@@ -2,6 +2,7 @@ package com.example.faculty.dao.impl;
 
 import com.example.faculty.database.DBHelper;
 import com.example.faculty.exception.DataBaseRuntimeException;
+import com.example.faculty.model.entity.TopicEntity;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -10,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.faculty.database.Queries.COUNT_COURSES;
+import static com.example.faculty.database.Queries.READ_TOPICS_WITH_LIMIT;
 
 
 public abstract class AbstractGenericDao<E> {
@@ -27,7 +31,7 @@ public abstract class AbstractGenericDao<E> {
             setInsertElementProperties(statement, element);
             statement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.warn("inser exeption");
+            LOGGER.warn("inser exeption" + e);
             throw new DataBaseRuntimeException("Insert exeption", e);
         }
     }
@@ -176,6 +180,23 @@ public abstract class AbstractGenericDao<E> {
         return result;
     }
 
+    public long findCount(String query) {
+        long countsCourses = 0;
+        ResultSet rs = null;
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(query)) {
+
+            rs = ps.executeQuery();
+
+            LOGGER.debug("Executed query" + query);
+            if (rs.next()) {
+                LOGGER.debug("check is rs has next");
+                countsCourses = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred ", e);
+        }
+        return countsCourses;
+    }
 
     protected abstract void setInsertElementProperties(PreparedStatement statement, E element) throws SQLException;
 

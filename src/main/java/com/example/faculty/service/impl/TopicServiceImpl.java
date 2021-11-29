@@ -81,6 +81,15 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> getAllTopics() {
+        List<TopicEntity> topicEntities = topicDao.findAll();
+        return topicEntities.isEmpty() ?
+                Collections.emptyList() : topicEntities.stream()
+                .map(topicMapper::topicEntityToTopic)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public long getAllTopicsCount() {
         return topicDao.findCountTopics();
     }

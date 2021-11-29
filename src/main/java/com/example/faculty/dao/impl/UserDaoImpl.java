@@ -106,21 +106,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public long findCountStudents() {
-        long countStudents = 0;
-        ResultSet rs = null;
-        try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_STUDENTS)) {
-
-            rs = ps.executeQuery();
-
-            LOGGER.debug("Executed query" + COUNT_STUDENTS);
-            if (rs.next()) {
-                LOGGER.debug("check is rs has next");
-                countStudents = rs.getLong(1);
-            }
-        } catch (SQLException e) {
-            LOGGER.error("SQLException occurred in UserDaoImpl ", e);
-        }
-        return countStudents;
+        return findCount(COUNT_STUDENTS);
     }
 
     @Override
@@ -140,21 +126,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public long findCountTeachers() {
-        long countTeachers = 0;
-        ResultSet rs = null;
-        try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_TEACHERS)) {
-
-            rs = ps.executeQuery();
-
-            LOGGER.debug("Executed query" + COUNT_TEACHERS);
-            if (rs.next()) {
-                LOGGER.debug("check is rs has next");
-                countTeachers = rs.getLong(1);
-            }
-        } catch (SQLException e) {
-            LOGGER.error("SQLException occurred in UserDaoImpl ", e);
-        }
-        return countTeachers;
+        return findCount(COUNT_TEACHERS);
     }
 
     private List<UserEntity> getUsers(List<UserEntity> users, ResultSet rs) throws SQLException {

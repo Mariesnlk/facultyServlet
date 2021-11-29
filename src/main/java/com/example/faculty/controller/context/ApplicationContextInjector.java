@@ -2,12 +2,14 @@ package com.example.faculty.controller.context;
 
 import com.example.faculty.cipher.AES;
 import com.example.faculty.controller.command.Command;
+import com.example.faculty.controller.command.account.admin.AdminAccountCommand;
+import com.example.faculty.controller.command.account.admin.BlockStudentCommand;
+import com.example.faculty.controller.command.account.admin.UpdateAdminCommand;
+import com.example.faculty.controller.command.account.admin.courses.*;
 import com.example.faculty.controller.command.account.admin.topic.*;
 import com.example.faculty.controller.command.account.admin.user.AddTeacher;
 import com.example.faculty.controller.command.account.admin.user.ShowAllStudentsCommand;
 import com.example.faculty.controller.command.account.admin.user.ShowAllTeachersCommand;
-import com.example.faculty.controller.command.common.EnterLoginCommand;
-import com.example.faculty.controller.command.account.admin.*;
 import com.example.faculty.controller.command.account.student.*;
 import com.example.faculty.controller.command.account.teacher.*;
 import com.example.faculty.controller.command.common.*;
@@ -30,7 +32,7 @@ public class ApplicationContextInjector {
 
     private static final UserDao USER_DAO = new UserDaoImpl(CONNECTOR);
     private static final TopicDao TOPIC_DAO = new TopicDaoImpl(CONNECTOR);
-    private static final CourseDao COURSE_DAO = new CourseDaoImpl();
+    private static final CourseDao COURSE_DAO = new CourseDaoImpl(CONNECTOR);
     private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl();
     private static final GradeBookDao GRADE_BOOK_DAO = new GradeBookDaoImpl();
 
@@ -42,7 +44,7 @@ public class ApplicationContextInjector {
 
     private static final UserService USER_SERVICE = new UserServiceImpl(USER_DAO, USER_MAPPER);
     private static final TopicService TOPIC_SERVICE = new TopicServiceImpl(TOPIC_DAO, TOPIC_MAPPER);
-    private static final CourseService COURSE_SERVICE = new CourseServiceImpl();
+    private static final CourseService COURSE_SERVICE = new CourseServiceImpl(COURSE_DAO, COURSE_MAPPER);
     private static final EnrollService ENROLL_SERVICE = new EnrollServiceImpl();
     private static final GradeBookService GRADE_BOOK_SERVICE = new GradeBookServiceImpl();
 
@@ -74,9 +76,12 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_TOPIC, new UpdateTopic(TOPIC_SERVICE));
         commands.put(ALL_TOPICS_PAG, new ShowAllTopicsCommand(TOPIC_SERVICE));
         commands.put(DELETE_TOPIC_PATH, new DeleteTopic(TOPIC_SERVICE));
-        commands.put(ALL_COURSES, new AllCoursesCommand());
-        commands.put(ADD_COURSES, new AddCoursesCommand());
-        commands.put(UPDATE_COURSES, new UpdateCoursesCommand());
+        commands.put(ALL_COURSES_PAG, new ShowAllCoursesCommand(COURSE_SERVICE));
+        commands.put(ADD_COURSE_FORM, new AddCoursesCommand(TOPIC_SERVICE, USER_SERVICE));
+        commands.put(ADD_COURSE, new AddCourses(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
+        commands.put(UPDATE_COURSE_FORM, new UpdateCoursesCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
+        commands.put(UPDATE_COURSES, new UpdateCourses(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
+        commands.put(DELETE_COURSE_PATH, new DeleteCourse(COURSE_SERVICE));
         commands.put(ALL_STUDENTS, new AllStudentsCommand());
         commands.put(ALL_STUDENTS_PAG, new ShowAllStudentsCommand(USER_SERVICE));
         commands.put(UPDATE_STUDENT_FORM, new UpdateStudentCommand());

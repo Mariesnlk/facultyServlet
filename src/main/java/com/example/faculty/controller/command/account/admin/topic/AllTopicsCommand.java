@@ -1,15 +1,19 @@
-package com.example.faculty.controller.command.account.admin;
+package com.example.faculty.controller.command.account.admin.topic;
 
 import com.example.faculty.controller.command.Command;
+import com.example.faculty.controller.command.RoutesJSP;
+import com.example.faculty.model.domain.Topic;
+import com.example.faculty.service.interf.TopicService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-public class UpdateCoursesCommand implements Command {
+public class AllTopicsCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        return null;
+        return RoutesJSP.ALL_TOPICS;
     }
 }

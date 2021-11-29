@@ -22,7 +22,7 @@ public interface RoutesJSP {
     String ALL_TOPICS = "/WEB-INF/jsp/topic/all-topics.jsp";
 
     String ALL_COURSES = "/WEB-INF/jsp/course/all-courses.jsp";
-    String ADD_COURSES = "/WEB-INF/jsp/course/add-course.jsp";
+    String ADD_COURSE = "/WEB-INF/jsp/course/add-course.jsp";
     String UPDATE_COURSES = "/WEB-INF/jsp/course/update-course.jsp";
 
     String ALL_STUDENTS = "/WEB-INF/jsp/student/all-students.jsp";

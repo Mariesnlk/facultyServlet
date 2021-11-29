@@ -1,11 +1,15 @@
 package com.example.faculty.service.interf;
 
 import com.example.faculty.model.domain.Course;
+import com.example.faculty.model.domain.Topic;
 
 import java.util.List;
 
 public interface CourseService extends CrudService<Course, Long> {
 
+    List<Course> getAllCourses(int row, int limit);
+
+    long getAllCoursesCount();
 
 //    Paged getCoursesPage(String courseName, Integer duration, Integer studentsAmount, String topic,
 //                         String teacher, String status, int pageNumber, int size, String sortType);

@@ -49,21 +49,24 @@ public class Queries {
     public static final String READ_TOPICS_WITH_LIMIT = "SELECT * FROM  facultyservlet.topic ORDER BY  id  DESC limit ?, ?";
 
     //Course
-    public static final String CREATE_COURSE = "INSERT INTO facultyservlet.coures(created_date, name, status, students_amount, " +
+    public static final String CREATE_COURSE = "INSERT INTO facultyservlet.course(created_date, name, status, students_amount, " +
             "enroll_students, duration, topic_id, teacher_id) VALUES(?,?,?,?,?,?,?,?)";
     public static final String GET_COURSE_BY_ID = "SELECT * FROM facultyservlet.course WHERE id = ?";
     public static final String GET_COURSE_BY_NAME = "SELECT * FROM facultyservlet.course WHERE name = ?";
     public static final String GET_ALL_COURSES = "SELECT * FROM facultyservlet.course";
     public static final String UPDATE_COURSE = "UPDATE facultyservlet.course SET " +
-            "name  = ?, " +
-            "status = ?, " +
-            "students_amount = ?, " +
-            "enroll_students = ?, " +
-            "duration = ?, " +
-            "topic_id = ?, " +
-            "teacher_id = ?, " +
-            "WHERE id = ?";
+            "created_date=?, " +
+            "name=?, " +
+            "status=?, " +
+            "students_amount=?, " +
+            "enroll_students=?, " +
+            "duration=?, " +
+            "topic_id=?, " +
+            "teacher_id=? " +
+            "WHERE id=?";
     public static final String DELETE_COURSE = "DELETE FROM facultyservlet.course WHERE id = ?";
+    public static final String COUNT_COURSES = "SELECT count(*) FROM  facultyservlet.course";
+    public static final String READ_COURSES_WITH_LIMIT = "SELECT * FROM  facultyservlet.course ORDER BY  id  DESC limit ?, ?";
 
     //Enroll
     public static final String CREATE_ENROLL = "INSERT INTO facultyservlet.enroll(created_date, id_student, id_course) VALUES(?,?,?)";

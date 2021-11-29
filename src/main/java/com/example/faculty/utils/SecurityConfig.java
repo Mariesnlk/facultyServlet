@@ -43,7 +43,7 @@ public class SecurityConfig {
         urlPatterns3.add(UPDATE_TOPIC);
         urlPatterns3.add(ALL_TOPICS);
         urlPatterns3.add(ALL_COURSES);
-        urlPatterns3.add(ADD_COURSES);
+        urlPatterns3.add(ADD_COURSE);
         urlPatterns3.add(UPDATE_COURSES);
         urlPatterns3.add(ALL_STUDENTS);
         urlPatterns3.add(ALL_TEACHERS);
@@ -52,6 +52,7 @@ public class SecurityConfig {
         urlPatterns3.add(ALL_TOPICS_PAG);
         urlPatterns3.add(ALL_TEACHERS_PAG);
         urlPatterns3.add(ALL_STUDENTS_PAG);
+        urlPatterns3.add(ALL_COURSES_PAG);
         urlPatterns3.add(UPDATE_USER);
         urlPatterns3.add(LOGOUT);
 

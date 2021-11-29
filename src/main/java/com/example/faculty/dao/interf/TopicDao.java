@@ -7,8 +7,6 @@ import java.util.Optional;
 
 public interface TopicDao extends CrudDao<TopicEntity, Long> {
 
-    Optional<TopicEntity> findTopicById(Long topicId);
-
     Boolean existsTopicByName(String topicName);
 
     List<TopicEntity> findByOrderByCreatedDate();

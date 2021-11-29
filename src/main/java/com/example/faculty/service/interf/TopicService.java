@@ -8,5 +8,7 @@ public interface TopicService extends CrudService<Topic, Long> {
 
     List<Topic> getAllTopics(int row, int limit);
 
+    List<Topic> getAllTopics();
+
     long getAllTopicsCount();
 }

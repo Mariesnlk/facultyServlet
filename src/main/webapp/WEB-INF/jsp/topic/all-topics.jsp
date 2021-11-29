@@ -1,4 +1,4 @@
-<%@ page import="static com.example.faculty.database.Queries.DELETE_TOPIC" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Марія
   Date: 24.11.2021

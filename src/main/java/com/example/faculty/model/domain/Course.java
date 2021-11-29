@@ -11,9 +11,9 @@ public class Course {
 
     private Date date;
 
-    public Topic topic;
+    public Long topic;
 
-    public User teacher;
+    public Long teacher;
 
     public String courseName;
 
@@ -34,11 +34,11 @@ public class Course {
         return date;
     }
 
-    public Topic getTopic() {
+    public Long getTopic() {
         return topic;
     }
 
-    public User getTeacher() {
+    public Long getTeacher() {
         return teacher;
     }
 
@@ -60,6 +60,43 @@ public class Course {
 
     public CourseStatus getStatus() {
         return status;
+    }
+
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTopic(Long topic) {
+        this.topic = topic;
+    }
+
+    public void setTeacher(Long teacher) {
+        this.teacher = teacher;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setStudentsAmount(int studentsAmount) {
+        this.studentsAmount = studentsAmount;
+    }
+
+    public void setEnrollStudents(int enrollStudents) {
+        this.enrollStudents = enrollStudents;
+    }
+
+    public void setStatus(CourseStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -98,12 +135,12 @@ public class Course {
             return this;
         }
 
-        public Builder setTopic(Topic topic) {
+        public Builder setTopic(Long topic) {
             newCourse.topic = topic;
             return this;
         }
 
-        public Builder setTeacher(User teacher) {
+        public Builder setTeacher(Long teacher) {
             newCourse.teacher = teacher;
             return this;
         }

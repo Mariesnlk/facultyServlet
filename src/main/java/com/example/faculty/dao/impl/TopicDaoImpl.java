@@ -24,30 +24,6 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
     }
 
     @Override
-    protected void setInsertElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
-        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
-        statement.setDate(1, printDate);
-        statement.setString(2, element.getTopicName());
-    }
-
-    @Override
-    protected void setUpdateElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
-        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
-        statement.setDate(1, printDate);
-        statement.setString(2, element.getTopicName());
-        statement.setLong(3, element.getTopicId());
-    }
-
-    @Override
-    protected TopicEntity parseToOneElement(ResultSet resultSet) throws SQLException {
-        return new TopicEntity.Builder()
-                .setTopicId(resultSet.getLong("id"))
-                .setDate(resultSet.getDate("created_date"))
-                .setTopicName(resultSet.getString("name"))
-                .build();
-    }
-
-    @Override
     public void create(TopicEntity topicEntity) {
         insert(topicEntity, CREATE_TOPIC);
     }
@@ -59,7 +35,6 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
 
     @Override
     public List<TopicEntity> findAll() {
-
         return getList(GET_ALL_TOPICS);
     }
 
@@ -74,11 +49,6 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
     }
 
     @Override
-    public Optional<TopicEntity> findTopicById(Long topicId) {
-        return Optional.empty();
-    }
-
-    @Override
     public Boolean existsTopicByName(String topicName) {
         return null;
     }
@@ -90,21 +60,7 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
 
     @Override
     public long findCountTopics() {
-        long countTopics = 0;
-        ResultSet rs = null;
-        try (PreparedStatement ps = connector.getConnection().prepareStatement(COUNT_TOPICS)) {
-
-            rs = ps.executeQuery();
-
-            LOGGER.debug("Executed query" + COUNT_TOPICS);
-            if (rs.next()) {
-                LOGGER.debug("check is rs has next");
-                countTopics = rs.getLong(1);
-            }
-        } catch (SQLException e) {
-            LOGGER.error("SQLException occurred in TopicDaoImpl ", e);
-        }
-        return countTopics;
+        return findCount(COUNT_TOPICS);
     }
 
     @Override
@@ -129,5 +85,29 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
             topics.add(topic);
         }
         return topics;
+    }
+
+    @Override
+    protected void setInsertElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
+        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
+        statement.setDate(1, printDate);
+        statement.setString(2, element.getTopicName());
+    }
+
+    @Override
+    protected void setUpdateElementProperties(PreparedStatement statement, TopicEntity element) throws SQLException {
+        java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
+        statement.setDate(1, printDate);
+        statement.setString(2, element.getTopicName());
+        statement.setLong(3, element.getTopicId());
+    }
+
+    @Override
+    protected TopicEntity parseToOneElement(ResultSet resultSet) throws SQLException {
+        return new TopicEntity.Builder()
+                .setTopicId(resultSet.getLong("id"))
+                .setDate(resultSet.getDate("created_date"))
+                .setTopicName(resultSet.getString("name"))
+                .build();
     }
 }
