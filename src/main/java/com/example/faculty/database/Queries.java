@@ -69,14 +69,17 @@ public class Queries {
     public static final String READ_COURSES_WITH_LIMIT = "SELECT * FROM  facultyservlet.course ORDER BY  id  DESC limit ?, ?";
 
     //Enroll
-    public static final String CREATE_ENROLL = "INSERT INTO facultyservlet.enroll(created_date, id_student, id_course) VALUES(?,?,?)";
+    public static final String CREATE_ENROLL = "INSERT INTO facultyservlet.enroll(created_date, student_id, course_id) VALUES(?,?,?)";
     public static final String GET_ENROLL_BY_ID = "SELECT * FROM facultyservlet.enroll WHERE id = ?";
     public static final String GET_ALL_ENROLL = "SELECT * FROM facultyservlet.enroll";
     public static final String UPDATE_ENROLL = "UPDATE facultyservlet.enroll SET " +
-            "id_student  = ?, " +
-            "id_course = ?, " +
-            "WHERE id = ?";
+            "created_date=?, " +
+            "student_id=?, " +
+            "course_id=? " +
+            "WHERE id=?";
     public static final String DELETE_ENROLL = "DELETE FROM facultyservlet.enroll WHERE id = ?";
+    public static final String IS_EXISTS_ENROLL_BY_COURSE_AND_USER = "SELECT * FROM facultyservlet.enroll " +
+            "WHERE course_id=? AND student_id=?";
 
     //Gradebook
     public static final String CREATE_GRADEBOOK = "INSERT INTO facultyservlet.gradebook(created_date, id_student, id_course, mark) VALUES(?,?,?,?)";

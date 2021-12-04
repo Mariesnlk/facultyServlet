@@ -29,7 +29,7 @@ public class EnterLoginCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         final String email = request.getParameter("email");
         final String password = request.getParameter("password");
-        LOGGER.info("email" + email + " password " + password);
+        LOGGER.info("email " + email + " password " + password);
 
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
         String hashPassword = AES.encrypt(password, AES.KEY);

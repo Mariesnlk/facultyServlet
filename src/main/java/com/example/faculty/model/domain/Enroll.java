@@ -8,9 +8,13 @@ public class Enroll {
 
     private Date date;
 
-    public User student;
+//    public User student;
+//
+//    public Course course;
 
-    public Course course;
+    public Long student;
+
+    public Long course;
 
 
     public Long getEnrollId() {
@@ -21,14 +25,13 @@ public class Enroll {
         return date;
     }
 
-    public User getStudent() {
+    public Long getStudent() {
         return student;
     }
 
-    public Course getCourse() {
+    public Long getCourse() {
         return course;
     }
-
 
     public static class Builder {
 
@@ -48,12 +51,12 @@ public class Enroll {
             return this;
         }
 
-        public Builder setUser(User student) {
+        public Builder setUser(Long student) {
             newEnroll.student = student;
             return this;
         }
 
-        public Builder setCourse(Course course) {
+        public Builder setCourse(Long course) {
             newEnroll.course = course;
             return this;
         }

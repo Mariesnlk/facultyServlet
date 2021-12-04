@@ -51,6 +51,8 @@ public interface PathCommand {
     String IS_TEACHER = "/is_teacher";
     String TEACHER_REGISTRATION_COMPLETE = "/teacher/registration";
 
+    String ENROLL = "/enroll";
+
     String FORBIDDEN = "/forbidden";
     String REDIRECT = "redirect#";
     String EMPTY_STR = "";

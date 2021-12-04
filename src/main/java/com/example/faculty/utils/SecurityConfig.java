@@ -24,6 +24,7 @@ public class SecurityConfig {
         urlPatterns1.add(UPDATE_USER);
         urlPatterns1.add(ALL_TEACHERS);
         urlPatterns1.add(ALL_TEACHERS_PAG);
+        urlPatterns1.add(ALL_COURSES_PAG);
         urlPatterns1.add(LOGOUT);
 
         mapConfig.put(UserRole.STUDENT, urlPatterns1);

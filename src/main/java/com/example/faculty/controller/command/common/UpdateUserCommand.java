@@ -2,7 +2,6 @@ package com.example.faculty.controller.command.common;
 
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;
-import com.example.faculty.controller.command.account.student.RegistrationCommand;
 import com.example.faculty.exception.EmailIsAlreadyTaken;
 import com.example.faculty.model.domain.User;
 import com.example.faculty.model.enums.UserRole;
@@ -19,13 +18,13 @@ import java.util.Date;
 
 import static com.example.faculty.controller.command.PathCommand.*;
 
-public class UpdateCommand implements Command {
+public class UpdateUserCommand implements Command {
 
-    private final Logger LOGGER = Logger.getLogger(UpdateCommand.class);
+    private final Logger LOGGER = Logger.getLogger(UpdateUserCommand.class);
 
     private UserService userService;
 
-    public UpdateCommand(UserService userService) {
+    public UpdateUserCommand(UserService userService) {
         this.userService = userService;
     }
 

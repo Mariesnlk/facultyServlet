@@ -2,7 +2,6 @@ package com.example.faculty.dao.impl;
 
 import com.example.faculty.database.DBHelper;
 import com.example.faculty.exception.DataBaseRuntimeException;
-import com.example.faculty.model.entity.TopicEntity;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -11,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.faculty.database.Queries.COUNT_COURSES;
-import static com.example.faculty.database.Queries.READ_TOPICS_WITH_LIMIT;
 
 
 public abstract class AbstractGenericDao<E> {
@@ -131,10 +127,27 @@ public abstract class AbstractGenericDao<E> {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(query);
-            LOGGER.info(data);
-            LOGGER.info(secondData);
             ps.setString(1, data);
             ps.setString(2, secondData);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            LOGGER.warn("SQLException isExist", e);
+        }
+        return false;
+    }
+
+    protected boolean isExistWithTwoLongParameters(Long data, Long secondData, String query) {
+        ResultSet rs = null;
+
+        try (Connection connection = connector.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(query);
+            LOGGER.info(data);
+            LOGGER.info(secondData);
+            ps.setLong(1, data);
+            ps.setLong(2, secondData);
             rs = ps.executeQuery();
             if (rs.next()) {
                 return true;

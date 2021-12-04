@@ -11,6 +11,8 @@ public interface CourseService extends CrudService<Course, Long> {
 
     long getAllCoursesCount();
 
+    void increaseCountOfEnrollStudents(Long courseId);
+
 //    Paged getCoursesPage(String courseName, Integer duration, Integer studentsAmount, String topic,
 //                         String teacher, String status, int pageNumber, int size, String sortType);
 //

@@ -33,7 +33,7 @@ public class ApplicationContextInjector {
     private static final UserDao USER_DAO = new UserDaoImpl(CONNECTOR);
     private static final TopicDao TOPIC_DAO = new TopicDaoImpl(CONNECTOR);
     private static final CourseDao COURSE_DAO = new CourseDaoImpl(CONNECTOR);
-    private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl();
+    private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl(CONNECTOR);
     private static final GradeBookDao GRADE_BOOK_DAO = new GradeBookDaoImpl();
 
     private static final UserMapper USER_MAPPER = new UserMapper();
@@ -45,7 +45,7 @@ public class ApplicationContextInjector {
     private static final UserService USER_SERVICE = new UserServiceImpl(USER_DAO, USER_MAPPER);
     private static final TopicService TOPIC_SERVICE = new TopicServiceImpl(TOPIC_DAO, TOPIC_MAPPER);
     private static final CourseService COURSE_SERVICE = new CourseServiceImpl(COURSE_DAO, COURSE_MAPPER);
-    private static final EnrollService ENROLL_SERVICE = new EnrollServiceImpl();
+    private static final EnrollService ENROLL_SERVICE = new EnrollServiceImpl(ENROLL_DAO, ENROLL_MAPPER);
     private static final GradeBookService GRADE_BOOK_SERVICE = new GradeBookServiceImpl();
 
 
@@ -87,7 +87,7 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_STUDENT_FORM, new UpdateStudentCommand());
         commands.put(UPDATE_ADMIN_FORM, new UpdateAdminCommand());
         commands.put(UPDATE_TEACHER_FORM, new UpdateTeacherCommand());
-        commands.put(UPDATE_USER, new UpdateCommand(USER_SERVICE));
+        commands.put(UPDATE_USER, new UpdateUserCommand(USER_SERVICE));
         commands.put(STUDENT_COURSES, new StudentCoursesCommand());
         commands.put(ALL_TEACHERS, new AllTeachersCommand());
         commands.put(ALL_TEACHERS_PAG, new ShowAllTeachersCommand(USER_SERVICE));
@@ -96,6 +96,7 @@ public class ApplicationContextInjector {
         commands.put(TEACHER_COURSES, new TeacherCoursesCommand());
         commands.put(IS_TEACHER, new IsTeacherCommand());
         commands.put(TEACHER_REGISTRATION_COMPLETE, new TeacherRegistrationCompleteCommand(USER_SERVICE));
+        commands.put(ENROLL, new EnrollCommand(ENROLL_SERVICE, COURSE_SERVICE));
         return commands;
     }
 

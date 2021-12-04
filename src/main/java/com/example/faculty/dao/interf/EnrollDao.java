@@ -6,7 +6,7 @@ import com.example.faculty.model.entity.UserEntity;
 
 public interface EnrollDao extends CrudDao<EnrollEntity, Long> {
 
-    Boolean existsEnrollByCourseAndUser(CourseEntity courseEntity, UserEntity userEntity);
+    Boolean existsEnrollByCourseAndUser(Long courseId, Long userId);
 
     void deleteByCourseAndUser(CourseEntity courseEntity, UserEntity userEntity);
 }

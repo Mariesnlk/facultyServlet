@@ -75,6 +75,10 @@ public class CourseEntity {
         return status;
     }
 
+    public void setEnrollStudents(int enrollStudents) {
+        this.enrollStudents = enrollStudents;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

@@ -28,6 +28,14 @@
             <div id="table">
                 <div>
                     <h2>ALL COURSES</h2>
+
+                    <c:if test="${requestScope.isEnroll == true}">
+                        <div class="alert alert-info">You enroll to this course</div>
+                    </c:if>
+                    <c:if test="${requestScope.isEnroll == false}">
+                        <div class="alert alert-warning">You already enroll to this course</div>
+                    </c:if>
+
                     <table id="incomes_table" class="table table-bordered">
                         <thead>
                         <tr class="table-success">
@@ -47,18 +55,25 @@
                                 <td class="table-success"><c:out value="${course.courseName}"/></td>
                                 <td class="table-success"><c:out value="${course.topic}"/></td>
                                 <td class="table-success"><c:out value="${course.teacher}"/></td>
-<%--                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>--%>
-<%--                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>--%>
+                                    <%--                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>--%>
+                                    <%--                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>--%>
                                 <td class="table-success"><c:out value="${course.duration}"/></td>
                                 <td class="table-success"><c:out value="${course.studentsAmount}"/></td>
                                 <td class="table-success"><c:out value="${course.enrollStudents}"/></td>
                                 <td class="table-success"><c:out value="${course.status}"/></td>
-                                <td class="edit-delete"><a
-                                        href="${pageContext.request.contextPath}/faculty<%=UPDATE_COURSE_FORM%>?course=${course.courseId}">Edit</a>
-                                </td>
-                                <td class="edit-delete"><a
-                                        href="${pageContext.request.contextPath}/faculty<%=DELETE_COURSE_PATH%>?course=${course.courseId}">Delete</a>
-                                </td>
+                                <c:if test="${sessionScope.loginPerson.role == 'ADMINISTRATOR'}">
+                                    <td class="edit-delete">
+                                        <a href="${pageContext.request.contextPath}/faculty<%=UPDATE_COURSE_FORM%>?course=${course.courseId}">Edit</a>
+                                    </td>
+                                    <td class="edit-delete">
+                                        <a href="${pageContext.request.contextPath}/faculty<%=DELETE_COURSE_PATH%>?course=${course.courseId}">Delete</a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${sessionScope.loginPerson.role == 'STUDENT'}">
+                                    <td class="edit-delete" id="hide">
+                                        <a href="${pageContext.request.contextPath}/faculty<%=ENROLL%>?course=${course.courseId}">Enroll</a>
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -71,7 +86,7 @@
                                 <c:forEach var="pagNumber" begin="1" end="${requestScope.pageNumbers}">
                                     <li class="page-item">
                                         <a class="page-link"
-                                           href="${pageContext.request.contextPath}/faculty<%=ALL_TOPICS_PAG%>?pagination=${pagNumber}">
+                                           href="${pageContext.request.contextPath}/faculty<%=ALL_COURSES_PAG%>?pagination=${pagNumber}">
                                             <c:out value="${pagNumber}"/></a>
                                     </li>
                                 </c:forEach>

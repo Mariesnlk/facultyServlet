@@ -33,7 +33,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void create(Course course) {
         courseDao.create(courseMapper.courseToCourseEntity(course));
-
     }
 
     @Override
@@ -85,6 +84,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public long getAllCoursesCount() {
         return courseDao.findCountCourses();
+    }
+
+    @Override
+    public void increaseCountOfEnrollStudents(Long courseId) {
+        CourseEntity courseEntity = courseDao.findById(courseId);
+        courseEntity.setEnrollStudents(courseEntity.getEnrollStudents() + 1);
+        courseDao.update(courseEntity);
     }
 
     @Override
