@@ -53,10 +53,8 @@
                                    end="${requestScope.recordPerPage -1}">
                             <tr>
                                 <td class="table-success"><c:out value="${course.courseName}"/></td>
-                                <td class="table-success"><c:out value="${course.topic}"/></td>
-                                <td class="table-success"><c:out value="${course.teacher}"/></td>
-                                    <%--                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>--%>
-                                    <%--                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>--%>
+                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>
+                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>
                                 <td class="table-success"><c:out value="${course.duration}"/></td>
                                 <td class="table-success"><c:out value="${course.studentsAmount}"/></td>
                                 <td class="table-success"><c:out value="${course.enrollStudents}"/></td>
@@ -96,10 +94,13 @@
                     <!------- Paging ------>
 
                 </div>
-                <div class="container">
-                    <p><a id="add-new" href="${pageContext.request.contextPath}/faculty<%=ADD_COURSE_FORM%>">Add a new
-                        course</a></p>
-                </div>
+                <c:if test="${sessionScope.loginPerson.role == 'ADMINISTRATOR'}">
+                    <div class="container">
+                        <p><a id="add-new" href="${pageContext.request.contextPath}/faculty<%=ADD_COURSE_FORM%>">Add a
+                            new
+                            course</a></p>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>

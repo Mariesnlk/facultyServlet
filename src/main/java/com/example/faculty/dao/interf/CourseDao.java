@@ -14,6 +14,10 @@ public interface CourseDao extends CrudDao<CourseEntity, Long> {
 
     List<CourseEntity> findAllCourses(int row, int limit);
 
+    long findTeachersCountCourses(Long id);
+
+    List<CourseEntity> findTeachersCourses(int row, int limit, Long id);
+
 //    Page<Course> findAllBy(Pageable pageable);
 //
 //    Page<Course> findCoursesByTeacherId(User teacherId, Pageable pageable);

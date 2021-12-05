@@ -37,6 +37,7 @@ public interface PathCommand {
     String UPDATE_COURSES = "/update_course";
     String UPDATE_COURSE_FORM = "/update_course_form";
     String DELETE_COURSE_PATH = "/delete_course";
+    String COURSE_INF0 = "/course_info";
 
     String ALL_STUDENTS = "/students";
     String ALL_STUDENTS_PAG = "/all_students";
@@ -46,7 +47,7 @@ public interface PathCommand {
     String ALL_TEACHERS_PAG = "/all_teachers";
     String ADD_TEACHER = "/add_teacher";
     String ADD_TEACHER_FORM = "/teacher_form";
-    String TEACHER_COURSES = "/teacher/my_courses";
+    String TEACHER_COURSES_PAG = "/teacher/my_courses";
     String UPDATE_TEACHER_FORM = "/teacher/update_form";
     String IS_TEACHER = "/is_teacher";
     String TEACHER_REGISTRATION_COMPLETE = "/teacher/registration";

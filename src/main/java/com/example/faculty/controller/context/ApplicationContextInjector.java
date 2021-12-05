@@ -32,9 +32,10 @@ public class ApplicationContextInjector {
 
     private static final UserDao USER_DAO = new UserDaoImpl(CONNECTOR);
     private static final TopicDao TOPIC_DAO = new TopicDaoImpl(CONNECTOR);
-    private static final CourseDao COURSE_DAO = new CourseDaoImpl(CONNECTOR);
+    private static final CourseDao COURSE_DAO = new CourseDaoImpl(CONNECTOR, USER_DAO);
     private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl(CONNECTOR);
     private static final GradeBookDao GRADE_BOOK_DAO = new GradeBookDaoImpl();
+    private static final CourseWithMyMarkDao COURSE_WITH_MY_MARK_DAO = new CourseWithMyMarkDaoImpl(CONNECTOR);
 
     private static final UserMapper USER_MAPPER = new UserMapper();
     private static final TopicMapper TOPIC_MAPPER = new TopicMapper();
@@ -76,27 +77,28 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_TOPIC, new UpdateTopic(TOPIC_SERVICE));
         commands.put(ALL_TOPICS_PAG, new ShowAllTopicsCommand(TOPIC_SERVICE));
         commands.put(DELETE_TOPIC_PATH, new DeleteTopic(TOPIC_SERVICE));
-        commands.put(ALL_COURSES_PAG, new ShowAllCoursesCommand(COURSE_SERVICE));
+        commands.put(ALL_COURSES_PAG, new ShowAllCoursesCommand(COURSE_SERVICE, TOPIC_SERVICE, USER_SERVICE));
         commands.put(ADD_COURSE_FORM, new AddCoursesCommand(TOPIC_SERVICE, USER_SERVICE));
         commands.put(ADD_COURSE, new AddCourses(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(UPDATE_COURSE_FORM, new UpdateCoursesCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(UPDATE_COURSES, new UpdateCourses(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(DELETE_COURSE_PATH, new DeleteCourse(COURSE_SERVICE));
+        commands.put(COURSE_INF0, new CourseInfoCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(ALL_STUDENTS, new AllStudentsCommand());
         commands.put(ALL_STUDENTS_PAG, new ShowAllStudentsCommand(USER_SERVICE));
         commands.put(UPDATE_STUDENT_FORM, new UpdateStudentCommand());
         commands.put(UPDATE_ADMIN_FORM, new UpdateAdminCommand());
         commands.put(UPDATE_TEACHER_FORM, new UpdateTeacherCommand());
         commands.put(UPDATE_USER, new UpdateUserCommand(USER_SERVICE));
-        commands.put(STUDENT_COURSES, new StudentCoursesCommand());
+        commands.put(STUDENT_COURSES, new StudentCoursesCommand(COURSE_WITH_MY_MARK_DAO));
         commands.put(ALL_TEACHERS, new AllTeachersCommand());
         commands.put(ALL_TEACHERS_PAG, new ShowAllTeachersCommand(USER_SERVICE));
         commands.put(ADD_TEACHER, new AddTeacher(USER_SERVICE));
         commands.put(ADD_TEACHER_FORM, new AddTeacherCommand());
-        commands.put(TEACHER_COURSES, new TeacherCoursesCommand());
+        commands.put(TEACHER_COURSES_PAG, new ShowTeacherCoursesCommand(COURSE_SERVICE));
         commands.put(IS_TEACHER, new IsTeacherCommand());
         commands.put(TEACHER_REGISTRATION_COMPLETE, new TeacherRegistrationCompleteCommand(USER_SERVICE));
-        commands.put(ENROLL, new EnrollCommand(ENROLL_SERVICE, COURSE_SERVICE));
+        commands.put(ENROLL, new EnrollCommand(ENROLL_SERVICE, COURSE_SERVICE, TOPIC_SERVICE, USER_SERVICE));
         return commands;
     }
 

@@ -24,10 +24,13 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1>Edit course</h1>
-            <form method="POST" action="${pageContext.request.contextPath}/faculty<%=UPDATE_COURSES%>?course=${requestScope.course.courseId}" class="form">
+            <form method="POST"
+                  action="${pageContext.request.contextPath}/faculty<%=UPDATE_COURSES%>?course=${requestScope.course.courseId}"
+                  class="form">
                 <div class="form-group">
                     <label for="name">Course name *</label>
-                    <input class="form-control" type="text" name="name" id="name" value="${requestScope.course.courseName}"
+                    <input class="form-control" type="text" name="name" id="name"
+                           value="${requestScope.course.courseName}"
                            placeholder="Enter topic name">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
@@ -43,9 +46,16 @@
 
                 <div class="form-group">
                     <label for="topic">Topic *</label>
-                    <select name="topic" class="custom-select form-control" id="topic" value="${requestScope.course.topic}">
+                    <select name="topic" class="custom-select form-control" id="topic"
+                            value="${requestScope.course.topic}">
                         <c:forEach items="${requestScope.topicsList}" var="topic">
-                            <option value="${topic.topicId}">${topic.topicName}</option>
+                            <option value="${topic.topicId}"
+                                    <c:if test="${topic.topicId == requestScope.course.topic}">
+                                        selected
+                                    </c:if>
+                            >${topic.topicName}
+
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
@@ -53,7 +63,8 @@
                 <div class="form-group">
                     <label for="studentsAmount">Students amount *</label>
                     <input class="form-control" aria-label="With textarea" type="number" id="studentsAmount"
-                           min="10" max="60" name="studentsAmount" placeholder="amount" value="${requestScope.course.studentsAmount}">
+                           min="10" max="60" name="studentsAmount" placeholder="amount"
+                           value="${requestScope.course.studentsAmount}">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
                             <p class="errorsM">Students amount cannot be null or empty</p>
@@ -64,7 +75,8 @@
                 <div class="form-group">
                     <label for="duration">Course duration *</label>
                     <input class="form-control" aria-label="With textarea" type="number" id="duration"
-                           min="1" max="2" name="duration" placeholder="duration" value="${requestScope.course.duration}">
+                           min="1" max="2" name="duration" placeholder="duration"
+                           value="${requestScope.course.duration}">
                     <c:if test="${param.badInput == true}">
                         <div class="alert alert-warning">
                             <p class="errorsM">Duration cannot be null or empty</p>
@@ -74,8 +86,9 @@
 
                 <div class="form-group">
                     <label for="teacher">Teacher *</label>
-                    <select name="teacher" class="custom-select form-control" id="teacher" value="${requestScope.course.teacher}">
-                        <c:forEach items="${requestScope.teachersList}" var="teacher" >
+                    <select name="teacher" class="custom-select form-control" id="teacher"
+                            value="${requestScope.course.teacher}">
+                        <c:forEach items="${requestScope.teachersList}" var="teacher">
                             <option value="${teacher.userId}">${teacher.firstName} ${teacher.secondName} ${teacher.lastName}</option>
                         </c:forEach>
                     </select>
@@ -83,7 +96,8 @@
 
                 <div class="form-group">
                     <label for="status">Status *</label>
-                    <select name="status" class="custom-select form-control" id="status" value="${requestScope.course.status}">
+                    <select name="status" class="custom-select form-control" id="status"
+                            value="${requestScope.course.status}">
                         <c:forEach items="${requestScope.statuses}" var="status">
                             <option value="${status}">${status.name()}</option>
                         </c:forEach>

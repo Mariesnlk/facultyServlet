@@ -57,7 +57,7 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li><a href="${pageContext.request.contextPath}/faculty<%=TEACHER_COURSES%>">
+                                <li><a href="${pageContext.request.contextPath}/faculty<%=TEACHER_COURSES_PAG%>?pagination=1">
                                     <fmt:message key="navbar.my_courses"/>
                                 </a></li>
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=ABOUT%>">
@@ -66,22 +66,18 @@
                                 <li><a href="${pageContext.request.contextPath}/faculty<%=CONTACTS%>">
                                     <fmt:message key="navbar.contacts"/>
                                 </a></li>
-                                <%--                                <c:if test="${sessionScope.userEmail == null}">--%>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/faculty<%=LOGIN_PAGE%>">
                                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;
                                         <fmt:message key="sign_in"/>
                                     </a>
                                 </li>
-                                <%--                                </c:if>--%>
-                                <%--                                <c:if test="${sessionScope.userEmail != null}">--%>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/faculty<%=LOGOUT%>">
                                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp
                                         <fmt:message key="logout"/>
                                     </a>
                                 </li>
-                                <%--                                </c:if>--%>
                             </ul>
                         </nav>
                     </div>

@@ -33,7 +33,7 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     @Override
     public UserEntity findById(Long id) {
-        return getElementByIntegerParam(id, GET_BY_ID_USER);
+        return getElementByLongParam(id, GET_BY_ID_USER);
     }
 
     @Override

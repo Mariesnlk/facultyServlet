@@ -1,15 +1,10 @@
 package com.example.faculty.service.impl;
 
 import com.example.faculty.dao.interf.CourseDao;
-import com.example.faculty.dao.interf.TopicDao;
-import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.exception.InputDataInCorrectRuntimeException;
 import com.example.faculty.model.domain.Course;
 import com.example.faculty.model.entity.CourseEntity;
-import com.example.faculty.model.entity.TopicEntity;
 import com.example.faculty.model.mapper.CourseMapper;
-import com.example.faculty.model.mapper.TopicMapper;
-import com.example.faculty.model.mapper.UserMapper;
 import com.example.faculty.service.interf.CourseService;
 import org.apache.log4j.Logger;
 
@@ -74,7 +69,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getAllCourses(int row, int limit) {
-        List<CourseEntity> courseEntities = courseDao.findAll();
+        List<CourseEntity> courseEntities = courseDao.findAllCourses(row, limit);
         return courseEntities.isEmpty() ?
                 Collections.emptyList() : courseEntities.stream()
                 .map(courseMapper::courseEntityToCourse)
@@ -91,6 +86,30 @@ public class CourseServiceImpl implements CourseService {
         CourseEntity courseEntity = courseDao.findById(courseId);
         courseEntity.setEnrollStudents(courseEntity.getEnrollStudents() + 1);
         courseDao.update(courseEntity);
+    }
+
+    @Override
+    public List<Course> getMyCourses(int row, int limit, Long id) {
+        return null;
+    }
+
+    @Override
+    public long getMyCoursesCount(Long id) {
+        return 0;
+    }
+
+    @Override
+    public List<Course> getAllTeachersCourses(int row, int limit, Long id) {
+        List<CourseEntity> courseEntities = courseDao.findTeachersCourses(row, limit, id);
+        return courseEntities.isEmpty() ?
+                Collections.emptyList() : courseEntities.stream()
+                .map(courseMapper::courseEntityToCourse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public long getAllTeachersCoursesCount(Long id) {
+        return courseDao.findTeachersCountCourses(id);
     }
 
     @Override

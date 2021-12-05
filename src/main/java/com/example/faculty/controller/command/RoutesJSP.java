@@ -24,6 +24,7 @@ public interface RoutesJSP {
     String ALL_COURSES = "/WEB-INF/jsp/course/all-courses.jsp";
     String ADD_COURSE = "/WEB-INF/jsp/course/add-course.jsp";
     String UPDATE_COURSES = "/WEB-INF/jsp/course/update-course.jsp";
+    String COURSE_INFO = "/WEB-INF/jsp/course/course-info.jsp";
 
     String ALL_STUDENTS = "/WEB-INF/jsp/student/all-students.jsp";
     String UPDATE_STUDENT_FORM = "/WEB-INF/jsp/student/update-student.jsp";

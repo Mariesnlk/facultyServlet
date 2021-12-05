@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.faculty.database.Queries.*;
 
@@ -30,7 +29,7 @@ public class TopicDaoImpl extends AbstractGenericDao<TopicEntity> implements Top
 
     @Override
     public TopicEntity findById(Long id) {
-        return getElementByIntegerParam(id, GET_BY_ID_TOPIC);
+        return getElementByLongParam(id, GET_BY_ID_TOPIC);
     }
 
     @Override

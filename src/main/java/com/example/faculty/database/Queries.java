@@ -51,7 +51,7 @@ public class Queries {
     //Course
     public static final String CREATE_COURSE = "INSERT INTO facultyservlet.course(created_date, name, status, students_amount, " +
             "enroll_students, duration, topic_id, teacher_id) VALUES(?,?,?,?,?,?,?,?)";
-    public static final String GET_COURSE_BY_ID = "SELECT * FROM facultyservlet.course WHERE id = ?";
+    public static final String GET_COURSE_BY_ID = "SELECT * FROM facultyservlet.course WHERE id=?";
     public static final String GET_COURSE_BY_NAME = "SELECT * FROM facultyservlet.course WHERE name = ?";
     public static final String GET_ALL_COURSES = "SELECT * FROM facultyservlet.course";
     public static final String UPDATE_COURSE = "UPDATE facultyservlet.course SET " +
@@ -66,7 +66,16 @@ public class Queries {
             "WHERE id=?";
     public static final String DELETE_COURSE = "DELETE FROM facultyservlet.course WHERE id = ?";
     public static final String COUNT_COURSES = "SELECT count(*) FROM  facultyservlet.course";
+    public static final String COUNT_TEACHER_COURSES = "SELECT count(*) FROM  facultyservlet.course WHERE teacher_id=?";
     public static final String READ_COURSES_WITH_LIMIT = "SELECT * FROM  facultyservlet.course ORDER BY  id  DESC limit ?, ?";
+    public static final String READ_TEACHER_COURSES_WITH_LIMIT = "SELECT * FROM  facultyservlet.course WHERE teacher_id=? ORDER BY  id  DESC limit ?, ?";
+    public static final String ALL_STUDENT_COURSES = "SELECT c.name, c.duration, c.students_amount, c.topic_id, c.teacher_id, c.status, g.mark " +
+            "FROM facultyservlet.course c " +
+            "INNER JOIN facultyservlet.enroll e " +
+            "ON c.id = e.course_id " +
+            "LEFT JOIN facultyservlet.gradebook g " +
+            "ON g.course_id = c.id " +
+            "WHERE e.student_id=?";
 
     //Enroll
     public static final String CREATE_ENROLL = "INSERT INTO facultyservlet.enroll(created_date, student_id, course_id) VALUES(?,?,?)";
@@ -82,15 +91,15 @@ public class Queries {
             "WHERE course_id=? AND student_id=?";
 
     //Gradebook
-    public static final String CREATE_GRADEBOOK = "INSERT INTO facultyservlet.gradebook(created_date, id_student, id_course, mark) VALUES(?,?,?,?)";
-    public static final String GET_GRADEBOOK_BY_ID = "SELECT * FROM facultyservlet.gradebook WHERE id = ?";
+    public static final String CREATE_GRADEBOOK = "INSERT INTO facultyservlet.gradebook(created_date, student_id, course_id, mark) VALUES(?,?,?,?)";
+    public static final String GET_GRADEBOOK_BY_ID = "SELECT * FROM facultyservlet.gradebook WHERE id=?";
     public static final String GET_ALL_GRADEBOOK = "SELECT * FROM facultyservlet.gradebook";
     public static final String GRADEBOOK_ENROLL = "UPDATE facultyservlet.gradebook SET " +
-            "id_student  = ?, " +
-            "id_course = ?, " +
+            "student_id  = ?, " +
+            "course_id = ?, " +
             "mark = ?, " +
             "WHERE id = ?";
-    public static final String DELETE_GRADEBOOK = "DELETE FROM facultyservlet.gradebook WHERE id = ?";
+    public static final String DELETE_GRADEBOOK = "DELETE FROM facultyservlet.gradebook WHERE id=?";
 
 
 }

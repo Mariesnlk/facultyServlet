@@ -2,9 +2,13 @@ package com.example.faculty.controller.command.account.student;
 
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;
+import com.example.faculty.model.adapter.CourseDto;
+import com.example.faculty.model.adapter.CourseDtoAdapter;
 import com.example.faculty.model.domain.Course;
 import com.example.faculty.service.interf.CourseService;
 import com.example.faculty.service.interf.EnrollService;
+import com.example.faculty.service.interf.TopicService;
+import com.example.faculty.service.interf.UserService;
 import com.example.faculty.utils.LoginUserUtils;
 import org.apache.log4j.Logger;
 
@@ -20,10 +24,15 @@ public class EnrollCommand implements Command {
 
     private final EnrollService enrollService;
     private final CourseService courseService;
+    private final TopicService topicService;
+    private final UserService userService;
 
-    public EnrollCommand(EnrollService enrollService, CourseService courseService) {
+    public EnrollCommand(EnrollService enrollService, CourseService courseService,
+                         TopicService topicService, UserService userService) {
         this.enrollService = enrollService;
         this.courseService = courseService;
+        this.topicService = topicService;
+        this.userService = userService;
     }
 
     @Override
@@ -49,10 +58,9 @@ public class EnrollCommand implements Command {
         pageNumber = getPageNumber(sPageNo);
         startIndex = (pageNumber * recordPerPage) - recordPerPage;
         List<Course> coursesList = courseService.getAllCourses(startIndex, recordPerPage);
-//        CourseDtoAdapter courseAdapter = new CourseDtoAdapter(topicService, userService);
-//        List<CourseDto> adapterList = courseAdapter.coursesListAdapter(coursesList);
+        List<CourseDto> adapterList = new CourseDtoAdapter(topicService, userService).coursesListAdapter(coursesList);
 
-        request.setAttribute("coursesList", coursesList);
+        request.setAttribute("coursesList", adapterList);
         request.setAttribute("recordPerPage", recordPerPage);
         numberOfPages = totalNumberRecords / recordPerPage;
         if (totalNumberRecords > numberOfPages * recordPerPage) {

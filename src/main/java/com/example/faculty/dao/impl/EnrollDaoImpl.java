@@ -63,9 +63,9 @@ public class EnrollDaoImpl extends AbstractGenericDao<EnrollEntity> implements E
         java.sql.Date printDate = new java.sql.Date(element.getDate().getTime());
 
         statement.setDate(1, printDate);
-        statement.setLong(2, element.getCourseEntity());
-        statement.setLong(3, element.getStudent());
-    }
+        statement.setLong(2, element.getStudent());
+        statement.setLong(3, element.getCourseEntity());
+      }
 
     @Override
     protected void setUpdateElementProperties(PreparedStatement statement, EnrollEntity element) throws SQLException {

@@ -5,6 +5,7 @@ import com.example.faculty.controller.command.RoutesJSP;
 import com.example.faculty.model.domain.Topic;
 import com.example.faculty.model.domain.User;
 import com.example.faculty.service.interf.UserService;
+import com.example.faculty.utils.PageUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class ShowAllTeachersCommand implements Command {
 
         String sPageNo = request.getParameter("pagination");
 
-        pageNumber = getPageNumber(sPageNo);
+        pageNumber = PageUtils.getPageNumber(sPageNo);
         startIndex = (pageNumber * recordPerPage) - recordPerPage;
         List<User> teachersList = userService.getAllTeachers(startIndex, recordPerPage);
 
@@ -48,13 +49,5 @@ public class ShowAllTeachersCommand implements Command {
 
         request.setAttribute("pageNumbers", numberOfPages);
         return RoutesJSP.ALL_TEACHERS;
-    }
-
-    private int getPageNumber(String strNumber) {
-        try {
-            return Integer.valueOf(strNumber);
-        } catch (IllegalArgumentException e) {
-            return 1;
-        }
     }
 }

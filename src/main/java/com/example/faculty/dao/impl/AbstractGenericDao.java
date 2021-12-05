@@ -32,7 +32,7 @@ public abstract class AbstractGenericDao<E> {
         }
     }
 
-    protected E getElementByIntegerParam(Long id, String query) {
+    protected E getElementByLongParam(Long id, String query) {
         ResultSet rs = null;
         try (Connection connection = connector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -100,6 +100,22 @@ public abstract class AbstractGenericDao<E> {
         try (Connection connection = connector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             resultSet = statement.executeQuery();
+            list = parseAllElements(resultSet);
+        } catch (SQLException e) {
+            LOGGER.warn("getList error", e);
+            throw new DataBaseRuntimeException("getList error", e);
+        }
+
+        return list;
+    }
+
+    protected List<E> getListWithLongParameter(Long id, String query) {
+        ResultSet resultSet = null;
+        List<E> list;
+        try (Connection connection = connector.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setLong(1, id);
+            resultSet = ps.executeQuery();
             list = parseAllElements(resultSet);
         } catch (SQLException e) {
             LOGGER.warn("getList error", e);
@@ -203,6 +219,23 @@ public abstract class AbstractGenericDao<E> {
             LOGGER.debug("Executed query" + query);
             if (rs.next()) {
                 LOGGER.debug("check is rs has next");
+                countsCourses = rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred ", e);
+        }
+        return countsCourses;
+    }
+
+    public long findCountWithParameter(Long id, String query) {
+        long countsCourses = 0;
+        ResultSet rs = null;
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(query)) {
+
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
                 countsCourses = rs.getLong(1);
             }
         } catch (SQLException e) {

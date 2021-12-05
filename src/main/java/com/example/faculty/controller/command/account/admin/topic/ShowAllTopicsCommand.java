@@ -4,6 +4,7 @@ import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;
 import com.example.faculty.model.domain.Topic;
 import com.example.faculty.service.interf.TopicService;
+import com.example.faculty.utils.PageUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class ShowAllTopicsCommand implements Command {
 
         String sPageNo = request.getParameter("pagination");
 
-        pageNumber = getPageNumber(sPageNo);
+        pageNumber = PageUtils.getPageNumber(sPageNo);
         startIndex = (pageNumber * recordPerPage) - recordPerPage;
         List<Topic> topicList = topicService.getAllTopics(startIndex, recordPerPage);
 
@@ -44,13 +45,5 @@ public class ShowAllTopicsCommand implements Command {
 
         request.setAttribute("pageNumbers", numberOfPages);
         return RoutesJSP.ALL_TOPICS;
-    }
-
-    private int getPageNumber(String strNumber) {
-        try {
-            return Integer.valueOf(strNumber);
-        } catch (IllegalArgumentException e) {
-            return 1;
-        }
     }
 }

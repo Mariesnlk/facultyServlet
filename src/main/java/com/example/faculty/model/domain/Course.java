@@ -100,6 +100,21 @@ public class Course {
     }
 
     @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", date=" + date +
+                ", topic=" + topic +
+                ", teacher=" + teacher +
+                ", courseName='" + courseName + '\'' +
+                ", duration=" + duration +
+                ", studentsAmount=" + studentsAmount +
+                ", enrollStudents=" + enrollStudents +
+                ", status=" + status +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;

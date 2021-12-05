@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class CourseDtoAdapter {
 
-    private final TopicService topicService;
-    private final UserService userService;
+    private TopicService topicService;
+    private UserService userService;
 
     public CourseDtoAdapter(TopicService topicService, UserService userService) {
         this.topicService = topicService;
@@ -18,10 +18,10 @@ public class CourseDtoAdapter {
     }
 
     public List<CourseDto> coursesListAdapter(List<Course> courses) {
-        return courses.stream().map(course -> adapterCourse(course)).collect(Collectors.toList());
+        return courses.stream().map(this::adapterCourse).collect(Collectors.toList());
     }
 
-    private CourseDto adapterCourse(Course course) {
+    public CourseDto adapterCourse(Course course) {
         return new CourseDto.Builder()
                 .setCourseId(course.getCourseId())
                 .setTopic(topicService.findById(course.getTopic()))

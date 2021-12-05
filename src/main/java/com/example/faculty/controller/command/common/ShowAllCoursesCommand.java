@@ -9,6 +9,7 @@ import com.example.faculty.model.domain.Course;
 import com.example.faculty.service.interf.CourseService;
 import com.example.faculty.service.interf.TopicService;
 import com.example.faculty.service.interf.UserService;
+import com.example.faculty.utils.PageUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -25,8 +26,10 @@ public class ShowAllCoursesCommand implements Command {
     private TopicService topicService;
     private UserService userService;
 
-    public ShowAllCoursesCommand(CourseService courseService) {
+    public ShowAllCoursesCommand(CourseService courseService, TopicService topicService, UserService userService) {
         this.courseService = courseService;
+        this.topicService = topicService;
+        this.userService = userService;
     }
 
     @Override
@@ -40,13 +43,13 @@ public class ShowAllCoursesCommand implements Command {
 
         String sPageNo = request.getParameter("pagination");
 
-        pageNumber = getPageNumber(sPageNo);
+        pageNumber = PageUtils.getPageNumber(sPageNo);
         startIndex = (pageNumber * recordPerPage) - recordPerPage;
         List<Course> coursesList = courseService.getAllCourses(startIndex, recordPerPage);
-//        CourseDtoAdapter courseAdapter = new CourseDtoAdapter(topicService, userService);
-//        List<CourseDto> adapterList = courseAdapter.coursesListAdapter(coursesList);
+        CourseDtoAdapter courseAdapter = new CourseDtoAdapter(topicService, userService);
+        List<CourseDto> adapterList = courseAdapter.coursesListAdapter(coursesList);
 
-        request.setAttribute("coursesList", coursesList);
+        request.setAttribute("coursesList", adapterList);
         request.setAttribute("recordPerPage", recordPerPage);
         numberOfPages = totalNumberRecords / recordPerPage;
         if (totalNumberRecords > numberOfPages * recordPerPage) {
@@ -57,11 +60,4 @@ public class ShowAllCoursesCommand implements Command {
         return RoutesJSP.ALL_COURSES;
     }
 
-    private int getPageNumber(String strNumber) {
-        try {
-            return Integer.parseInt(strNumber);
-        } catch (IllegalArgumentException e) {
-            return 1;
-        }
-    }
 }

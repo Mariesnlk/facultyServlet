@@ -1,6 +1,7 @@
 package com.example.faculty.dao.impl;
 
 import com.example.faculty.dao.interf.CourseDao;
+import com.example.faculty.dao.interf.UserDao;
 import com.example.faculty.database.DBHelper;
 import com.example.faculty.model.entity.CourseEntity;
 import com.example.faculty.model.enums.CourseStatus;
@@ -18,8 +19,11 @@ public class CourseDaoImpl extends AbstractGenericDao<CourseEntity> implements C
 
     private static final Logger LOGGER = Logger.getLogger(CourseDaoImpl.class);
 
-    public CourseDaoImpl(DBHelper connection) {
+    private UserDao userDao;
+
+    public CourseDaoImpl(DBHelper connection, UserDao userDao) {
         super(connection);
+        this.userDao = userDao;
     }
 
     @Override
@@ -47,6 +51,28 @@ public class CourseDaoImpl extends AbstractGenericDao<CourseEntity> implements C
         }
     }
 
+    @Override
+    public long findTeachersCountCourses(Long id) {
+        return findCountWithParameter(id, COUNT_TEACHER_COURSES);
+    }
+
+    @Override
+    public List<CourseEntity> findTeachersCourses(int row, int limit, Long id) {
+        ResultSet rs = null;
+        List<CourseEntity> courses = new ArrayList<>();
+        try (PreparedStatement ps = connector.getConnection().prepareStatement(READ_TEACHER_COURSES_WITH_LIMIT)) {
+            ps.setLong(1, id);
+            ps.setInt(2, row);
+            ps.setInt(3, limit);
+            rs = ps.executeQuery();
+            LOGGER.info("rs - " + rs);
+            return getCourses(courses, rs);
+        } catch (SQLException e) {
+            LOGGER.error("SQLException occurred in CourseDaoImpl ", e);
+            return null;
+        }
+    }
+
 
     private List<CourseEntity> getCourses(List<CourseEntity> topics, ResultSet rs) throws SQLException {
         while (rs.next()) {
@@ -63,7 +89,7 @@ public class CourseDaoImpl extends AbstractGenericDao<CourseEntity> implements C
 
     @Override
     public CourseEntity findById(Long id) {
-        return getElementByIntegerParam(id, GET_COURSE_BY_ID);
+        return getElementByLongParam(id, GET_COURSE_BY_ID);
     }
 
     @Override

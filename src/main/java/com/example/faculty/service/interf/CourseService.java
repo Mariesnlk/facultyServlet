@@ -13,6 +13,14 @@ public interface CourseService extends CrudService<Course, Long> {
 
     void increaseCountOfEnrollStudents(Long courseId);
 
+    List<Course> getMyCourses(int row, int limit, Long id);
+
+    long getMyCoursesCount(Long id);
+
+    List<Course> getAllTeachersCourses(int row, int limit, Long id);
+
+    long getAllTeachersCoursesCount(Long id);
+
 //    Paged getCoursesPage(String courseName, Integer duration, Integer studentsAmount, String topic,
 //                         String teacher, String status, int pageNumber, int size, String sortType);
 //

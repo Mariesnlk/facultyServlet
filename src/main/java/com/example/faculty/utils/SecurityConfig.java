@@ -32,7 +32,8 @@ public class SecurityConfig {
         List<String> urlPatterns2 = new ArrayList<>();
         urlPatterns2.add(TEACHER_ACCOUNT);
         urlPatterns2.add(UPDATE_USER);
-        urlPatterns2.add(TEACHER_COURSES);
+        urlPatterns2.add(TEACHER_COURSES_PAG);
+        urlPatterns2.add(COURSE_INF0);
         urlPatterns2.add(LOGOUT);
 
         mapConfig.put(UserRole.TEACHER, urlPatterns2);
@@ -55,6 +56,7 @@ public class SecurityConfig {
         urlPatterns3.add(ALL_STUDENTS_PAG);
         urlPatterns3.add(ALL_COURSES_PAG);
         urlPatterns3.add(UPDATE_USER);
+        urlPatterns3.add(COURSE_INF0);
         urlPatterns3.add(LOGOUT);
 
         mapConfig.put(UserRole.ADMINISTRATOR, urlPatterns3);
