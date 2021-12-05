@@ -2,8 +2,9 @@ package com.example.faculty.controller.command.account.teacher;
 
 import com.example.faculty.controller.command.Command;
 import com.example.faculty.controller.command.RoutesJSP;
+import com.example.faculty.model.adapter.CourseDto;
+import com.example.faculty.model.adapter.CourseDtoAdapter;
 import com.example.faculty.model.domain.Course;
-import com.example.faculty.model.domain.User;
 import com.example.faculty.service.interf.CourseService;
 import com.example.faculty.service.interf.TopicService;
 import com.example.faculty.service.interf.UserService;
@@ -25,8 +26,10 @@ public class ShowTeacherCoursesCommand implements Command {
     private TopicService topicService;
     private UserService userService;
 
-    public ShowTeacherCoursesCommand(CourseService courseService) {
+    public ShowTeacherCoursesCommand(CourseService courseService, TopicService topicService, UserService userService) {
         this.courseService = courseService;
+        this.topicService = topicService;
+        this.userService = userService;
     }
 
 
@@ -47,10 +50,9 @@ public class ShowTeacherCoursesCommand implements Command {
         pageNumber = PageUtils.getPageNumber(sPageNo);
         startIndex = (pageNumber * recordPerPage) - recordPerPage;
         List<Course> coursesList = courseService.getAllTeachersCourses(startIndex, recordPerPage, teacherId);
-//        CourseDtoAdapter courseAdapter = new CourseDtoAdapter(topicService, userService);
-//        List<CourseDto> adapterList = courseAdapter.coursesListAdapter(coursesList);
+        List<CourseDto> adapterList = new CourseDtoAdapter(topicService, userService).coursesListAdapter(coursesList);
 
-        request.setAttribute("coursesList", coursesList);
+        request.setAttribute("coursesList", adapterList);
         request.setAttribute("recordPerPage", recordPerPage);
         numberOfPages = totalNumberRecords / recordPerPage;
         if (totalNumberRecords > numberOfPages * recordPerPage) {

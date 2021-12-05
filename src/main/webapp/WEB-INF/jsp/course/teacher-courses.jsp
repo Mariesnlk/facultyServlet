@@ -33,7 +33,6 @@
                         <tr class="table-success">
                             <th class="table-th">Name</th>
                             <th class="table-th">Topic</th>
-                            <th class="table-th">Teacher</th>
                             <th class="table-th">Duration</th>
                             <th class="table-th">Students amount</th>
                             <th class="table-th">Enroll students</th>
@@ -49,19 +48,12 @@
                             <tr>
                                 <td class="table-success"><a href="${pageContext.request.contextPath}/faculty<%=COURSE_INF0%>?course=${course.courseId}">
                                     <c:out value="${course.courseName}"/></a></td>
-                                <td class="table-success"><c:out value="${course.topic}"/></td>
-                                <td class="table-success"><c:out value="${course.teacher}"/></td>
-                                    <%--                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>--%>
-                                    <%--                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>--%>
+                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>
+                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>
                                 <td class="table-success"><c:out value="${course.duration}"/></td>
                                 <td class="table-success"><c:out value="${course.studentsAmount}"/></td>
                                 <td class="table-success"><c:out value="${course.enrollStudents}"/></td>
                                 <td class="table-success"><c:out value="${course.status}"/></td>
-                                <c:if test="${sessionScope.loginPerson.role == 'TEACHER'}">
-                                    <td class="edit-delete">
-                                        <a href="${pageContext.request.contextPath}/faculty<%=UPDATE_COURSE_FORM%>?course=${course.courseId}">Edit</a>
-                                    </td>
-                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>

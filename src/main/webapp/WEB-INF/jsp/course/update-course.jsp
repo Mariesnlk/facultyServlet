@@ -54,7 +54,6 @@
                                         selected
                                     </c:if>
                             >${topic.topicName}
-
                             </option>
                         </c:forEach>
                     </select>
@@ -89,7 +88,11 @@
                     <select name="teacher" class="custom-select form-control" id="teacher"
                             value="${requestScope.course.teacher}">
                         <c:forEach items="${requestScope.teachersList}" var="teacher">
-                            <option value="${teacher.userId}">${teacher.firstName} ${teacher.secondName} ${teacher.lastName}</option>
+                            <option value="${teacher.userId}"
+                                    <c:if test="${teacher.userId == requestScope.course.teacher}">
+                                        selected
+                                    </c:if>
+                            >${teacher.firstName} ${teacher.secondName} ${teacher.lastName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -99,7 +102,11 @@
                     <select name="status" class="custom-select form-control" id="status"
                             value="${requestScope.course.status}">
                         <c:forEach items="${requestScope.statuses}" var="status">
-                            <option value="${status}">${status.name()}</option>
+                            <option value="${status}"
+                                    <c:if test="${status == requestScope.course.status}">
+                                        selected
+                                    </c:if>
+                            >${status.name()}</option>
                         </c:forEach>
                     </select>
                 </div>

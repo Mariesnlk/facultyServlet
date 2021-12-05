@@ -44,10 +44,9 @@
                             <tr>
                                 <td class="table-success"><c:out value="${course.name}"/></td>
                                 <td class="table-success"><c:out value="${course.duration}"/></td>
-                                <td class="table-success"><c:out value="${course.topicId}"/></td>
-                                    <%--                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>--%>
-                                    <%--                                <td class="table-success"><c:out value="${course.teacher.firstName} ${course.teacher.secondName} ${course.teacher.lastName}"/></td>--%>
-                                <td class="table-success"><c:out value="${course.teacherId}"/></td>
+                                <td class="table-success"><c:out value="${course.topic.topicName}"/></td>
+                                <td class="table-success"><c:out
+                                        value="${course.student.firstName} ${course.student.secondName} ${course.student.lastName}"/></td>
                                 <td class="table-success"><c:out value="${course.status}"/></td>
                                 <c:if test="${course.status == 'FINISH'}">
                                     <td class="table-success"><c:out value="${course.mark}"/></td>

@@ -90,12 +90,12 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_ADMIN_FORM, new UpdateAdminCommand());
         commands.put(UPDATE_TEACHER_FORM, new UpdateTeacherCommand());
         commands.put(UPDATE_USER, new UpdateUserCommand(USER_SERVICE));
-        commands.put(STUDENT_COURSES, new StudentCoursesCommand(COURSE_WITH_MY_MARK_DAO));
+        commands.put(STUDENT_COURSES, new StudentCoursesCommand(COURSE_WITH_MY_MARK_DAO, TOPIC_SERVICE, USER_SERVICE));
         commands.put(ALL_TEACHERS, new AllTeachersCommand());
         commands.put(ALL_TEACHERS_PAG, new ShowAllTeachersCommand(USER_SERVICE));
         commands.put(ADD_TEACHER, new AddTeacher(USER_SERVICE));
         commands.put(ADD_TEACHER_FORM, new AddTeacherCommand());
-        commands.put(TEACHER_COURSES_PAG, new ShowTeacherCoursesCommand(COURSE_SERVICE));
+        commands.put(TEACHER_COURSES_PAG, new ShowTeacherCoursesCommand(COURSE_SERVICE, TOPIC_SERVICE, USER_SERVICE));
         commands.put(IS_TEACHER, new IsTeacherCommand());
         commands.put(TEACHER_REGISTRATION_COMPLETE, new TeacherRegistrationCompleteCommand(USER_SERVICE));
         commands.put(ENROLL, new EnrollCommand(ENROLL_SERVICE, COURSE_SERVICE, TOPIC_SERVICE, USER_SERVICE));
