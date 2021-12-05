@@ -1,40 +1,40 @@
 package com.example.faculty.service.impl;
 
-import com.example.faculty.model.domain.Course;
+import com.example.faculty.dao.interf.GradeBookDao;
 import com.example.faculty.model.domain.GradeBook;
-import com.example.faculty.model.domain.User;
+import com.example.faculty.model.entity.GradeBookEntity;
+import com.example.faculty.model.mapper.GradeBookMapper;
 import com.example.faculty.service.interf.GradeBookService;
+import org.apache.log4j.Logger;
 
-import java.util.List;
+import java.util.Date;
 
 public class GradeBookServiceImpl implements GradeBookService {
-    @Override
-    public void create(GradeBook entity) {
 
+    private static final Logger LOGGER = Logger.getLogger(GradeBookServiceImpl.class);
+
+    private GradeBookDao gradeBookDao;
+    private GradeBookMapper gradeBookMapper;
+
+    public GradeBookServiceImpl(GradeBookDao gradeBookDao, GradeBookMapper gradeBookMapper) {
+        this.gradeBookDao = gradeBookDao;
+        this.gradeBookMapper = gradeBookMapper;
     }
 
     @Override
-    public GradeBook findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<GradeBook> findAll() {
-        return null;
-    }
-
-    @Override
-    public void update(GradeBook entity) {
-
-    }
-
-    @Override
-    public boolean delete(GradeBook entity) {
-        return false;
-    }
-
-    @Override
-    public void saveMark(User student, Course course, Integer mark) {
-
+    public void saveMark(Long student, Long course, Integer mark) {
+        if (!gradeBookDao.existsGradeBookByCourseAndStudent(course, student))
+            gradeBookDao.create(gradeBookMapper.gradeBookToGradeBookEntity(
+                    new GradeBook.Builder()
+                            .setDate(new Date())
+                            .setCourse(course)
+                            .setStudent(student)
+                            .setMark(mark)
+                            .build()));
+        else {
+            GradeBookEntity gradeBook = gradeBookDao.findGradeBookByCourseAndStudent(course, student);
+            gradeBook.setMark(mark);
+            gradeBookDao.update(gradeBook);
+        }
     }
 }

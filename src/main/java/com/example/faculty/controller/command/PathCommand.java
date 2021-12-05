@@ -54,6 +54,8 @@ public interface PathCommand {
 
     String ENROLL = "/enroll";
 
+    String SET_MARK = "/set_mark";
+
     String FORBIDDEN = "/forbidden";
     String REDIRECT = "redirect#";
     String EMPTY_STR = "";

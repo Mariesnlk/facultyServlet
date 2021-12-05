@@ -8,9 +8,9 @@ public class GradeBook {
 
     private Date date;
 
-    public Course course;
+    public Long courseId;
 
-    public User student;
+    public Long studentId;
 
     public int mark;
 
@@ -23,12 +23,12 @@ public class GradeBook {
         return date;
     }
 
-    public Course getCourse() {
-        return course;
+    public Long getCourseId() {
+        return courseId;
     }
 
-    public User getStudent() {
-        return student;
+    public Long getStudentId() {
+        return studentId;
     }
 
     public int getMark() {
@@ -54,13 +54,13 @@ public class GradeBook {
             return this;
         }
 
-        public Builder setCourse(Course course) {
-            newGradeBook.course = course;
+        public Builder setCourse(Long course) {
+            newGradeBook.courseId = course;
             return this;
         }
 
-        public Builder setStudent(User student) {
-            newGradeBook.student = student;
+        public Builder setStudent(Long student) {
+            newGradeBook.studentId = student;
             return this;
         }
 

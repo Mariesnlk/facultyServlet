@@ -48,6 +48,22 @@ public abstract class AbstractGenericDao<E> {
         return null;
     }
 
+    protected E getElementByTwoLongParam(Long data, Long secondData, String query) {
+        try (Connection connection = connector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, data);
+            statement.setLong(2, secondData);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return parseToOneElement(resultSet);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(" getElementByStringParam error", e);
+            throw new DataBaseRuntimeException("getElementByStringParam error", e);
+        }
+        return null;
+    }
+
 
     protected void update(E entity, String query) {
         try (Connection connection = connector.getConnection();

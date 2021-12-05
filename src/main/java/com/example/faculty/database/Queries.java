@@ -76,6 +76,13 @@ public class Queries {
             "LEFT JOIN facultyservlet.gradebook g " +
             "ON g.course_id = c.id " +
             "WHERE e.student_id=?";
+    public static final String STUDENT_MARK = "SELECT u.id, u.first_name, u.second_name, u.last_name, g.mark " +
+            "FROM facultyservlet.user u " +
+            "LEFT JOIN facultyservlet.enroll e " +
+            "ON u.id = e.student_id " +
+            "LEFT JOIN facultyservlet.gradebook g " +
+            "ON g.student_id = e.student_id " +
+            "WHERE e.course_id=?";
 
     //Enroll
     public static final String CREATE_ENROLL = "INSERT INTO facultyservlet.enroll(created_date, student_id, course_id) VALUES(?,?,?)";
@@ -95,11 +102,13 @@ public class Queries {
     public static final String GET_GRADEBOOK_BY_ID = "SELECT * FROM facultyservlet.gradebook WHERE id=?";
     public static final String GET_ALL_GRADEBOOK = "SELECT * FROM facultyservlet.gradebook";
     public static final String GRADEBOOK_ENROLL = "UPDATE facultyservlet.gradebook SET " +
+            "created_date  = ?, " +
             "student_id  = ?, " +
             "course_id = ?, " +
             "mark = ?, " +
             "WHERE id = ?";
     public static final String DELETE_GRADEBOOK = "DELETE FROM facultyservlet.gradebook WHERE id=?";
-
+    public static final String IS_EXISTS_GRADEBOOK_BY_COURSE_AND_USER = "SELECT * FROM facultyservlet.gradebook " +
+            "WHERE course_id=? AND student_id=?";
 
 }

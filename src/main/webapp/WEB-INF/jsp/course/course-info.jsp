@@ -22,7 +22,7 @@
 
 <%@ include file="/fragments/navbar-teacher.jsp" %>
 
-<div class="container emp-profile">
+<div class="container">
 
     <form method="post">
         <div class="row">
@@ -50,7 +50,8 @@
                             <label class="text-3">Teacher name:</label>
                         </div>
                         <div class="col-md-6">
-                            <label class="text-3"><c:out value="${requestScope.course.teacher.firstName} ${requestScope.course.teacher.secondName} ${requestScope.course.teacher.lastName}"/></label>
+                            <label class="text-3"><c:out
+                                    value="${requestScope.course.teacher.firstName} ${requestScope.course.teacher.secondName} ${requestScope.course.teacher.lastName}"/></label>
                         </div>
                     </div>
                     <div class="row ">
@@ -92,39 +93,38 @@
     </form>
 </div>
 
-<%--<div th:switch="${studentsList}" id="table">--%>
-<%--    <div th:case="*">--%>
-<%--        <h2>All Students</h2>--%>
-<%--        <table id="incomes_table" class="table table-bordered">--%>
-<%--            <thead>--%>
-<%--            <tr class="table-success">--%>
-<%--                <th class="table-th">Name</th>--%>
-<%--                <th:block th:if="${course.getStatus() == 'FINISH'}">--%>
-<%--                    <th class="table-th">Mark</th>--%>
-<%--                </th:block>--%>
-<%--            </tr>--%>
-<%--            </thead>--%>
-<%--            <tbody>--%>
-<%--            <tr th:each="student, iter:${studentsList.page}">--%>
-<%--                <td th:text="${student.getFirstName()} + ' ' + ${student.secondName} + ' ' + ${student.lastName}"--%>
-<%--                    class="table-success"></td>--%>
-<%--                <td>--%>
-<%--                    <th:block th:if="${course.getStatus() == 'FINISH'}">--%>
-<%--                        <form th:action="@{/course/{courseId}/student/{studentId}(courseId = ${course.id}, studentId = ${student.id})}"--%>
-<%--                              method="post" class="form">--%>
-<%--                            <div class="form-group">--%>
-<%--                                <input type="number" th:value="${student.getMark()}" name="mark" th:min="60"--%>
-<%--                                       th:max="100">--%>
-<%--                                <button type="submit" class="btn btn-success">Save</button>--%>
-<%--                            </div>--%>
-<%--                        </form>--%>
-<%--                    </th:block>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            </tbody>--%>
-<%--        </table>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<div id="table">
+    <div>
+        <h2>All Students</h2>
+        <table id="incomes_table" class="table table-bordered">
+            <thead>
+            <tr class="table-success">
+                <th class="table-th">Name</th>
+                <c:if test="${requestScope.course.status == 'FINISH'}">
+                    <th class="table-th">Mark</th>
+                </c:if>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.studentsMark}" var="studentMark">
+                <tr>
+                    <td class="table-success"><c:out value="${studentMark.firstName} ${studentMark.secondName} ${studentMark.lastName}"/></td>
+                    <td>
+                        <c:if test="${requestScope.course.status == 'FINISH'}">
+                            <form method="POST" action="${pageContext.request.contextPath}/faculty<%=SET_MARK%>?course=${requestScope.course.courseId}&student=${studentMark.id}&mark=${mark}" class="form">
+                                <div class="form-group">
+                                    <input type="number" name="mark" id="mark" min="60" max="100" value="${studentMark.mark}"/>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </form>
+                        </c:if>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

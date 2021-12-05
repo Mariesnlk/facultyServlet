@@ -34,8 +34,9 @@ public class ApplicationContextInjector {
     private static final TopicDao TOPIC_DAO = new TopicDaoImpl(CONNECTOR);
     private static final CourseDao COURSE_DAO = new CourseDaoImpl(CONNECTOR, USER_DAO);
     private static final EnrollDao ENROLL_DAO = new EnrollDaoImpl(CONNECTOR);
-    private static final GradeBookDao GRADE_BOOK_DAO = new GradeBookDaoImpl();
+    private static final GradeBookDao GRADE_BOOK_DAO = new GradeBookDaoImpl(CONNECTOR);
     private static final CourseWithMyMarkDao COURSE_WITH_MY_MARK_DAO = new CourseWithMyMarkDaoImpl(CONNECTOR);
+    private static final StudentMarkDaoImpl STUDENT_MARK_DAO = new StudentMarkDaoImpl(CONNECTOR);
 
     private static final UserMapper USER_MAPPER = new UserMapper();
     private static final TopicMapper TOPIC_MAPPER = new TopicMapper();
@@ -47,7 +48,7 @@ public class ApplicationContextInjector {
     private static final TopicService TOPIC_SERVICE = new TopicServiceImpl(TOPIC_DAO, TOPIC_MAPPER);
     private static final CourseService COURSE_SERVICE = new CourseServiceImpl(COURSE_DAO, COURSE_MAPPER);
     private static final EnrollService ENROLL_SERVICE = new EnrollServiceImpl(ENROLL_DAO, ENROLL_MAPPER);
-    private static final GradeBookService GRADE_BOOK_SERVICE = new GradeBookServiceImpl();
+    private static final GradeBookService GRADE_BOOK_SERVICE = new GradeBookServiceImpl(GRADE_BOOK_DAO, GRADE_BOOK_MAPPER);
 
 
     private static final Map<String, Command> NAME_COMMAND_TO_COMMANDS = initCommand();
@@ -83,7 +84,7 @@ public class ApplicationContextInjector {
         commands.put(UPDATE_COURSE_FORM, new UpdateCoursesCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(UPDATE_COURSES, new UpdateCourses(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
         commands.put(DELETE_COURSE_PATH, new DeleteCourse(COURSE_SERVICE));
-        commands.put(COURSE_INF0, new CourseInfoCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE));
+        commands.put(COURSE_INF0, new CourseInfoCommand(TOPIC_SERVICE, USER_SERVICE, COURSE_SERVICE, STUDENT_MARK_DAO));
         commands.put(ALL_STUDENTS, new AllStudentsCommand());
         commands.put(ALL_STUDENTS_PAG, new ShowAllStudentsCommand(USER_SERVICE));
         commands.put(UPDATE_STUDENT_FORM, new UpdateStudentCommand());
@@ -99,6 +100,7 @@ public class ApplicationContextInjector {
         commands.put(IS_TEACHER, new IsTeacherCommand());
         commands.put(TEACHER_REGISTRATION_COMPLETE, new TeacherRegistrationCompleteCommand(USER_SERVICE));
         commands.put(ENROLL, new EnrollCommand(ENROLL_SERVICE, COURSE_SERVICE, TOPIC_SERVICE, USER_SERVICE));
+        commands.put(SET_MARK, new SetMarkCommand(GRADE_BOOK_SERVICE));
         return commands;
     }
 

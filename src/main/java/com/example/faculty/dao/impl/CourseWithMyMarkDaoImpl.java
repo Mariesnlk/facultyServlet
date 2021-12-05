@@ -46,7 +46,6 @@ public class CourseWithMyMarkDaoImpl extends AbstractGenericDao<CoursesWithMyMar
 
     @Override
     public List<CoursesWithMyMark> findAllStudentCourses(Long studentId) {
-        LOGGER.info("Student courses --- " + getListWithLongParameter(studentId, ALL_STUDENT_COURSES));
         return getListWithLongParameter(studentId, ALL_STUDENT_COURSES);
     }
 

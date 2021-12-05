@@ -8,9 +8,9 @@ public class GradeBookEntity {
 
     private Date date;
 
-    public CourseEntity courseEntity;
+    public Long courseEntity;
 
-    public UserEntity student;
+    public Long student;
 
     public int mark;
 
@@ -23,11 +23,11 @@ public class GradeBookEntity {
         return date;
     }
 
-    public CourseEntity getCourseEntity() {
+    public Long getCourseEntity() {
         return courseEntity;
     }
 
-    public UserEntity getStudentEntity() {
+    public Long getStudentEntity() {
         return student;
     }
 
@@ -35,6 +35,9 @@ public class GradeBookEntity {
         return mark;
     }
 
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
 
     public static class Builder {
 
@@ -54,12 +57,12 @@ public class GradeBookEntity {
             return this;
         }
 
-        public Builder setCourseEntity(CourseEntity courseEntity) {
+        public Builder setCourseEntity(Long courseEntity) {
             newGradeBookEntity.courseEntity = courseEntity;
             return this;
         }
 
-        public Builder setStudentEntity(UserEntity student) {
+        public Builder setStudentEntity(Long student) {
             newGradeBookEntity.student = student;
             return this;
         }
