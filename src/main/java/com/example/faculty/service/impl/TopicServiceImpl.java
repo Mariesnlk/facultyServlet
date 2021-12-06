@@ -1,7 +1,9 @@
 package com.example.faculty.service.impl;
 
 import com.example.faculty.dao.interf.TopicDao;
+import com.example.faculty.exception.EmailIsAlreadyTaken;
 import com.example.faculty.exception.InputDataInCorrectRuntimeException;
+import com.example.faculty.exception.NameIsAlreadyTaken;
 import com.example.faculty.model.domain.Topic;
 import com.example.faculty.model.entity.TopicEntity;
 import com.example.faculty.model.mapper.TopicMapper;
@@ -26,6 +28,15 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void create(Topic topic) {
+        if (Objects.isNull(topic)) {
+            LOGGER.warn("creating TopicServiceImpl create topic in database");
+            throw new InputDataInCorrectRuntimeException("Topic is empty");
+        }
+        boolean isTakenName = topicDao.existsTopicByName(topic.getTopicName());
+        if (isTakenName) {
+            LOGGER.warn("name is taken, exception occurred");
+            throw new NameIsAlreadyTaken("This name is already used");
+        }
         topicDao.create(topicMapper.topicToTopicEntity(topic));
     }
 

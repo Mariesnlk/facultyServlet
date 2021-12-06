@@ -41,7 +41,6 @@ public class TopicMapperTest {
         Topic topic = topicMapper.topicEntityToTopic(TOPIC_ENTITY);
 
         assertThat(topic.getTopicId(), is(TOPIC.getTopicId()));
-//        assertThat(topic.getDate(), is(TOPIC.getDate()));
         assertThat(topic.getTopicName(), is(TOPIC.getTopicName()));
     }
 
@@ -50,7 +49,6 @@ public class TopicMapperTest {
         TopicEntity topicEntity = topicMapper.topicToTopicEntity(TOPIC);
 
         assertThat(topicEntity.getTopicId(), is(TOPIC_ENTITY.getTopicId()));
-//        assertThat(topicEntity.getDate(), is(TOPIC_ENTITY.getDate()));
         assertThat(topicEntity.getTopicName(), is(TOPIC_ENTITY.getTopicName()));
 
     }
@@ -59,7 +57,6 @@ public class TopicMapperTest {
     public void shouldMapTopicToTopicEntityWithoutId() {
         TopicEntity topicEntity = topicMapper.topicToTopicEntityWithoutId(TOPIC);
 
-//        assertThat(topicEntity.getDate(), is(TOPIC_ENTITY.getDate()));
         assertThat(topicEntity.getTopicName(), is(TOPIC_ENTITY.getTopicName()));
 
     }

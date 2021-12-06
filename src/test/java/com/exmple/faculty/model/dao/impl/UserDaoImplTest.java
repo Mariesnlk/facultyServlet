@@ -3,7 +3,6 @@ package com.exmple.faculty.model.dao.impl;
 import com.example.faculty.cipher.AES;
 import com.example.faculty.dao.impl.UserDaoImpl;
 import com.example.faculty.database.DBHelper;
-import com.example.faculty.model.domain.User;
 import com.example.faculty.model.entity.UserEntity;
 import com.example.faculty.model.enums.UserRole;
 import org.junit.Test;
@@ -15,6 +14,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.*;
 
 public class UserDaoImplTest {
 
@@ -95,6 +95,57 @@ public class UserDaoImplTest {
         assertThat(user.getEmail(), equalTo("olga.nester@gmail.com"));
         assertThat(user.getPassword(), equalTo("N6TlHH6d5eRC+C7TU4N+aQ=="));
         assertThat(user.getRole(), equalTo(UserRole.STUDENT));
+    }
+
+    @Test
+    public void isEmailExist() throws SQLException {
+        assertTrue(userDao.isEmailExists("olga.nester@gmail.com"));
+        assertFalse(userDao.isEmailExists("false@gmail.com"));
+    }
+
+    @Test
+    public void getUserByEmail() throws SQLException {
+        UserEntity user = userDao.getUserByEmail("admin@gmail.com");
+
+        assertThat(user.getUserId(), equalTo(1L));
+        assertThat(user.getFirstName(), equalTo("Emma"));
+        assertThat(user.getSecondName(), equalTo("Em"));
+        assertThat(user.getLastName(), equalTo("Synelnyk"));
+        assertThat(user.getEmail(), equalTo("admin@gmail.com"));
+        assertThat(user.getPassword(), equalTo("V5KmS3fu1mR5i+eRNaVi5w=="));
+        assertThat(user.getRole(), equalTo(UserRole.ADMINISTRATOR));
+    }
+
+    @Test
+    public void isStudentExist() throws SQLException {
+        assertTrue(userDao.isStudentExists("olga.nester@gmail.com", "N6TlHH6d5eRC+C7TU4N+aQ=="));
+        assertFalse(userDao.isStudentExists("admin@gmail.com", "V5KmS3fu1mR5i+eRNaVi5w=="));
+    }
+
+    @Test
+    public void isTeacherExist() throws SQLException {
+        assertTrue(userDao.isTeacherExists("juli.synelnyk@gmail.com", "V5KmS3fu1mR5i+eRNaVi5w=="));
+        assertFalse(userDao.isTeacherExists("admin@gmail.com", "V5KmS3fu1mR5i+eRNaVi5w=="));
+    }
+
+    @Test
+    public void iAdminExist() throws SQLException {
+        assertFalse(userDao.isAdminExists("olga.nester@gmail.com", "N6TlHH6d5eRC+C7TU4N+aQ=="));
+        assertTrue(userDao.isAdminExists("admin@gmail.com", "V5KmS3fu1mR5i+eRNaVi5w=="));
+    }
+
+    @Test
+    public void findUserByEmailAndPass() throws SQLException {
+        assertTrue(userDao.findUserByEmailAndPass("admin@gmail.com","V5KmS3fu1mR5i+eRNaVi5w==" ).isPresent());
+        assertEquals(userDao.findUserByEmailAndPass("admin@gmail.com","V5KmS3fu1mR5i+eRNaVi5w==" ).get(),
+                userDao.findById(1L));
+
+    }
+
+    @Test
+    public void findCount() throws SQLException {
+        assertEquals(userDao.findCountStudents(), 3L);
+        assertEquals(userDao.findCountTeachers(), 2L);
 
     }
 }

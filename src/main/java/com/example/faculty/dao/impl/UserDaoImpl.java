@@ -23,7 +23,6 @@ public class UserDaoImpl extends AbstractGenericDao<UserEntity> implements UserD
 
     public UserDaoImpl(DBHelper connection) {
         super(connection);
-
     }
 
     @Override
